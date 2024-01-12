@@ -1,5 +1,8 @@
 export default function NotFoundPage () {
   return (
-    <h1>Ошибка 404</h1>
+    <>
+      <button onClick={() => (window.location.href = "/")}>На главную страницу</button>
+      <h1>Ошибка 404</h1>
+    </>
   )
 }

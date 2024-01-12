@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import './App.css'
 import Router from '../Router/Router';
 
+// App такой же компонент, у нас есть еще общий файл main.tsx
+
 function App() {
   useEffect(() => {
     const fetchServerData = async () => {
