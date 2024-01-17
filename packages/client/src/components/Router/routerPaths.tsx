@@ -3,13 +3,15 @@ import {
 } from "react-router-dom";
 import Login from "../Login/Login";
 import Registration from "../Registration/Registration";
-import Forum from "../Forum/Forum";
-import Game from "../Game/Game";
+import Forum from "../Forum";
+import Game from "../Game";
 import LiderBoard from "../LiderBoard/LiderBoard";
 import NotFoundPage from "../404/404";
-import Profile from "../../Profile/Profile";
+import Profile from "../Profile/Profile";
 import Main from "../Main/Main";
 import Layout from "../Layout/Layout";
+import AddingTopicPage from "../Forum/AddingTopic";
+import TopicPage from "../Forum/TopicPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "forum",
         Component: Forum,
+      },
+      {
+        path: "add-topic",
+        Component: AddingTopicPage,
+      },
+      {
+        path: "topic",
+        Component: TopicPage,
       },
       {
         path: "game",
