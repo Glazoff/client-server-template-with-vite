@@ -1,0 +1,6 @@
+/build/*
+/node_modules 
+/packages/server/dist/*
+/packages/client/dist/*
+vite.config.ts
+/packages/server/*

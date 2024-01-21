@@ -1,0 +1,29 @@
+.game {
+  &__list {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__li {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    font-weight: bold;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &::marker {
+      color: rgb(0 0 0 / 40%);
+    }
+  }
+
+  &__link {
+    color: rgb(0 0 0 / 40%);
+    text-decoration: none;
+    
+    &:hover {
+      opacity: .7;
+    }
+  }
+}
