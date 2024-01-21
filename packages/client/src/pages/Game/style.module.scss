@@ -5,4 +5,9 @@
   background: url(../../images/Обложка-игры.png) no-repeat;
   background-attachment: fixed;
   background-size: cover;
+
+  &__footer {
+    padding: 20px;
+    flex-shrink: 0;
+  }
 }
