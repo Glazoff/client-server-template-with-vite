@@ -1,11 +1,12 @@
-import styles from "./styles.module.scss"
-
+import { Link } from 'react-router-dom'
 interface Props {
-  s: "s"
+  path: string
+  class: string
+  label: string
 }
 
-export default function Link (props: Props) {
+export default function LinkItem (props: Props) {
   return (
-    <link className={styles.s} href={props.s}></link>
+    <Link to={props.path} className={props.class}>{props.label}</Link>
   )
 }

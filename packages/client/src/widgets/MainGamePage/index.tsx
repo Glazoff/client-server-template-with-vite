@@ -1,26 +1,27 @@
 import Button from "../../shared/button";
 import Imagine from "../../shared/imagine";
-import { Link } from 'react-router-dom'
+import LinkItem from "../../shared/link";
+import path from "../../App/Router/constants";
 import styles from "./styles.module.scss"
-import path from "../../shared/constants";
 
 export default function MainGamePage () {
   return (
     <main className={styles.game__main}>
         <Imagine src="../src/images/Волк.jpg" class={styles.game__img} />
         <nav className={styles.game__nav}>
+          {/*компонент кнопки все равно будет, так что я подумал, что пусть будет и тут кастомная кнопка */}
           <Button class={styles.game__button} label="Начать игру"/>
 
           <ul className={styles.game__list}>
             <li className={styles.game__li}>
-              <Link to={path.LiderBoard} className={styles.game__link}>Посмотреть список лидеров</Link>
+              <LinkItem path={path.LiderBoard} class={styles.game__link} label="Посмотреть список лидеров" />
             </li>
             <li className={styles.game__li}>
-              <Link to={path.Forum} className={styles.game__link}>Почитать форум</Link>
+              <LinkItem path={path.Forum} class={styles.game__link} label="Почитать форум" />
             </li>
             <li className={styles.game__li}>
               {/*logout будет */}
-              <Link to={"#"} className={styles.game__link}>Выйти из аккаунта</Link>
+              <LinkItem path={"#"} class={styles.game__link} label="Выйти из аккаунта" />
             </li>
           </ul>
         </nav>

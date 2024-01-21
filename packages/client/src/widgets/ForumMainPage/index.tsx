@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom'
-import path from '../../shared/constants'
+import path from "../../App/Router/constants"
+import LinkItem from "../../shared/link"
 
 export default function ForumMainPage () {
   return (
     <>
       <h1>Страница Форума</h1>
-      <Link to={path.AddTopicPage}>Adding Topic Page</Link>&nbsp;&nbsp;
-      <Link to={path.TopicPage}>Topic Page</Link>&nbsp;&nbsp;
+      <LinkItem path={path.AddTopicPage} class="" label="Adding Topic Page"/>
+      <LinkItem path={path.TopicPage} class="" label="Topic Page" />
     </>
   )
 }
