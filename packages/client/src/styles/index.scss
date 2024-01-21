@@ -1,0 +1,14 @@
+#root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout {
+  position: absolute;
+}
+
+@import url(./variables.scss);
+@import url(./normalize.scss);
+
+@import url(../features/logo/style.scss);
