@@ -1,10 +1,8 @@
 interface Props {
-  src: string
-  class: string
+  src: string;
+  class: string;
 }
 
-export default function Imagine (props: Props) {
-  return (
-    <img src={props.src} className={props.class}/>
-  )
+export default function Imagine(props: Props) {
+  return <img src={props.src} className={props.class} />;
 }

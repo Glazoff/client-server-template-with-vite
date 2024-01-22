@@ -3,9 +3,7 @@ import Router from './Router/Router';
 // App такой же компонент, у нас есть еще общий файл main.tsx
 
 function App() {
-  return (
-    <Router />
-  )
+  return <Router />;
 }
 
-export default App
+export default App;

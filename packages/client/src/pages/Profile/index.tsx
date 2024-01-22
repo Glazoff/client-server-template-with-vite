@@ -1,5 +1,3 @@
-export default function Profile () {
-  return (
-    <h1>Страница профиля</h1>
-  )
+export default function Profile() {
+  return <h1>Страница профиля</h1>;
 }

@@ -1,7 +1,5 @@
-import styles from "./style.module.scss"
+import styles from './style.module.scss';
 
-export default function Logo () {
-  return (
-    <p className={styles.logo}>FrontWear</p>
-  )
+export default function Logo() {
+  return <p className={styles.logo}>FrontWear</p>;
 }

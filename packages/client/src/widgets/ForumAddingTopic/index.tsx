@@ -1,5 +1,3 @@
-export default function AddingTopicPage () {
-  return (
-    <h1>Страница создания темы форума</h1>
-  )
+export default function AddingTopicPage() {
+  return <h1>Страница создания темы форума</h1>;
 }

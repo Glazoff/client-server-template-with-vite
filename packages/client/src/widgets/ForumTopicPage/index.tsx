@@ -1,5 +1,3 @@
-export default function TopicPage () {
-  return (
-    <h1>Страница темы форума</h1>
-  )
+export default function TopicPage() {
+  return <h1>Страница темы форума</h1>;
 }
