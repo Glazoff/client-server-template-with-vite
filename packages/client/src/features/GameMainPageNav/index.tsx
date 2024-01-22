@@ -1,6 +1,8 @@
+
 import styles from './styles.module.scss';
 import path from '../../App/Router/constants';
 import LinkItem from '../../shared/link';
+
 
 export default function GameMainPageNav() {
   return (
@@ -21,4 +23,5 @@ export default function GameMainPageNav() {
       </li>
     </ul>
   );
+
 }

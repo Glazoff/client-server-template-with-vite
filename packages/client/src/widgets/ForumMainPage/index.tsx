@@ -7,6 +7,7 @@ export default function ForumMainPage() {
       <h1>Страница Форума</h1>
       <LinkItem path={path.AddTopicPage} class="" label="Adding Topic Page" />
       <LinkItem path={path.TopicPage} class="" label="Topic Page" />
+
     </>
   );
 }
