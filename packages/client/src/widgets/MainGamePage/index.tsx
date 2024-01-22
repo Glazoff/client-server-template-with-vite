@@ -2,17 +2,18 @@ import Button from "../../shared/button";
 import Imagine from "../../shared/imagine";
 import styles from "./styles.module.scss"
 import GameMainPageNav from "../../features/GameMainPageNav";
+import Title from "../../shared/title";
 
 export default function MainGamePage () {
   return (
     <main className={styles.game__main}>
-        <Imagine src="../src/images/Волк.jpg" class={styles.game__img} />
-        <nav className={styles.game__nav}>
-          {/*компонент кнопки все равно будет, так что я подумал, что пусть будет и тут кастомная кнопка */}
-          <Button class={styles.game__button} label="Начать игру"/>
+      <Title class={styles.game__title} label="Не урони !" />
 
-          <GameMainPageNav />
-        </nav>
-      </main>
+      <GameMainPageNav />
+
+      <Button class={styles.game__button} label="Начать игру"/>
+
+      <Imagine src="../src/images/wolf.png" class={styles.game__img} />
+    </main>
   )
 }

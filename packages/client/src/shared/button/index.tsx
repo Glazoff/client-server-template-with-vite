@@ -1,12 +1,13 @@
 import styles from "./style.module.scss"
 
 interface Props {
-  class: string,
+  variant?: string
   label: string
+  class?: string
 }
 
 export default function Button (props: Props) {
   return (
-    <button className={props.class + " " + styles.button}>{props.label}</button>
+    <button className={props.class + " " + (props.variant === "blue" ? styles.button : `${styles.button_blue} ${styles.button}`)}>{props.label}</button>
   )
 }
