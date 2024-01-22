@@ -3,7 +3,8 @@ import path from '../../App/Router/constants';
 import LinkItem from '../../shared/link';
 
 export default function GameMainPageNav() {
-  console.log('a');
+  const test = 'test';
+  console.log(test);
   return (
     <nav className={styles.game__nav}>
       <LinkItem path={path.Profile} variant="blue" label="Профиль" />
