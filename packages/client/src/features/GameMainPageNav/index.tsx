@@ -3,22 +3,13 @@ import path from '../../App/Router/constants';
 import LinkItem from '../../shared/link';
 
 export default function GameMainPageNav() {
+  console.log('a');
   return (
-    <ul className={styles.game__list}>
-      <li className={styles.game__li}>
-        <LinkItem
-          path={path.LiderBoard}
-          class={styles.game__link}
-          label="Посмотреть список лидеров"
-        />
-      </li>
-      <li className={styles.game__li}>
-        <LinkItem path={path.Forum} class={styles.game__link} label="Почитать форум" />
-      </li>
-      <li className={styles.game__li}>
-        {/*logout будет */}
-        <LinkItem path={'#'} class={styles.game__link} label="Выйти из аккаунта" />
-      </li>
-    </ul>
+    <nav className={styles.game__nav}>
+      <LinkItem path={path.Profile} variant="blue" label="Профиль" />
+      <LinkItem path={path.LiderBoard} label="Доска лидеров" />
+      <LinkItem path={path.Forum} variant="blue" label="Форум" />
+      <LinkItem path={'#'} label="Как играть?" />
+    </nav>
   );
 }
