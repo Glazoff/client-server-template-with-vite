@@ -1,7 +1,5 @@
-import ForumMainPage from "../../widgets/ForumMainPage";
+import ForumMainPage from '../../widgets/ForumMainPage';
 
-export default function Forum () {
-  return (
-    <ForumMainPage />
-  )
+export default function Forum() {
+  return <ForumMainPage />;
 }

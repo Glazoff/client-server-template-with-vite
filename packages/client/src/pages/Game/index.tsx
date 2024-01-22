@@ -1,8 +1,8 @@
-import Logo from "../../shared/logo"
-import styles from "./style.module.scss"
-import MainGamePage from '../../widgets/MainGamePage'
+import styles from './style.module.scss';
+import Logo from '../../shared/logo';
+import MainGamePage from '../../widgets/MainGamePage';
 
-export default function GameMainPage () {
+export default function GameMainPage() {
   return (
     <div className={styles.game}>
       <MainGamePage />
@@ -11,5 +11,5 @@ export default function GameMainPage () {
         <Logo />
       </footer>
     </div>
-  )
+  );
 }
