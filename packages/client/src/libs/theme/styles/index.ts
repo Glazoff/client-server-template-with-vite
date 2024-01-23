@@ -16,7 +16,7 @@ export const buttonsStyles = {
     color: '#1E1E1E',
     backgroundColor: '#FF8513',
     hover: {
-      backgroundColor: '#4A4A4A',
+      backgroundColor: '#ffb26b',
     },
   },
 

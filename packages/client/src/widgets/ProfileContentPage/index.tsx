@@ -1,59 +1,56 @@
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import React from 'react';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import { Box, Avatar } from '@mui/material';
 import DefaultAvatarWolf from '../../assets/static/DefaultAvatar.png';
-import ProfileButtonsForm from '@/features/ProfileButtonsForm';
-import ProfileInputField from '@/features/ProfileInputField';
-import { FormProfileSchema } from '@/libs/ValidationSchema/FormProfileSchema';
+import PopupChangeAvatar from '@/features/PopupChangeAvatar';
 
-export type FormProfileType = {
-  name: string;
-  surname: string;
-  nickname: string;
-  email: string;
+export interface IUser {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
   phone: string;
-  password: string;
-};
+  login: string;
+  avatar: string;
+  email: string;
+}
 
 export default function ProfileContentPage() {
-  const methods = useForm<FormProfileType>({
-    defaultValues: {
-      name: '',
-      surname: '',
-      nickname: '',
-      email: '',
-      phone: '',
-      password: 'default',
-    },
-    resolver: yupResolver(FormProfileSchema),
-    mode: 'all',
-  });
+  const profile: any = useLoaderData();
+  const [openPopupAvatar, setOpenPopupAvatar] = React.useState(false);
 
-  const onSubmit: SubmitHandler<FormProfileType> = async (data) => {
-    console.log(data);
+  const handleOpen = () => {
+    setOpenPopupAvatar(true);
+  };
+
+  const handleClose = () => {
+    setOpenPopupAvatar(false);
   };
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        jusctifyContent: 'center',
-        gap: '30px',
-        alignItems: 'center',
-      }}
-    >
-      <Avatar sx={{ width: '120px', height: '120px' }} alt="аватар" src={DefaultAvatarWolf} />
+    <>
+      <PopupChangeAvatar open={openPopupAvatar} handleClose={handleClose} handleOpen={handleOpen} />
 
-      <FormProvider {...methods}>
-        <Box
-          sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
-          component="form"
-          onSubmit={methods.handleSubmit(onSubmit)}
-        >
-          <ProfileInputField />
-          <ProfileButtonsForm />
-        </Box>
-      </FormProvider>
-    </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          jusctifyContent: 'center',
+          gap: '30px',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar
+          sx={{ width: '120px', height: '120px' }}
+          alt="аватар"
+          src={
+            profile.avatar
+              ? `https://ya-praktikum.tech/api/v2/resources/${profile.avatar}`
+              : DefaultAvatarWolf
+          }
+          onClick={() => handleOpen()}
+        />
+        <Outlet context={{ profileData: profile }} />
+      </Box>
+    </>
   );
 }

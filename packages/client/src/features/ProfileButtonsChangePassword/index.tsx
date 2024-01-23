@@ -4,7 +4,7 @@ import { Box, Button } from '@mui/material';
 import path from '@/App/Router/constants';
 import { FormProfileType } from '@/widgets/ProfileContentPage/FormMainContent';
 
-export default function ProfileButtonsForm() {
+export default function ProfileButtonsChangePassword() {
   const navigate = useNavigate();
   const {
     trigger,
@@ -17,14 +17,14 @@ export default function ProfileButtonsForm() {
         <Button
           variant="default"
           onClick={() => {
-            navigate(`${path.Main}`);
+            navigate(`${path.Profile}`);
           }}
         >
           Назад{' '}
         </Button>
         <Button
-          disabled={!isValid}
           type="submit"
+          disabled={!isValid}
           variant="orange"
           onClick={async () => {
             const isValid = await trigger();
@@ -32,14 +32,6 @@ export default function ProfileButtonsForm() {
             if (isValid) {
               console.log('valid');
             }
-          }}
-        >
-          Редактировать
-        </Button>
-        <Button
-          variant="orange"
-          onClick={() => {
-            navigate(`${path.ProfileChangePassword}`);
           }}
         >
           Сменить пароль

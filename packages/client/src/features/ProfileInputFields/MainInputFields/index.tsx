@@ -1,9 +1,8 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
-import { Box, TextField, InputAdornment } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import { FormProfileType } from '@/widgets/ProfileContentPage';
+import { Box, TextField } from '@mui/material';
+
+import { FormProfileType } from '@/widgets/ProfileContentPage/FormMainContent';
 
 export default function ProfileInputField() {
   const [showPassword, setShowPassword] = React.useState(true);
@@ -26,12 +25,12 @@ export default function ProfileInputField() {
         gap: '20px',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
       }}
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <Controller
-          name="name"
+          name="first_name"
           control={control}
           render={({ field }) => (
             <TextField
@@ -40,14 +39,14 @@ export default function ProfileInputField() {
               fullWidth
               variant="outlined"
               {...field}
-              error={!!errors.name}
-              helperText={errors.name?.message}
+              error={!!errors.first_name}
+              helperText={errors.first_name?.message}
             />
           )}
         />
 
         <Controller
-          name="surname"
+          name="second_name"
           control={control}
           render={({ field }) => (
             <TextField
@@ -56,23 +55,8 @@ export default function ProfileInputField() {
               fullWidth
               variant="outlined"
               {...field}
-              error={!!errors.surname}
-              helperText={errors.surname?.message}
-            />
-          )}
-        />
-        <Controller
-          name="nickname"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              sx={{ minHeight: '90px' }}
-              label="Никнейм"
-              fullWidth
-              variant="outlined"
-              {...field}
-              error={!!errors.nickname}
-              helperText={errors.nickname?.message}
+              error={!!errors.second_name}
+              helperText={errors.second_name?.message}
             />
           )}
         />
@@ -110,37 +94,21 @@ export default function ProfileInputField() {
             />
           )}
         />
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              disabled
-              sx={{ minHeight: '90px' }}
-              label="Пароль"
-              type={!showPassword ? 'text' : 'password'}
-              variant="outlined"
-              {...field}
-              fullWidth
-              error={!!errors.password}
-              helperText={errors.password?.message}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {!showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          )}
-        />
       </Box>
+      <Controller
+        name="login"
+        control={control}
+        render={({ field }) => (
+          <TextField
+            sx={{ minHeight: '90px' }}
+            label="Никнейм"
+            variant="outlined"
+            {...field}
+            error={!!errors.login}
+            helperText={errors.login?.message}
+          />
+        )}
+      />
     </Box>
   );
 }
