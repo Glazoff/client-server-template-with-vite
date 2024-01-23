@@ -24,6 +24,7 @@
     "lerna": "^5.4.3"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "sass": "^1.69.7"
   }
 }
