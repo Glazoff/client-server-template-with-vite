@@ -26,18 +26,19 @@ export default function ProfileInputField() {
         gap: '20px',
         flexWrap: 'wrap',
         justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <Controller
           name="name"
           control={control}
           render={({ field }) => (
             <TextField
-              sx={{ minHeight: '80px' }}
+              sx={{ minHeight: '90px' }}
               label="Имя"
               fullWidth
-              variant="standard"
+              variant="outlined"
               {...field}
               error={!!errors.name}
               helperText={errors.name?.message}
@@ -50,10 +51,10 @@ export default function ProfileInputField() {
           control={control}
           render={({ field }) => (
             <TextField
-              sx={{ minHeight: '80px' }}
+              sx={{ minHeight: '90px' }}
               label="Фамилия"
               fullWidth
-              variant="standard"
+              variant="outlined"
               {...field}
               error={!!errors.surname}
               helperText={errors.surname?.message}
@@ -65,10 +66,10 @@ export default function ProfileInputField() {
           control={control}
           render={({ field }) => (
             <TextField
-              sx={{ minHeight: '80px' }}
+              sx={{ minHeight: '90px' }}
               label="Никнейм"
               fullWidth
-              variant="standard"
+              variant="outlined"
               {...field}
               error={!!errors.nickname}
               helperText={errors.nickname?.message}
@@ -76,17 +77,17 @@ export default function ProfileInputField() {
           )}
         />
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <Controller
           name="email"
           control={control}
           render={({ field }) => (
             <TextField
-              sx={{ minHeight: '80px' }}
+              sx={{ minHeight: '90px' }}
               label="Почта"
               type="email"
               fullWidth
-              variant="standard"
+              variant="outlined"
               {...field}
               error={!!errors.email}
               helperText={errors.email?.message}
@@ -98,11 +99,11 @@ export default function ProfileInputField() {
           control={control}
           render={({ field }) => (
             <TextField
-              sx={{ minHeight: '80px' }}
+              sx={{ minHeight: '90px' }}
               label="Телефон"
               type="tel"
               fullWidth
-              variant="standard"
+              variant="outlined"
               {...field}
               error={!!errors.phone}
               helperText={errors.phone?.message}
@@ -115,10 +116,10 @@ export default function ProfileInputField() {
           render={({ field }) => (
             <TextField
               disabled
-              sx={{ minHeight: '80px' }}
+              sx={{ minHeight: '90px' }}
               label="Пароль"
               type={!showPassword ? 'text' : 'password'}
-              variant="standard"
+              variant="outlined"
               {...field}
               fullWidth
               error={!!errors.password}

@@ -6,15 +6,23 @@ export const buttonsStyles = {
   },
 
   default: {
-    color: '#fff',
-    backgroundColor: '#000',
+    color: '#1E1E1E',
+    backgroundColor: '#00A3FF',
+    hover: {
+      backgroundColor: '#90d2f7',
+    },
+  },
+  orange: {
+    color: '#1E1E1E',
+    backgroundColor: '#FF8513',
     hover: {
       backgroundColor: '#4A4A4A',
     },
   },
 
-  tertiary: {
-    color: '#000',
+  link: {
+    color: '#1E1E1E',
+    backgroundColor: '#FF8513',
   },
   hover: {
     opacity: 0.7,

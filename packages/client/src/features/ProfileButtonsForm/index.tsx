@@ -1,9 +1,11 @@
 import { useFormContext } from 'react-hook-form';
-import { Box } from '@mui/material';
-import Button from '@/shared/button';
+import { useNavigate } from 'react-router-dom';
+import { Box, Button } from '@mui/material';
+import path from '@/App/Router/constants';
 import { FormProfileType } from '@/widgets/ProfileContentPage';
 
 export default function ProfileButtonsForm() {
+  const navigate = useNavigate();
   const {
     trigger,
     formState: { isValid },
@@ -12,11 +14,17 @@ export default function ProfileButtonsForm() {
     <>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '35px', justifyContent: 'center' }}>
         {' '}
-        <Button label="Назад" type="button" />
+        <Button
+          variant="default"
+          onClick={() => {
+            navigate(`${path.Main}`);
+          }}
+        >
+          Назад{' '}
+        </Button>
         <Button
           disabled={!isValid}
-          label="Редактировать"
-          variant="blue"
+          variant="orange"
           onClick={async () => {
             const isValid = await trigger();
             console.log(isValid);
@@ -24,7 +32,9 @@ export default function ProfileButtonsForm() {
               console.log('valid');
             }
           }}
-        />
+        >
+          Редактировать
+        </Button>
       </Box>
     </>
   );

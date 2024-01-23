@@ -59,7 +59,8 @@ declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     hollow: true;
     default: true;
-    tertiary: true;
+    link: true;
+    orange: true;
   }
 }
 
@@ -140,7 +141,7 @@ export const muiTheme = createTheme({
         {
           props: { variant: 'default' },
           style: {
-            color: '#fff',
+            color: buttonsStyles.default.color,
             backgroundColor: buttonsStyles.default.backgroundColor,
             padding: '12px 24px',
             borderRadius: buttonsStyles.borderRadius,
@@ -150,10 +151,22 @@ export const muiTheme = createTheme({
           },
         },
         {
-          props: { variant: 'tertiary' },
+          props: { variant: 'orange' },
+          style: {
+            color: buttonsStyles.orange.color,
+            backgroundColor: buttonsStyles.orange.backgroundColor,
+            padding: '12px 24px',
+            borderRadius: buttonsStyles.borderRadius,
+            ':hover': {
+              backgroundColor: buttonsStyles.orange.hover.backgroundColor,
+            },
+          },
+        },
+        {
+          props: { variant: 'link' },
           style: {
             borderRadius: 0,
-            color: buttonsStyles.tertiary.color,
+            color: buttonsStyles.link.color,
             background: 'none',
             padding: '4px 0',
             border: 'none',
