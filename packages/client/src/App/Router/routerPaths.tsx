@@ -13,7 +13,6 @@ import AddingTopicPage from '../../widgets/ForumAddingTopic';
 import TopicPage from '../../widgets/ForumTopicPage';
 import { loaderProfileData, loaderProfileSignIn } from '@/shared/loadersApi/loaderProfile';
 import ProfileChangePassword from '@/widgets/ProfileContentPage/FormChangePassword';
-import ProfileContentPage from '@/widgets/ProfileContentPage';
 import FormMainContent from '@/widgets/ProfileContentPage/FormMainContent';
 
 const router = createBrowserRouter([

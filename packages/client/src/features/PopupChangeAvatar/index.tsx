@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Stack, Typography, Button, Input, Avatar, Box } from '@mui/material';
 import DefaultAvatarWolf from '../../assets/static/DefaultAvatar.png';
 import { baseUrl } from '@/shared/loadersApi/loaderProfile';
