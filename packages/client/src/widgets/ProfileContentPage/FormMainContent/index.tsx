@@ -35,7 +35,6 @@ export default function FormMainContent() {
   });
 
   const onSubmit: SubmitHandler<FormProfileType> = async (data) => {
-    console.log(data);
     //TODO: Сделать redux и отрефакторить в следующем спринте.
     try {
       const request = await fetch(`${baseUrl}/user/profile`, {
@@ -48,7 +47,7 @@ export default function FormMainContent() {
         body: JSON.stringify(data),
       });
       const response = await request.json();
-      console.log(response);
+      return response;
     } catch (error) {
       console.log(error);
     }

@@ -34,7 +34,7 @@ export default function ProfileChangePassword() {
         body: JSON.stringify(data),
       });
       const response = await request.json();
-      console.log(response);
+      return response;
     } catch (error) {
       console.log(error);
     }

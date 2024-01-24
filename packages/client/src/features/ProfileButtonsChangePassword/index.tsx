@@ -28,7 +28,6 @@ export default function ProfileButtonsChangePassword() {
           variant="orange"
           onClick={async () => {
             const isValid = await trigger();
-            console.log(isValid);
             if (isValid) {
               console.log('valid');
             }

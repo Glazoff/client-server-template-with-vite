@@ -40,13 +40,11 @@ export default function PopupChangeAvatar({
           credentials: 'include',
           headers: {
             Accept: 'application/json',
-            // 'Content-Type': 'application/json',
           },
           body: formData,
         });
         const data = await request.json();
         setProfile(data);
-        console.log('data', data);
       } catch (error) {
         console.error(error);
       }
@@ -67,7 +65,6 @@ export default function PopupChangeAvatar({
         >
           <Stack
             component="form"
-            // onSubmit={(event) => submitPhoto(event)}
             display={'flex'}
             flexDirection={'column'}
             gap={'20px'}
@@ -88,12 +85,6 @@ export default function PopupChangeAvatar({
             </Box>
 
             <Typography variant="h6">Загрузите свой аватар</Typography>
-            {/* <input
-              id="avatar"
-              type="file"
-              onChange={(event) => handlePhoto(event)}
-              accept="image/png, image/gif, image/jpeg"
-            /> */}
             <Input id="avatar" type="file" onChange={(event: any) => handlePhoto(event)} />
 
             <Stack display="flex" flexDirection={'row'} gap={'20px'} sx={{ width: '100%' }}>
