@@ -16,8 +16,9 @@ export interface IUser {
 }
 
 export default function ProfileContentPage() {
-  const profile: any = useLoaderData();
+  const profileData: any = useLoaderData();
   const [openPopupAvatar, setOpenPopupAvatar] = React.useState(false);
+  const [profile, setProfile] = React.useState<IUser>(profileData);
 
   const handleOpen = () => {
     setOpenPopupAvatar(true);
@@ -28,7 +29,13 @@ export default function ProfileContentPage() {
   };
   return (
     <>
-      <PopupChangeAvatar open={openPopupAvatar} handleClose={handleClose} handleOpen={handleOpen} />
+      <PopupChangeAvatar
+        open={openPopupAvatar}
+        profile={profile}
+        setProfile={setProfile}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+      />
 
       <Box
         sx={{
@@ -49,7 +56,7 @@ export default function ProfileContentPage() {
           }
           onClick={() => handleOpen()}
         />
-        <Outlet context={{ profileData: profile }} />
+        <Outlet context={{ profileData: profileData }} />
       </Box>
     </>
   );
