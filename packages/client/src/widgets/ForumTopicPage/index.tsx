@@ -1,14 +1,22 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useParams } from "react-router-dom";
 import CommentCard from "../../features/CommentCard";
-import ForumFooter from "../../features/ForumFooter";
 import Title from "../../shared/title";
 import cards from "../../utils/forumCards";
 import styles from "./styles.module.scss"
+import { useState } from "react";
+import ForumFooterBtns from "../../features/ForumFooterBtns";
 
 export default function ForumTopicPage () {
   const { id } = useParams()
-
   const card = cards.find(card => card.id.toString() === id)
+
+  const [comments, setComments] = useState(card?.comments)
+  const [value, setValue] = useState("")
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((e.target as HTMLInputElement).value)
+  }
 
   return (
     <div className={styles.topic}>
@@ -17,17 +25,36 @@ export default function ForumTopicPage () {
         class={styles.topic__title}
       />
       <main className={styles.topic__main}>
-        {card?.comments.map(comment => {
-              return <CommentCard
-                src={comment.scr}
-                nikname={comment.nik}
-                time={comment.time}
-                comment={comment.text}
-                key={card.comments.indexOf(comment)}
-              />
-            })}
+        {comments?.map(comment => {
+          return <CommentCard
+            src={comment.scr}
+            nikname={comment.nik}
+            time={comment.time}
+            comment={comment.text}
+            key={comments.indexOf(comment)}
+          />
+        })}
       </main>
-      <ForumFooter />
+
+      <footer className={styles.forum__footer}>
+        <input 
+          className={styles.forum__input}
+          value={value}
+          onChange={handleChange}
+        />
+          <ForumFooterBtns onClick={() => {
+            setComments([
+                {
+                scr: "../src/images/avatar.png",
+                nik: "Nikname",
+                text: value,
+                time: "10.05.2024 23:12"
+              },
+              ...comments!
+            ])
+            setValue("")
+          }}/>
+      </footer>
     </div>
   )
 }
