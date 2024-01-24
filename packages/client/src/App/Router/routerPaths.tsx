@@ -10,8 +10,8 @@ import NotFoundPage from "../../pages/404";
 import Profile from "../../pages/Profile";
 import Main from "../../pages/Main";
 import Layout from "../../components/Layout/Layout";
-import AddingTopicPage from "../../widgets/ForumAddingTopic";
-import TopicPage from "../../widgets/ForumTopicPage";
+import ForumAddTopicMain from "../../widgets/ForumAddingTopic"
+import ForumTopicPage from "../../widgets/ForumTopicPage";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "add-topic",
-        Component: AddingTopicPage,
+        Component: ForumAddTopicMain,
       },
       {
-        path: "topic",
-        Component: TopicPage,
+        path: "topic/:id",
+        Component: ForumTopicPage,
       },
       {
         path: "game",

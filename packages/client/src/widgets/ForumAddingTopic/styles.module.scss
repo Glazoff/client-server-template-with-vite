@@ -1,0 +1,10 @@
+.add {
+  height: 100vh;
+  padding: 50px;
+  box-sizing: border-box;
+
+  &__title {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,17 @@
+.topic {
+  padding: 50px 50px 0;
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    flex: 1;
+  }
+
+  &__title {
+    text-align: center;
+    margin: 0 0 50px 0;
+  }
+}

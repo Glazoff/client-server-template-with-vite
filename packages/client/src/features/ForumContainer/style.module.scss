@@ -1,0 +1,22 @@
+.forum {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__buttons {
+    padding-top: 20px;
+    display: flex;
+    gap: 20px;
+  }
+
+  &__btn {
+    width: max-content;
+    padding: 0 25px;
+
+    &:first-child {
+    margin-bottom: 25px;
+    }
+  }
+}

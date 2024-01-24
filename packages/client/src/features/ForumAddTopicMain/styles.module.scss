@@ -1,0 +1,25 @@
+.add {
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    border: 2px solid black;
+    border-radius: 8px;
+    width: max-content;
+    padding: 5px 10px;
+  }
+
+  &__btns{
+    display: flex;
+    gap: 20px;
+  }
+}
