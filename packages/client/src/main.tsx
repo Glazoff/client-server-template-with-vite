@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import App from './App/App';
+import { muiTheme } from './libs/theme';
 import '../src/styles/index.scss';
 import { muiTheme } from './libs/theme';
 
