@@ -1,11 +1,7 @@
-import { Outlet, useLoaderData } from 'react-router-dom';
 import { Box } from '@mui/material';
-import React from 'react';
 import ProfileContentPage from '@/widgets/ProfileContentPage';
 
 export default function Profile() {
-  const profile = useLoaderData();
-
   return (
     <Box component={'section'} sx={{ display: 'flex', maxWidth: '1920px', height: '100vh' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
@@ -22,8 +18,6 @@ export default function Profile() {
             alignItems: 'center',
           }}
         >
-          {/* <Outlet context={{ profileData: profile }} /> */}
-
           <ProfileContentPage />
         </Box>
       </Box>

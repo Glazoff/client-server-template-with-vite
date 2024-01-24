@@ -37,15 +37,21 @@ export default function FormMainContent() {
   const onSubmit: SubmitHandler<FormProfileType> = async (data) => {
     console.log(data);
     //TODO: Сделать redux и отрефакторить в следующем спринте.
-    const request = fetch(`${baseUrl}/user/profile`, {
-      method: 'PUT',
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const request = await fetch(`${baseUrl}/user/profile`, {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const response = await request.json();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <FormProvider {...methods}>

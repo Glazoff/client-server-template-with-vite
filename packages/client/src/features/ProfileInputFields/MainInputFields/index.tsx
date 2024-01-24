@@ -1,18 +1,8 @@
-import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Box, TextField } from '@mui/material';
-
 import { FormProfileType } from '@/widgets/ProfileContentPage/FormMainContent';
 
 export default function ProfileInputField() {
-  const [showPassword, setShowPassword] = React.useState(true);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   const {
     control,
     formState: { errors },

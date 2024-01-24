@@ -22,17 +22,22 @@ export default function ProfileChangePassword() {
   });
 
   const onSubmit: SubmitHandler<FormChangePasswordProfile> = async (data) => {
-    console.log(data);
     //TODO: Сделать redux и отрефакторить в следующем спринте.
-    const request = fetch(`${baseUrl}/user/password`, {
-      method: 'PUT',
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const request = await fetch(`${baseUrl}/user/password`, {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const response = await request.json();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
