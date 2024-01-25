@@ -1,15 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Stack, Typography, Button, Input, Avatar, Box } from '@mui/material';
 import DefaultAvatarWolf from '../../assets/static/DefaultAvatar.png';
-import { baseUrl } from '@/shared/loadersApi/loaderProfile';
+import { changeAvatarProfile } from '@/shared/api/apiProfile';
+import { yandexResourcesUrl } from '@/shared/constants/apiConstants';
 import PopupWrapper from '@/shared/ui/popupWrapper';
 import { IUser } from '@/widgets/ProfileContentPage';
 
 type PopupAvatarProps = {
   open: boolean;
   handleClose: () => void;
-  handleOpen?: () => void;
   profile: IUser;
   setProfile: React.Dispatch<React.SetStateAction<IUser>>;
 };
@@ -20,7 +19,6 @@ export default function PopupChangeAvatar({
   profile,
   setProfile,
 }: PopupAvatarProps) {
-  const navigate = useNavigate();
   const [downloadImage, setDownloadImage] = React.useState<File | null>(null);
 
   function handlePhoto(evt: React.ChangeEvent<HTMLInputElement>) {
@@ -31,24 +29,7 @@ export default function PopupChangeAvatar({
   }
 
   const submitPhoto = async () => {
-    if (downloadImage) {
-      const formData = new FormData();
-      formData.append('avatar', downloadImage);
-      try {
-        const request = await fetch(`${baseUrl}/user/profile/avatar`, {
-          method: 'PUT',
-          credentials: 'include',
-          headers: {
-            Accept: 'application/json',
-          },
-          body: formData,
-        });
-        const data = await request.json();
-        setProfile(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    setProfile(await changeAvatarProfile(downloadImage));
     handleClose();
   };
 
@@ -58,37 +39,33 @@ export default function PopupChangeAvatar({
         <Stack
           display={'flex'}
           flexDirection={'column'}
-          justifyContent="space-between"
+          justifyContent={'space-between'}
           alignItems={'center'}
           gap="16px"
           sx={{ width: '600px', height: '400px' }}
         >
           <Stack
-            component="form"
+            component={'form'}
             display={'flex'}
             flexDirection={'column'}
             gap={'20px'}
             alignItems={'center'}
-            justifyContent="space-between"
+            justifyContent={'space-between'}
             sx={{ height: '100%' }}
           >
             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
               <Avatar
                 sx={{ width: '150px', height: '150px' }}
                 alt="аватар"
-                src={
-                  profile.avatar
-                    ? `https://ya-praktikum.tech/api/v2/resources/${profile.avatar}`
-                    : DefaultAvatarWolf
-                }
+                src={profile.avatar ? `${yandexResourcesUrl}/${profile.avatar}` : DefaultAvatarWolf}
               />
             </Box>
 
-            <Typography variant="h6">Загрузите свой аватар</Typography>
+            <Typography variant="h2">Загрузите свой аватар</Typography>
             <Input id="avatar" type="file" onChange={(event: any) => handlePhoto(event)} />
 
             <Stack display="flex" flexDirection={'row'} gap={'20px'} sx={{ width: '100%' }}>
-              <Button sx={{ width: '100%' }} variant="default" onClick={() => navigate(-1)}>
+              <Button sx={{ width: '100%' }} variant="default" onClick={() => handleClose()}>
                 Назад
               </Button>
               <Button sx={{ width: '100%' }} variant="orange" onClick={submitPhoto}>

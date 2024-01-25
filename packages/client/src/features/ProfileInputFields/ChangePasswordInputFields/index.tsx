@@ -3,6 +3,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 import { Box, TextField, InputAdornment } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
+import { handleMouseDownPassword } from '@/shared/helperFunction/handleChangeFunction';
 import { FormChangePasswordProfile } from '@/widgets/ProfileContentPage/FormChangePassword';
 
 export default function ChangePasswordInputFields() {
@@ -11,10 +12,6 @@ export default function ChangePasswordInputFields() {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowOldPassword = () => setShowOldPassword((show) => !show);
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
 
   const {
     control,
@@ -38,7 +35,7 @@ export default function ChangePasswordInputFields() {
           <TextField
             sx={{ minHeight: '90px' }}
             label="Старый пароль"
-            type={!showOldPassword ? 'text' : 'password'}
+            type={showOldPassword ? 'password' : 'text'}
             variant="outlined"
             {...field}
             error={!!errors.oldPassword}
@@ -51,7 +48,7 @@ export default function ChangePasswordInputFields() {
                     onClick={handleClickShowOldPassword}
                     onMouseDown={handleMouseDownPassword}
                   >
-                    {!showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
+                    {showPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -67,7 +64,7 @@ export default function ChangePasswordInputFields() {
           <TextField
             sx={{ minHeight: '90px' }}
             label="Новый пароль"
-            type={!showPassword ? 'text' : 'password'}
+            type={showPassword ? 'password' : 'text'}
             variant="outlined"
             {...field}
             error={!!errors.newPassword}
@@ -80,7 +77,7 @@ export default function ChangePasswordInputFields() {
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                   >
-                    {!showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
+                    {showPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
                   </IconButton>
                 </InputAdornment>
               ),

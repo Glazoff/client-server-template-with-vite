@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import ProfileButtonsChangePassword from '@/features/ProfileButtonsChangePassword';
 import ChangePasswordInputFields from '@/features/ProfileInputFields/ChangePasswordInputFields';
 import { FormChangePasswordSchema } from '@/libs/ValidationSchema/FormChangePasswordSchema';
-import { baseUrl } from '@/shared/loadersApi/loaderProfile';
+import { changePasswordProfile } from '@/shared/api/apiProfile';
 
 export type FormChangePasswordProfile = {
   oldPassword: string;
@@ -23,21 +23,7 @@ export default function ProfileChangePassword() {
 
   const onSubmit: SubmitHandler<FormChangePasswordProfile> = async (data) => {
     //TODO: Сделать redux и отрефакторить в следующем спринте.
-    try {
-      const request = await fetch(`${baseUrl}/user/password`, {
-        method: 'PUT',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      const response = await request.json();
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
+    changePasswordProfile(data);
   };
 
   return (

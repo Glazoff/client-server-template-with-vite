@@ -1,13 +1,6 @@
 import * as yup from 'yup';
+import { regexpLogin, regexpName, regexpPhone } from '@/shared/constants/validConstants';
 import { FormProfileType } from '@/widgets/ProfileContentPage/FormMainContent';
-
-const regexpName = /^[A-ZА-Я][a-zA-Zа-я-А-Я-]*$/;
-const regexpLogin = /^[\da-zA-Z_-]*[a-zA-Z][\da-zA-Z_-]*$/;
-const regexpPhone = /^(\+)?[\d]{10,15}$/;
-
-//TODO: Расширенный регекс для валидации телефона.
-// const phoneRegExp =
-//   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: error message

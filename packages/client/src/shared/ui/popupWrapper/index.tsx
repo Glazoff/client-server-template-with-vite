@@ -33,7 +33,7 @@ export default function PopupWrapper({ open, handleClose, children }: PopupWrapp
         slots={{ backdrop: Backdrop }}
         slotProps={{
           backdrop: {
-            timeout: 500,
+            timeout: 1200,
           },
         }}
       >

@@ -13,14 +13,13 @@ export default function ProfileButtonsChangePassword() {
   return (
     <>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '35px', justifyContent: 'center' }}>
-        {' '}
         <Button
           variant="default"
           onClick={() => {
             navigate(`${path.Profile}`);
           }}
         >
-          Назад{' '}
+          Назад
         </Button>
         <Button
           type="submit"

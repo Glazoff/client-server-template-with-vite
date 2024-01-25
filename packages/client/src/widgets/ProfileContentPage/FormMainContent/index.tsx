@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import ProfileButtonsForm from '@/features/ProfileButtonsForm';
 import ProfileInputField from '@/features/ProfileInputFields/MainInputFields';
 import { FormProfileSchema } from '@/libs/ValidationSchema/FormProfileSchema';
-import { baseUrl } from '@/shared/loadersApi/loaderProfile';
+import { editProfile } from '@/shared/api/apiProfile';
 
 export type FormProfileType = {
   first_name: string;
@@ -36,21 +36,7 @@ export default function FormMainContent() {
 
   const onSubmit: SubmitHandler<FormProfileType> = async (data) => {
     //TODO: Сделать redux и отрефакторить в следующем спринте.
-    try {
-      const request = await fetch(`${baseUrl}/user/profile`, {
-        method: 'PUT',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      const response = await request.json();
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
+    editProfile(data);
   };
   return (
     <FormProvider {...methods}>

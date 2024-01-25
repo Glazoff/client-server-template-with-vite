@@ -1,12 +1,25 @@
+import { ChangeEvent } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Box, TextField } from '@mui/material';
+import { typeValueUserProfile } from '@/shared/types/types';
 import { FormProfileType } from '@/widgets/ProfileContentPage/FormMainContent';
 
 export default function ProfileInputField() {
   const {
+    setValue,
     control,
     formState: { errors },
   } = useFormContext<FormProfileType>();
+
+  function handleChangeUpperCase(
+    name: typeValueUserProfile,
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const strEvent = event.currentTarget.value;
+    const strNormalize: string = strEvent.charAt(0).toUpperCase() + strEvent.slice(1);
+    setValue(name, strNormalize);
+  }
+
   return (
     <Box
       sx={{
@@ -22,13 +35,14 @@ export default function ProfileInputField() {
         <Controller
           name="first_name"
           control={control}
-          render={({ field }) => (
+          render={({ field: { onChange, name, ...fieldsProps } }) => (
             <TextField
               sx={{ minHeight: '90px' }}
               label="Имя"
               fullWidth
               variant="outlined"
-              {...field}
+              onChange={(event) => handleChangeUpperCase(name, event)}
+              {...fieldsProps}
               error={!!errors.first_name}
               helperText={errors.first_name?.message}
             />
@@ -38,13 +52,14 @@ export default function ProfileInputField() {
         <Controller
           name="second_name"
           control={control}
-          render={({ field }) => (
+          render={({ field: { onChange, name, ...fieldsProps } }) => (
             <TextField
               sx={{ minHeight: '90px' }}
               label="Фамилия"
               fullWidth
+              onChange={(event) => handleChangeUpperCase(name, event)}
               variant="outlined"
-              {...field}
+              {...fieldsProps}
               error={!!errors.second_name}
               helperText={errors.second_name?.message}
             />

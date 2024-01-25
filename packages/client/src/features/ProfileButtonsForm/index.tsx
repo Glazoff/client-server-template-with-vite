@@ -13,14 +13,13 @@ export default function ProfileButtonsForm() {
   return (
     <>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '35px', justifyContent: 'center' }}>
-        {' '}
         <Button
           variant="default"
           onClick={() => {
             navigate(`${path.Main}`);
           }}
         >
-          Назад{' '}
+          Назад
         </Button>
         <Button
           disabled={!isValid}
