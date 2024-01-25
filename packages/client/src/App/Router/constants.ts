@@ -7,6 +7,7 @@ const path = {
   Main: '/',
   Profile: '/profile',
   AddTopicPage: '/add-topic',
+  AddTopicPageId: '/topic/:id',
   TopicPage: '/topic',
 };
 

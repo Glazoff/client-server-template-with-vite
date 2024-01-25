@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import path from './constants';
 import Layout from '../../components/Layout/Layout';
 import NotFoundPage from '../../pages/404';
 import Forum from '../../pages/Forum';
@@ -13,44 +14,44 @@ import ForumTopicPage from '../../widgets/ForumTopicPage';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: path.Main,
     Component: Layout,
     errorElement: <NotFoundPage />,
     children: [
       {
-        path: 'login',
+        path: path.Login,
         Component: Login,
       },
       {
-        path: 'registration',
+        path: path.Registration,
         Component: Registration,
       },
       {
-        path: 'forum',
+        path: path.Forum,
         Component: Forum,
       },
       {
-        path: 'add-topic',
+        path: path.AddTopicPage,
         Component: ForumAddTopicMain,
       },
       {
-        path: 'topic/:id',
+        path: path.AddTopicPageId,
         Component: ForumTopicPage,
       },
       {
-        path: 'game',
+        path: path.Game,
         Component: GameMainPage,
       },
       {
-        path: 'lider-board',
+        path: path.LiderBoard,
         Component: LiderBoard,
       },
       {
-        path: 'profile',
+        path: path.Profile,
         Component: Profile,
       },
       {
-        path: '',
+        path: path.Main,
         Component: Main,
       },
     ],
