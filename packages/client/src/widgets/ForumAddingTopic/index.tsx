@@ -1,13 +1,13 @@
-import Title from "../../shared/title"
-import styles from "./styles.module.scss"
+import styles from './styles.module.scss';
 import ForumAddTopicMain from '../../features/ForumAddTopicMain';
+import Title from '../../shared/title';
 
-export default function AddingTopicPage () {
+export default function AddingTopicPage() {
   return (
     <div className={styles.add}>
-      <Title label="Создать новый топик" class={styles.add__title}/>
-      
+      <Title label="Создать новый топик" class={styles.add__title} />
+
       <ForumAddTopicMain />
     </div>
-  )
+  );
 }

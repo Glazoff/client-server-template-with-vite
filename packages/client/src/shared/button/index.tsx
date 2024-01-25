@@ -16,12 +16,12 @@ export default function Button(props: Props) {
       disabled={props.disabled ? props.disabled : false}
       type={props.type && 'button'}
       className={
-        props.class + 
-        " " + 
-        (props.variant === "blue" ? `${styles.button_blue} ${styles.button}` : styles.button)
+        props.class +
+        ' ' +
+        (props.variant === 'blue' ? `${styles.button_blue} ${styles.button}` : styles.button)
       }
     >
       {props.label}
     </button>
-  )
+  );
 }

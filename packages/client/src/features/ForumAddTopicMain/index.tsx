@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import Button from "../../shared/button"
-import styles from "./styles.module.scss"
+import styles from './styles.module.scss';
 import path from '../../App/Router/constants';
+import Button from '../../shared/button';
 import Input from '../../shared/input';
 
-export default function ForumAddTopicMain () {
+export default function ForumAddTopicMain() {
   const navigate = useNavigate();
 
   return (
@@ -16,14 +16,15 @@ export default function ForumAddTopicMain () {
       />
 
       <div className={styles.add__btns}>
-        <Button 
-          variant="blue" 
-          label="На главную форума" 
+        <Button
+          variant="blue"
+          label="На главную форума"
           onClick={() => {
             navigate(`${path.Forum}`);
-          }}/>
-        <Button label="Создать топик"/>
+          }}
+        />
+        <Button label="Создать топик" />
       </div>
     </main>
-  )
+  );
 }

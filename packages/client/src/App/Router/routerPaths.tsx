@@ -1,17 +1,15 @@
-import {
-  createBrowserRouter,
-} from "react-router-dom";
-import Login from "../../pages/Login";
-import Registration from "../../pages/Registration";
-import Forum from "../../pages/Forum";
-import GameMainPage from "../../pages/Game";
-import LiderBoard from "../../pages/LiderBoard";
-import NotFoundPage from "../../pages/404";
-import Profile from "../../pages/Profile";
-import Main from "../../pages/Main";
-import Layout from "../../components/Layout/Layout";
-import ForumAddTopicMain from "../../widgets/ForumAddingTopic"
-import ForumTopicPage from "../../widgets/ForumTopicPage";
+import { createBrowserRouter } from 'react-router-dom';
+import Layout from '../../components/Layout/Layout';
+import NotFoundPage from '../../pages/404';
+import Forum from '../../pages/Forum';
+import GameMainPage from '../../pages/Game';
+import LiderBoard from '../../pages/LiderBoard';
+import Login from '../../pages/Login';
+import Main from '../../pages/Main';
+import Profile from '../../pages/Profile';
+import Registration from '../../pages/Registration';
+import ForumAddTopicMain from '../../widgets/ForumAddingTopic';
+import ForumTopicPage from '../../widgets/ForumTopicPage';
 
 const router = createBrowserRouter([
   {
@@ -32,11 +30,11 @@ const router = createBrowserRouter([
         Component: Forum,
       },
       {
-        path: "add-topic",
+        path: 'add-topic',
         Component: ForumAddTopicMain,
       },
       {
-        path: "topic/:id",
+        path: 'topic/:id',
         Component: ForumTopicPage,
       },
       {

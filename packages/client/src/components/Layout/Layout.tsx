@@ -1,7 +1,7 @@
 import { Link, Outlet } from 'react-router-dom';
 import path from '../../App/Router/constants';
 
-function Layout () {
+function Layout() {
   return (
     <>
       <nav className="layout">
