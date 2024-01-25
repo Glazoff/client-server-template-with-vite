@@ -15,20 +15,20 @@ import ForumTopicPage from "../../widgets/ForumTopicPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     Component: Layout,
     errorElement: <NotFoundPage />,
     children: [
       {
-        path: "login",
+        path: 'login',
         Component: Login,
       },
       {
-        path: "registration",
+        path: 'registration',
         Component: Registration,
       },
       {
-        path: "forum",
+        path: 'forum',
         Component: Forum,
       },
       {
@@ -40,23 +40,23 @@ const router = createBrowserRouter([
         Component: ForumTopicPage,
       },
       {
-        path: "game",
+        path: 'game',
         Component: GameMainPage,
       },
       {
-        path: "lider-board",
+        path: 'lider-board',
         Component: LiderBoard,
       },
       {
-        path: "profile",
+        path: 'profile',
         Component: Profile,
       },
       {
-        path: "",
+        path: '',
         Component: Main,
       },
     ],
   },
 ]);
 
-export default router
+export default router;

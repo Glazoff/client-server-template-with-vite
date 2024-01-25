@@ -1,4 +1,4 @@
-import styles from "./style.module.scss"
+import styles from './style.module.scss';
 
 interface Props {
   variant?: string;
@@ -9,7 +9,7 @@ interface Props {
   type?: 'button' | 'reset' | 'submit';
 }
 
-export default function Button (props: Props) {
+export default function Button(props: Props) {
   return (
     <button
       onClick={props.onClick}

@@ -1,5 +1,5 @@
-import wolf from "./Волк.jpg"
+import wolf from './Волк.jpg';
 
 export default {
-  wolf
-}
+  wolf,
+};
