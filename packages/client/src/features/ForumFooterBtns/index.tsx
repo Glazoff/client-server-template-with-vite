@@ -10,15 +10,18 @@ interface Props {
 export default function ForumFooterBtns(props: Props) {
   const navigate = useNavigate();
 
+  // не совсем понял зачем выносить, вроде бы читаемости не мешает, кода меньше не стало
+  const navigation = () => {
+    navigate(`${path.Forum}`);
+  }
+
   return (
     <div className={styles.forum__btns}>
       <Button
         variant="blue"
         class={styles.forum__link}
         label="На главную форума"
-        onClick={() => {
-          navigate(`${path.Forum}`);
-        }}
+        onClick={navigation}
       />
       <Button class={styles.forum__btn} label="Отправить" onClick={props.onClick} />
     </div>

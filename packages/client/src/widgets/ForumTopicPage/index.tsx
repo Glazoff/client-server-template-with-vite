@@ -15,13 +15,28 @@ export default function ForumTopicPage() {
   const [value, setValue] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((e.target as HTMLInputElement).value);
+    setValue(e.target.value);
   };
+
+  const addComment = () => {
+    setComments([
+      {
+        scr: '../src/images/avatar.png',
+        nik: 'Nikname',
+        text: value,
+        time: '10.05.2024 23:12',
+      },
+      ...comments!,
+    ]);
+    setValue('');
+  }
+
+  const label = cards.find((card) => card.id.toString() === id)?.text || ''
 
   return (
     <div className={styles.topic}>
       <Title
-        label={cards.find((card) => card.id.toString() === id)?.text || ''}
+        label={label}
         class={styles.topic__title}
       />
       <main className={styles.topic__main}>
@@ -41,18 +56,7 @@ export default function ForumTopicPage() {
       <footer className={styles.forum__footer}>
         <input className={styles.forum__input} value={value} onChange={handleChange} />
         <ForumFooterBtns
-          onClick={() => {
-            setComments([
-              {
-                scr: '../src/images/avatar.png',
-                nik: 'Nikname',
-                text: value,
-                time: '10.05.2024 23:12',
-              },
-              ...comments!,
-            ]);
-            setValue('');
-          }}
+          onClick={addComment}
         />
       </footer>
     </div>
