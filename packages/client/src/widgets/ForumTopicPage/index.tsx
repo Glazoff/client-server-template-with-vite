@@ -29,16 +29,13 @@ export default function ForumTopicPage() {
       ...comments!,
     ]);
     setValue('');
-  }
+  };
 
-  const label = cards.find((card) => card.id.toString() === id)?.text || ''
+  const label = cards.find((card) => card.id.toString() === id)?.text || '';
 
   return (
     <div className={styles.topic}>
-      <Title
-        label={label}
-        class={styles.topic__title}
-      />
+      <Title label={label} class={styles.topic__title} />
       <main className={styles.topic__main}>
         {comments?.map((comment) => {
           return (
@@ -55,9 +52,7 @@ export default function ForumTopicPage() {
 
       <footer className={styles.forum__footer}>
         <input className={styles.forum__input} value={value} onChange={handleChange} />
-        <ForumFooterBtns
-          onClick={addComment}
-        />
+        <ForumFooterBtns onClick={addComment} />
       </footer>
     </div>
   );

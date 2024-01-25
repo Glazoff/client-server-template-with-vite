@@ -13,7 +13,7 @@ export default function ForumFooterBtns(props: Props) {
   // не совсем понял зачем выносить, вроде бы читаемости не мешает, кода меньше не стало
   const navigation = () => {
     navigate(`${path.Forum}`);
-  }
+  };
 
   return (
     <div className={styles.forum__btns}>
