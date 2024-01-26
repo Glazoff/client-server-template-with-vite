@@ -1,4 +1,5 @@
-import { Box, TextField, Button, Typography } from '@mui/material';
+import { Stack, Box, TextField, Button, Typography } from '@mui/material';
+import { BUTTONS } from '../../shared/buttonsDict.ts';
 
 export default function Registration() {
   return (
@@ -17,6 +18,7 @@ export default function Registration() {
         >
           <Typography>Регистрация</Typography>
           <TextField
+            name="first_name"
             fullWidth={true}
             margin="normal"
             label="Имя"
@@ -24,6 +26,7 @@ export default function Registration() {
             placeholder="Введите ваше имя"
           />
           <TextField
+            name="second_name"
             fullWidth={true}
             margin="normal"
             label="Фамилия"
@@ -31,6 +34,7 @@ export default function Registration() {
             placeholder="Введите вашу фамилию"
           />
           <TextField
+            name="email"
             fullWidth={true}
             margin="normal"
             label="Email"
@@ -38,6 +42,7 @@ export default function Registration() {
             placeholder="Введите ваш email"
           />
           <TextField
+            name="phone"
             fullWidth={true}
             margin="normal"
             label="Телефон"
@@ -45,6 +50,7 @@ export default function Registration() {
             placeholder="Введите ваш телефон"
           />
           <TextField
+            name="login"
             fullWidth={true}
             margin="normal"
             label="Логин"
@@ -52,6 +58,7 @@ export default function Registration() {
             placeholder="Введите ваш логин"
           />
           <TextField
+            name="password"
             type="password"
             fullWidth={true}
             margin="normal"
@@ -59,12 +66,14 @@ export default function Registration() {
             variant="outlined"
             placeholder="Введите ваш пароль"
           />
-          <Button sx={{ marginTop: 2, marginBottom: 2, width: '50%' }} variant="contained">
-            Вход
-          </Button>
-          <Button sx={{ marginTop: 2, marginBottom: 2, width: '70%' }} variant="orange">
-            Зарегистрироваться
-          </Button>
+          <Stack display="flex" flexDirection={'row'} gap={'20px'} sx={{ width: '100%' }}>
+            <Button sx={{ marginTop: 2, marginBottom: 2, width: '50%' }} variant="contained">
+              {BUTTONS.enter.ru.text}
+            </Button>
+            <Button sx={{ marginTop: 2, marginBottom: 2, width: '50%' }} variant="orange">
+              {BUTTONS.register.ru.text}
+            </Button>
+          </Stack>
         </Box>
       </form>
     </div>

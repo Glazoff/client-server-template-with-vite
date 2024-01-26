@@ -1,4 +1,5 @@
-import { Box, TextField, Button, Typography } from '@mui/material';
+import { Stack, Box, TextField, Button, Typography } from '@mui/material';
+import { BUTTONS } from '../../shared/buttonsDict.ts';
 
 export default function Login() {
   return (
@@ -17,6 +18,7 @@ export default function Login() {
         >
           <Typography>Авторизация</Typography>
           <TextField
+            name="login"
             fullWidth={true}
             margin="normal"
             label="Логин"
@@ -24,6 +26,7 @@ export default function Login() {
             placeholder="Введите ваш логин"
           />
           <TextField
+            name="password"
             type="password"
             fullWidth={true}
             margin="normal"
@@ -31,12 +34,14 @@ export default function Login() {
             variant="outlined"
             placeholder="Введите ваш пароль"
           />
-          <Button sx={{ marginTop: 2, marginBottom: 2, width: '50%' }} variant="contained">
-            Вход
-          </Button>
-          <Button sx={{ marginTop: 2, marginBottom: 2, width: '50%' }} variant="orange">
-            Регистрация
-          </Button>
+          <Stack display="flex" flexDirection={'row'} gap={'20px'} sx={{ width: '100%' }}>
+            <Button sx={{ marginTop: 2, marginBottom: 2, width: '50%' }} variant="contained">
+              {BUTTONS.enter.ru.text}
+            </Button>
+            <Button sx={{ marginTop: 2, marginBottom: 2, width: '50%' }} variant="orange">
+              {BUTTONS.register.ru.text}
+            </Button>
+          </Stack>
         </Box>
       </form>
     </div>
