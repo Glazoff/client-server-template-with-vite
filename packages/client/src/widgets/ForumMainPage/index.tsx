@@ -1,5 +1,5 @@
 import path from '../../App/Router/constants';
-import LinkItem from '../../shared/link';
+import LinkItem from '../../shared/ui/link';
 
 export default function ForumMainPage() {
   return (

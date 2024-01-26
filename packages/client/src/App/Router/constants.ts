@@ -6,6 +6,7 @@ const path = {
   LiderBoard: '/lider-board',
   Main: '/',
   Profile: '/profile',
+  ProfileChangePassword: '/profile/change-password',
   AddTopicPage: '/add-topic',
   TopicPage: '/topic',
 };
