@@ -1,5 +1,5 @@
 import styles from './style.module.scss';
-import Logo from '../../shared/logo';
+import Logo from '../../shared/ui/logo';
 import MainGamePage from '../../widgets/MainGamePage';
 
 export default function GameMainPage() {
