@@ -88,8 +88,28 @@ export const muiTheme = createTheme({
   },
   typography: {
     fontFamily: ['Inter', 'sans-serif'].join(','),
-    h5: {
+    h1: {
+      fontSize: '48px',
+      lineHeight: 'normal',
+    },
+    h2: {
       fontSize: '32px',
+      lineHeight: 'normal',
+    },
+    h3: {
+      fontSize: '24px',
+      lineHeight: 'normal',
+    },
+    h4: {
+      fontSize: '18px',
+      lineHeight: 'normal',
+    },
+    h5: {
+      fontSize: '16px',
+      lineHeight: 'normal',
+    },
+    h6: {
+      fontSize: '12px',
       lineHeight: 'normal',
     },
     body1: {

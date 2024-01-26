@@ -1,8 +1,8 @@
 import styles from './styles.module.scss';
 import GameMainPageNav from '../../features/GameMainPageNav';
-import Button from '../../shared/button';
-import Imagine from '../../shared/imagine';
-import Title from '../../shared/title';
+import Button from '../../shared/ui/button';
+import Imagine from '../../shared/ui/imagine';
+import Title from '../../shared/ui/title';
 
 export default function MainGamePage() {
   return (
