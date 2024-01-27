@@ -3,7 +3,7 @@ import styles from './style.module.scss';
 
 interface Props {
   text?: string;
-  counter?: number;
+  counter: number;
   path: string;
 }
 

@@ -23,7 +23,7 @@ export default function ForumAddTopicMain() {
             navigate(`${path.Forum}`);
           }}
         />
-        <Button label="Создать топик" />
+        <Button onClick={() => {}} label="Создать топик" />
       </div>
     </main>
   );

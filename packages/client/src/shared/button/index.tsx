@@ -4,7 +4,7 @@ interface Props {
   variant?: string;
   label: string;
   class?: string;
-  onClick?: () => void;
+  onClick: () => void;
   disabled?: boolean;
   type?: 'button' | 'reset' | 'submit';
 }

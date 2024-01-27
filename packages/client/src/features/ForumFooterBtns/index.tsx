@@ -23,7 +23,7 @@ export default function ForumFooterBtns(props: Props) {
         label="На главную форума"
         onClick={navigation}
       />
-      <Button class={styles.forum__btn} label="Отправить" onClick={props.onClick} />
+      <Button class={styles.forum__btn} label="Отправить" onClick={() => props.onClick} />
     </div>
   );
 }

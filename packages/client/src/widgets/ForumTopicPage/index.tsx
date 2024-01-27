@@ -31,20 +31,22 @@ export default function ForumTopicPage() {
     setValue('');
   };
 
-  const label = cards.find((card) => card.id.toString() === id)?.text || '';
+  const label = card?.text || '';
 
   return (
     <div className={styles.topic}>
       <Title label={label} class={styles.topic__title} />
       <main className={styles.topic__main}>
-        {comments?.map((comment) => {
+        {comments?.map((comment, index) => {
           return (
             <CommentCard
-              src={comment.scr}
+              avatarUrl={comment.scr}
               nikname={comment.nik}
               time={comment.time}
               comment={comment.text}
-              key={comments.indexOf(comment)}
+              //сейчас не получится использовать время и никнейм, так как они все одинаковые у всех комментов,
+              //react выдает ошибку одинаковых ключей, но когда появится настоящая бд, сделаю так
+              key={/* `${comment.time}-${comment.nik}` */index}
             />
           );
         })}
