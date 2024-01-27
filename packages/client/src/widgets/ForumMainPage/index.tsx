@@ -1,12 +1,12 @@
-import path from '../../App/Router/constants';
-import LinkItem from '../../shared/ui/link';
+import styles from './styles.module.scss';
+import ForumContainer from '../../features/ForumContainer';
+import Title from '../../shared/ui/title';
 
 export default function ForumMainPage() {
   return (
-    <>
-      <h1>Страница Форума</h1>
-      <LinkItem path={path.AddTopicPage} label="Adding Topic Page" />
-      <LinkItem path={path.TopicPage} label="Topic Page" />
-    </>
+    <div className={styles.forum}>
+      <Title label="Форум" class={styles.forum__title} />
+      <ForumContainer />
+    </div>
   );
 }

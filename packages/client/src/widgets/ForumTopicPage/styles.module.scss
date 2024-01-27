@@ -1,0 +1,43 @@
+.topic {
+  padding: 50px 50px 0;
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    flex: 1;
+  }
+
+  &__title {
+    text-align: center;
+    margin: 0 0 50px 0;
+  }
+}
+
+.forum {
+  &__footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 65px 30px;
+    background: white;
+    border-top: 1px solid black;
+  }
+
+  &__input {
+    width: 100%;
+    border: 4px solid rgba(0, 163, 255, 1);
+    padding: 35px 23px;
+    border-radius: 20px;
+    margin: 0 50px 0 0;
+    font-size: 24px;
+    font-weight: bold;
+    box-sizing: border-box;
+  }
+}

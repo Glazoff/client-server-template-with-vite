@@ -4,7 +4,7 @@ interface Props {
   variant?: string;
   label: string;
   class?: string;
-  onClick?: () => void;
+  onClick: () => void;
   disabled?: boolean;
   type?: 'button' | 'reset' | 'submit';
 }
@@ -12,12 +12,13 @@ interface Props {
 export default function Button(props: Props) {
   return (
     <button
+      onClick={props.onClick}
       disabled={props.disabled ? props.disabled : false}
       type={props.type && 'button'}
       className={
         props.class +
         ' ' +
-        (props.variant === 'blue' ? styles.button : `${styles.button_blue} ${styles.button}`)
+        (props.variant === 'blue' ? `${styles.button_blue} ${styles.button}` : styles.button)
       }
     >
       {props.label}

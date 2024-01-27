@@ -17,37 +17,37 @@ import FormMainContent from '@/widgets/ProfileContentPage/FormMainContent';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: path.Main,
     Component: Layout,
     loader: loaderProfileSignIn,
     errorElement: <NotFoundPage />,
     children: [
       {
-        path: 'login',
+        path: path.Login,
         Component: Login,
       },
       {
-        path: 'registration',
+        path: path.Registration,
         Component: Registration,
       },
       {
-        path: 'forum',
+        path: path.Forum,
         Component: Forum,
       },
       {
-        path: 'add-topic',
+        path: path.AddTopicPage,
         Component: AddingTopicPage,
       },
       {
-        path: 'topic',
+        path: path.TopicPageId,
         Component: TopicPage,
       },
       {
-        path: 'game',
+        path: path.Game,
         Component: GameMainPage,
       },
       {
-        path: 'lider-board',
+        path: path.LiderBoard,
         Component: LiderBoard,
       },
       {
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: '',
+        path: path.Main,
         Component: Main,
       },
     ],

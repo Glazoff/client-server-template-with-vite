@@ -1,8 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import path from '../../App/Router/constants';
 
-// здесь не поменял на кастомные линки, потому что этого компонента в финальной версии не будет
-
 function Layout() {
   return (
     <>

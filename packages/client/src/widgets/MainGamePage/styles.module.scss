@@ -12,6 +12,7 @@
     background: white;
     border: 5px solid blue;
     border-radius: 20px;
+    font-size: 16px;
   }
 
   &__title {
@@ -31,5 +32,6 @@
   &__button {
     grid-area: start;
     margin: auto 0;
+    width: max-content;
   }
 }

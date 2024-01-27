@@ -8,6 +8,7 @@ const path = {
   Profile: '/profile',
   ProfileChangePassword: '/profile/change-password',
   AddTopicPage: '/add-topic',
+  TopicPageId: '/topic/:id',
   TopicPage: '/topic',
 };
 

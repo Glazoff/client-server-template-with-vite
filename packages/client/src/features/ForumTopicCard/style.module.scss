@@ -1,0 +1,41 @@
+.card {
+  cursor: pointer;
+  height: 80px;
+  padding: 0 30px;
+  box-sizing: border-box;
+  border: 4px solid rgba(0, 163, 255, 1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  &__container {
+    display: block;
+    text-decoration: none;
+    margin: 0 0 20px 0;
+    color: black;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      transform: scale(1.01);
+      opacity: .8;
+    }
+  }
+
+  &__text {
+    font-size: 24px;
+    font-weight: bold;
+    max-width: 400px;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    overflow: hidden;
+  }
+
+  &__counter {
+    font-size: 24px;
+    font-weight: bold;
+    max-width: 400px;
+  }
+}
