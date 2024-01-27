@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 import CommentCard from '../../features/CommentCard';
 import ForumFooterBtns from '../../features/ForumFooterBtns';
-import Title from '../../shared/title';
+import Title from '../../shared/ui/title';
 import cards from '../../utils/forumCards';
 
 export default function ForumTopicPage() {

@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import ForumAddTopicMain from '../../features/ForumAddTopicMain';
-import Title from '../../shared/title';
+import Title from '../../shared/ui/title';
 
 export default function AddingTopicPage() {
   return (

@@ -9,13 +9,17 @@ import Login from '../../pages/Login';
 import Main from '../../pages/Main';
 import Profile from '../../pages/Profile';
 import Registration from '../../pages/Registration';
-import ForumAddTopicMain from '../../widgets/ForumAddingTopic';
-import ForumTopicPage from '../../widgets/ForumTopicPage';
+import AddingTopicPage from '../../widgets/ForumAddingTopic';
+import TopicPage from '../../widgets/ForumTopicPage';
+import { loaderProfileData, loaderProfileSignIn } from '@/shared/loadersApi/loaderProfile';
+import ProfileChangePassword from '@/widgets/ProfileContentPage/FormChangePassword';
+import FormMainContent from '@/widgets/ProfileContentPage/FormMainContent';
 
 const router = createBrowserRouter([
   {
     path: path.Main,
     Component: Layout,
+    loader: loaderProfileSignIn,
     errorElement: <NotFoundPage />,
     children: [
       {
@@ -32,11 +36,11 @@ const router = createBrowserRouter([
       },
       {
         path: path.AddTopicPage,
-        Component: ForumAddTopicMain,
+        Component: AddingTopicPage,
       },
       {
-        path: path.AddTopicPageId,
-        Component: ForumTopicPage,
+        path: path.TopicPageId,
+        Component: TopicPage,
       },
       {
         path: path.Game,
@@ -48,7 +52,15 @@ const router = createBrowserRouter([
       },
       {
         path: path.Profile,
+        loader: loaderProfileData,
         Component: Profile,
+        children: [
+          {
+            path: path.Profile,
+            element: <FormMainContent />,
+          },
+          { path: path.ProfileChangePassword, element: <ProfileChangePassword /> },
+        ],
       },
       {
         path: path.Main,

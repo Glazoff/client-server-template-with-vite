@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import path from '../../App/Router/constants';
-import Button from '../../shared/button';
+import Button from '../../shared/ui/button';
 import Input from '../../shared/input';
 
 export default function ForumAddTopicMain() {

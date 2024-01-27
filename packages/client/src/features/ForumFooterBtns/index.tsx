@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import path from '../../App/Router/constants';
-import Button from '../../shared/button';
+import Button from '../../shared/ui/button';
 
 interface Props {
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 export default function ForumFooterBtns(props: Props) {
@@ -23,7 +23,7 @@ export default function ForumFooterBtns(props: Props) {
         label="На главную форума"
         onClick={navigation}
       />
-      <Button class={styles.forum__btn} label="Отправить" onClick={() => props.onClick} />
+      <Button class={styles.forum__btn} label="Отправить" onClick={props.onClick} />
     </div>
   );
 }

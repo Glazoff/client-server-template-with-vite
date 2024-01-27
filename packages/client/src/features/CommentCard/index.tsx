@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-import Imagine from '../../shared/imagine';
+import Imagine from '../../shared/ui/imagine';
 
 interface Props {
   avatarUrl: string;
