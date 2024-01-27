@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import path from '../../App/Router/constants';
-import Button from '../../shared/ui/button';
 import Input from '../../shared/input';
+import Button from '../../shared/ui/button';
 
 export default function ForumAddTopicMain() {
   const navigate = useNavigate();
@@ -23,7 +23,12 @@ export default function ForumAddTopicMain() {
             navigate(`${path.Forum}`);
           }}
         />
-        <Button onClick={() => {}} label="Создать топик" />
+        <Button
+          onClick={() => {
+            return { '#': '#' };
+          }}
+          label="Создать топик"
+        />
       </div>
     </main>
   );
