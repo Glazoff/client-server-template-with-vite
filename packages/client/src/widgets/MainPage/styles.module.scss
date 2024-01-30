@@ -1,19 +1,17 @@
-.game {
-  &__main {
-    display: grid;
-    grid-template-areas: 
-    "title title"
-    "nav nav"
-    "img start"
-    ;
-    margin: auto;
-    width: 720px;
-    height: 400px;
-    background: white;
-    border: 5px solid blue;
-    border-radius: 20px;
-    font-size: 16px;
-  }
+.main {
+  display: grid;
+  grid-template-areas: 
+  "title title"
+  "nav nav"
+  "img start"
+  ;
+  margin: auto;
+  width: 720px;
+  height: 400px;
+  background: white;
+  border: 5px solid blue;
+  border-radius: 20px;
+  font-size: 16px;
 
   &__title {
     grid-area: title;
