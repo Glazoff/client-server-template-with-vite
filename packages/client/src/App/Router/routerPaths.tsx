@@ -3,14 +3,15 @@ import path from './constants';
 import Layout from '../../components/Layout/Layout';
 import NotFoundPage from '../../pages/404';
 import Forum from '../../pages/Forum';
-import GameMainPage from '../../pages/Game';
 import LiderBoard from '../../pages/LiderBoard';
 import Login from '../../pages/Login';
-import Main from '../../pages/Main';
+import MainPage from '../../pages/Main';
 import Profile from '../../pages/Profile';
 import Registration from '../../pages/Registration';
 import AddingTopicPage from '../../widgets/ForumAddingTopic';
 import TopicPage from '../../widgets/ForumTopicPage';
+import GameMainPage from '@/pages/Game';
+import GameOver from '@/pages/GameOver';
 import { loaderProfileData, loaderProfileSignIn } from '@/shared/loadersApi/loaderProfile';
 import ProfileChangePassword from '@/widgets/ProfileContentPage/FormChangePassword';
 import FormMainContent from '@/widgets/ProfileContentPage/FormMainContent';
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         Component: GameMainPage,
       },
       {
+        path: path.GameOver,
+        Component: GameOver,
+      },
+      {
         path: path.LiderBoard,
         Component: LiderBoard,
       },
@@ -64,7 +69,7 @@ const router = createBrowserRouter([
       },
       {
         path: path.Main,
-        Component: Main,
+        Component: MainPage,
       },
     ],
   },

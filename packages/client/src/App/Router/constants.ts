@@ -3,6 +3,7 @@ const path = {
   Registration: '/registration',
   Forum: '/forum',
   Game: '/game',
+  GameOver: '/game-over',
   LiderBoard: '/lider-board',
   Main: '/',
   Profile: '/profile',

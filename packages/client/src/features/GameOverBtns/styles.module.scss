@@ -1,0 +1,10 @@
+.over {
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btn {
+    font-size: 20px;
+  }
+}
