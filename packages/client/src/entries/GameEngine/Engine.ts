@@ -9,6 +9,7 @@ export class Engine {
   private ctx: CanvasRenderingContext2D;
   private initialEggSpeed = 100;
   private shootInterval = 500;
+  private isCountReport = false;
   private destroyedEggCount = 0;
   private eggs: Egg[] | null;
   private wolf: Wolf | null;
@@ -168,5 +169,9 @@ export class Engine {
         }
       }
     });
+  };
+  // TODO: Подумать как заканчивать игру
+  public stop = () => {
+    this.isCountReport = false;
   };
 }
