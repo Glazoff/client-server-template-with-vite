@@ -5,6 +5,8 @@
   border-radius: 30px;
   margin: auto;
   padding: 28px 50px 40px;
+  display: flex;
+  flex-direction: column;
 
   &__title {
     margin-bottom: 40px;
@@ -13,7 +15,7 @@
   &__img {
     height: 202px;
     display: block;
-    margin: 0 auto 50px;
+    margin: 0 auto 25px;
     width: 237px;
     object-fit: cover;
   }
