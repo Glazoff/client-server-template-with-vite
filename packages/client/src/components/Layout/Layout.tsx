@@ -1,7 +1,9 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import path from '../../App/Router/constants';
+import { logout } from '@/shared/api/apiAuth';
 
 function Layout() {
+  const nav = useNavigate();
   return (
     <>
       <nav className="layout">
@@ -12,7 +14,17 @@ function Layout() {
         <Link to={path.LiderBoard}>LiderBoard Page</Link>&nbsp;&nbsp;
         <Link to={path.Main}>Main Page</Link>&nbsp;&nbsp;
         <Link to={path.Profile}>Profile Page</Link>&nbsp;&nbsp;
+        {/* TODO не забыть убрать кнопка выхода из авторизации*/}
+        <button
+          onClick={() => {
+            logout();
+            nav(path.Login);
+          }}
+        >
+          кнопка для выхода из авторизации
+        </button>
       </nav>
+
       <Outlet />
     </>
   );

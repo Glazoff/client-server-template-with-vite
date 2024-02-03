@@ -19,7 +19,8 @@ const router = createBrowserRouter([
   {
     path: path.Main,
     Component: Layout,
-    loader: loaderProfileSignIn,
+    //todo как появится авторизация в приложении, убрать из loader loaderProfileSignIn
+    // loader: loaderProfileEXET,
     errorElement: <NotFoundPage />,
     children: [
       {
