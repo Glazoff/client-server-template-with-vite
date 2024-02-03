@@ -9,7 +9,6 @@ import Login from '../../pages/Login';
 import Main from '../../pages/Main';
 import Profile from '../../pages/Profile';
 import Registration from '../../pages/Registration';
-import { withAuth } from '../../shared/hoc/withAuth';
 import AddingTopicPage from '../../widgets/ForumAddingTopic';
 import TopicPage from '../../widgets/ForumTopicPage';
 import { loaderProfileData, loaderProfileSignIn } from '@/shared/loadersApi/loaderProfile';
@@ -33,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: path.Forum,
-        Component: <withAuth>Forum</withAuth>,
+        Component: Forum,
       },
       {
         path: path.AddTopicPage,
