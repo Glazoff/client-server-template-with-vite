@@ -1,4 +1,4 @@
-import eggImage from '../../assets/static/EggImage.svg';
+// import eggImage from '../../assets/static/EggImage.svg';
 export class Egg {
   x: number;
   y: number;
@@ -16,7 +16,7 @@ export class Egg {
     this.speed = speed;
     this.right = right;
     this.eggImage = new Image();
-    this.eggImage.src = eggImage;
+    // this.eggImage.src = eggImage;
   }
 
   update() {
