@@ -1,0 +1,20 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: url(../../images/Обложка-игры.png) no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+  &__footer {
+    padding: 20px;
+    flex-shrink: 0;
+  }
+}
+
+.canvas {
+  margin: auto;
+  border: 5px solid yellow;
+  background: url(../../assets/static/bg.png) no-repeat;
+  background-size: contain;
+}
