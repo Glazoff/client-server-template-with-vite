@@ -9,7 +9,7 @@ export default function GameOverPage() {
     <div className={styles.over}>
       <Title label="Игра окончена" class={styles.over__title} />
       <Imagine src="../src/images/game-over.jpeg" class={styles.over__img} />
-      <GameScore score={10}/>
+      <GameScore score={10} />
 
       <GameOverBtns />
     </div>
