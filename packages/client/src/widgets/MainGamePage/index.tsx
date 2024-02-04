@@ -1,9 +1,9 @@
+import { useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
-import GameMainPageNav from '../../features/GameMainPageNav';
-import Button from '../../shared/ui/button';
-import Imagine from '../../shared/ui/imagine';
-import Title from '../../shared/ui/title';
-import React, { useEffect, useRef } from 'react';
+// import GameMainPageNav from '../../features/GameMainPageNav';
+// import Button from '../../shared/ui/button';
+// import Imagine from '../../shared/ui/imagine';
+// import Title from '../../shared/ui/title';
 import { Engine } from '@/entries/GameEngine/Engine';
 
 export default function MainGamePage() {

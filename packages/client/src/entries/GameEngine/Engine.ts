@@ -1,6 +1,6 @@
 import { Egg } from './Egg';
-import { Wolf } from './Wolf';
 import { isRectCollide } from './Intersection';
+import { Wolf } from './Wolf';
 
 export class Engine {
   private canvas: HTMLCanvasElement;
