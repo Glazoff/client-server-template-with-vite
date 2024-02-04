@@ -72,25 +72,12 @@ export class Engine {
   };
 
   private createEgg = () => {
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 2; i++) {
       const egg = new Egg({
-        x: 100 + i * 100,
-        y: 100,
-        width: 50,
-        height: 50,
-        speed: this.initialEggSpeed,
-      });
-      this.eggs!.push(egg);
-    }
-    const verticalSpacing = 20;
-    const horizontalOffset = 60;
-
-    for (let i = 0; i < 8; i++) {
-      const egg = new Egg({
-        x: 90 + i * 100 + horizontalOffset,
-        y: 150 + verticalSpacing,
-        width: 50,
-        height: 50,
+        x: 200 + i * 300,
+        y: 120,
+        width: 500,
+        height: 400,
         speed: this.initialEggSpeed,
       });
       this.eggs!.push(egg);
@@ -119,7 +106,8 @@ export class Engine {
   };
 
   private updateEggs = () => {
-    this.eggs!.forEach((egg) => egg.update());
+    // this.eggs!.forEach((egg) => egg.update(this.canvas.height));
+    this.eggs!.forEach((egg) => egg.moveDown());
     this.eggs = this.eggs!.filter((egg) => !egg.isOutOfBounds());
   };
 
@@ -163,7 +151,7 @@ export class Engine {
         this.destroyedEggCount++;
 
         if (this.eggs.length === 0) {
-          this.initialEggSpeed += 5;
+          this.initialEggSpeed += 1;
 
           this.createEgg();
         }

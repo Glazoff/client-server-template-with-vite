@@ -18,7 +18,7 @@ export class Wolf {
     this.width = 100;
     this.height = 100;
     // TODO: Нужна ли тут скорость переключения??
-    this.speed = 50;
+    this.speed = 10;
     this.moveWolfDirection = 0;
     // TODO: Нужно несколько картинок волка
     // this.frames = [wolfImage1, wolfImage2];
