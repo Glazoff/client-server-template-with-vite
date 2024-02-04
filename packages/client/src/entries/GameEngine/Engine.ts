@@ -24,9 +24,6 @@ export class Engine {
     if (!this.ctx) {
       throw new Error('Unable to get 2D rendering context');
     }
-    // const initialEggX = this.canvas.width / 2 - 20;
-    // const initialEggY = this.canvas.height - 20;
-    // this.egg = new Egg({ x: initialPositionX, y: initialPositionY });
     this.wolf = new Wolf({ x: initialPositionX, y: initialPositionY });
 
     this.egg1 = new Egg({

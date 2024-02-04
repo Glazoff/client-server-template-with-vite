@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 // import Imagine from '../../shared/ui/imagine';
 // import Title from '../../shared/ui/title';
 import { Engine } from '@/entries/GameEngine/Engine';
+import { CanvasWidth, CanvasHeight } from '@/shared/constants/canvasConstants';
 
 export default function MainGamePage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -15,16 +16,16 @@ export default function MainGamePage() {
       const gameEngine = new Engine(canvas);
 
       // размеры холста
-      canvas.width = 720;
-      canvas.height = 400;
+      canvas.width = CanvasWidth;
+      canvas.height = CanvasHeight;
 
       // старт движка
       gameEngine.start();
 
       const handleResize = () => {
         // обновление размеров холста
-        canvas.width = 720;
-        canvas.height = 400;
+        canvas.width = CanvasWidth;
+        canvas.height = CanvasHeight;
       };
 
       // обработчик изменения размера окна
