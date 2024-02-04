@@ -5,7 +5,7 @@ import { Stack, Box, TextField, Button, Typography } from '@mui/material';
 import { BUTTONS } from '../../shared/buttonsDict.ts';
 import path from '@/App/Router/constants.js';
 import { getUser, signIn } from '@/shared/api/apiAuth.js';
-import { updateUser } from '@/store/userSlice.js';
+import { User, updateUser } from '@/store/userSlice.js';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function Login() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const changeUser = (data) => {
+  const changeUser = (data: User) => {
     dispatch(updateUser(data));
   };
 
