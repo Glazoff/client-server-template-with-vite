@@ -13,7 +13,6 @@ export function isRectCollide(obj1: any, obj2: any): boolean {
     //   obj1.y < obj2.y + obj2.height &&
     //   obj1.y + obj1.height > obj2.y
     // ) {
-    console.log('true');
     return true;
   }
   return false;

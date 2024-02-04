@@ -91,16 +91,9 @@ export class Engine {
   };
 
   private createEgg = () => {
-    // const egg = new Egg({
-    //   x: 205,
-    //   y: 10,
-    //   width: 500,
-    //   height: 400,
-    //   speed: this.initialEggSpeed,
-    // });
-    // for (let i = 0; i < 2; i++) {
+    // for (let i = 1; i <= 2; i++) {
     //   const egg = new Egg({
-    //     x: 200 + i * 300,
+    //     x: 200 * i,
     //     y: 10,
     //     width: 500,
     //     height: 400,
@@ -126,6 +119,7 @@ export class Engine {
   private drawEggs = () => {
     this.egg1.draw(this.ctx);
     this.egg2.draw(this.ctx);
+
     // this.eggs.forEach((egg) => egg.draw(this.ctx));
   };
 
@@ -136,6 +130,7 @@ export class Engine {
   private updateEggs = () => {
     this.egg1.update(this.canvas.height);
     this.egg2.update(this.canvas.height);
+
     // this.eggs.forEach((egg) => egg.update(this.canvas.height));
 
     // this.eggs = this.eggs.filter((egg) => !egg.isOutOfBounds());
