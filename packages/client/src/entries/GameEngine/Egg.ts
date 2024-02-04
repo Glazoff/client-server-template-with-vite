@@ -30,47 +30,11 @@ export class Egg {
 
   update = (canvasHeight: number) => {
     this.y += this.speed;
-    // this.y += this.moveEggDirection * this.speed;
-    // this.y = Math.max(0, Math.min(this.y, canvasHeight - this.height));
-    // this.moveDown();
-  };
-
-  stopMoving = () => {
-    this.moveEggDirection = 0;
-    this.stopAnimation();
-    // this.wolfImage.src = wolfImage3;
   };
 
   // отрисовка
 
-  startAnimation = () => {
-    if (!this.animationTimer) {
-      this.animationTimer = setInterval(this.nextFrame, 10);
-    }
-  };
-
-  stopAnimation = () => {
-    if (this.animationTimer) {
-      clearInterval(this.animationTimer);
-      this.animationTimer = null;
-    }
-  };
-
   draw = (ctx: CanvasRenderingContext2D) => {
-    // if (this.speed !== 0) {
-    //   ctx.drawImage(this.eggImage, this.x, this.y, this.width, this.height);
-    //   this.currentAnimationFrame = (this.currentAnimationFrame + 1) % this.frames.length;
-    // }
     ctx.drawImage(this.eggImage, this.x, this.y, this.width, this.height);
-  };
-
-  nextFrame = () => {
-    this.currentAnimationFrame = (this.currentAnimationFrame + 1) % this.frames.length;
-    this.eggImage.src = this.frames[this.currentAnimationFrame];
-  };
-  // выход за границы
-
-  isOutOfBounds = () => {
-    return this.y + this.height < 0;
   };
 }

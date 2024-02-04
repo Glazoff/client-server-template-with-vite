@@ -45,7 +45,7 @@ export class Engine {
     });
 
     this.eggs = [];
-    this.createEgg();
+    // this.createEgg();
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
   }
@@ -65,7 +65,7 @@ export class Engine {
 
   private updateGame = () => {
     this.moveWolf();
-    this.createEgg();
+    // this.createEgg();
     this.updateEggs();
     this.checkEggIntersection();
   };
@@ -90,18 +90,21 @@ export class Engine {
     }
   };
 
-  private createEgg = () => {
-    // for (let i = 1; i <= 2; i++) {
-    //   const egg = new Egg({
-    //     x: 200 * i,
-    //     y: 10,
-    //     width: 500,
-    //     height: 400,
-    //     speed: this.initialEggSpeed,
-    //   });
-    //   this.eggs.push(egg);
-    // }
-  };
+  // TODO: При добавление в массив, методы класса Egg ведут себя странно.
+  // Предыдщий кадр не стирается во время движение яйца и получается черная полоса. Разобраться в чем дело
+
+  // private createEgg = () => {
+  //   // for (let i = 1; i <= 2; i++) {
+  //   //   const egg = new Egg({
+  //   //     x: 200 * i,
+  //   //     y: 10,
+  //   //     width: 500,
+  //   //     height: 400,
+  //   //     speed: this.initialEggSpeed,
+  //   //   });
+  //   //   this.eggs.push(egg);
+  //   // }
+  // };
 
   private moveWolf = () => {
     if (this.wolf) {
@@ -132,8 +135,6 @@ export class Engine {
     this.egg2.update(this.canvas.height);
 
     // this.eggs.forEach((egg) => egg.update(this.canvas.height));
-
-    // this.eggs = this.eggs.filter((egg) => !egg.isOutOfBounds());
   };
 
   private handleKeyUp = (event: KeyboardEvent) => {
@@ -163,6 +164,7 @@ export class Engine {
       }
     }
   };
+  // TODO: Подумать над проверкой выхода за границ холста.
   private checkEggIntersection = () => {
     if (isRectCollide(this.egg1, this.wolf)) {
       this.destroyedEggCount++;
