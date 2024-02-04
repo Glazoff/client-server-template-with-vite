@@ -16,7 +16,7 @@ export class Egg {
     this.y = y;
     this.width = 20;
     this.height = 20;
-    this.speed = 100;
+    this.speed = 0.5;
     this.frames = [eggImage, eggImage];
     this.eggImage = new Image();
     this.eggImage.src = eggImage;
@@ -29,23 +29,16 @@ export class Egg {
   // Для изменения скорости
 
   update = (canvasHeight: number) => {
-    this.y -= this.speed;
+    this.y += this.speed;
     // this.y += this.moveEggDirection * this.speed;
     // this.y = Math.max(0, Math.min(this.y, canvasHeight - this.height));
-    this.moveDown();
+    // this.moveDown();
   };
 
   stopMoving = () => {
     this.moveEggDirection = 0;
     this.stopAnimation();
     // this.wolfImage.src = wolfImage3;
-  };
-
-  moveDown = () => {
-    this.y += 22;
-    // this.moveEggDirection = -1;
-    this.startAnimation();
-    // this.eggImage.src = eggImage;
   };
 
   // отрисовка
@@ -64,11 +57,11 @@ export class Egg {
   };
 
   draw = (ctx: CanvasRenderingContext2D) => {
-    if (this.speed !== 0) {
-      ctx.drawImage(this.eggImage, this.x, this.y, this.width, this.height);
-      this.currentAnimationFrame = (this.currentAnimationFrame + 1) % this.frames.length;
-    }
-    // ctx.drawImage(this.eggImage, this.x, this.y, this.width, this.height);
+    // if (this.speed !== 0) {
+    //   ctx.drawImage(this.eggImage, this.x, this.y, this.width, this.height);
+    //   this.currentAnimationFrame = (this.currentAnimationFrame + 1) % this.frames.length;
+    // }
+    ctx.drawImage(this.eggImage, this.x, this.y, this.width, this.height);
   };
 
   nextFrame = () => {
