@@ -11,7 +11,6 @@ import Registration from '../../pages/Registration';
 import AddingTopicPage from '../../widgets/ForumAddingTopic';
 import TopicPage from '../../widgets/ForumTopicPage';
 import GameMainPage from '@/pages/Game';
-import GameOver from '@/pages/GameOver';
 import { loaderProfileData, loaderProfileSignIn } from '@/shared/loadersApi/loaderProfile';
 import ProfileChangePassword from '@/widgets/ProfileContentPage/FormChangePassword';
 import FormMainContent from '@/widgets/ProfileContentPage/FormMainContent';
@@ -46,10 +45,6 @@ const router = createBrowserRouter([
       {
         path: path.Game,
         Component: GameMainPage,
-      },
-      {
-        path: path.GameOver,
-        Component: GameOver,
       },
       {
         path: path.LiderBoard,

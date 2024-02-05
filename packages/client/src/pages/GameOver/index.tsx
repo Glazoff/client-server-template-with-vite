@@ -1,10 +1,14 @@
 import styles from './styles.module.scss';
 import GameOverPage from '@/widgets/GameOverPage';
 
-export default function GameOver() {
+interface Props {
+  onClick: () => void;
+}
+
+export default function GameOver(props: Props) {
   return (
     <div className={styles.game}>
-      <GameOverPage />
+      <GameOverPage onClick={props.onClick} />
     </div>
   );
 }

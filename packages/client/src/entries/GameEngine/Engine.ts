@@ -4,6 +4,11 @@ import { InputHandler } from './InputHandler';
 import isRectCollide from './Intersection';
 import { Wolf } from './Wolf';
 
+interface Props {
+  canvas: HTMLCanvasElement | null;
+  onGameOver?: (score: number) => void;
+}
+
 export class Engine {
   private canvas: HTMLCanvasElement | null;
   private ctx: CanvasRenderingContext2D;
@@ -19,12 +24,10 @@ export class Engine {
   input: InputHandler;
   scoreToLoose: number;
   gameOver: boolean;
-  private _onGameOver?: (score: number) => void;
+  private _onGameOver: ((score: number) => void) | undefined;
+  asd = performance.now();
 
-  constructor(
-    canvas: HTMLCanvasElement | null,
-    onGameOver?: ((score: number) => void) | undefined
-  ) {
+  constructor({ canvas, onGameOver }: Props) {
     this.canvas = canvas;
     this.ctx = this.canvas?.getContext('2d') as CanvasRenderingContext2D;
     this.CANVAS_WIDTH = this.canvas!.width = 1000;
@@ -42,6 +45,17 @@ export class Engine {
     this.eggs = [];
 
     this.wolf = new Wolf({ x: 300, y: 300 });
+  }
+
+  startGame() {
+    this.render();
+  }
+
+  resetGame() {
+    this.eggs = [];
+    this.gameOver = false;
+    this.score = 0;
+    this.scoreToLoose = 0;
   }
 
   update() {
@@ -67,7 +81,8 @@ export class Engine {
     if (this.scoreToLoose >= 3) {
       this.gameOver = true;
       this._onGameOver!(this.score);
-      console.log(this.gameOver);
+      this.score = 0;
+      this.scoreToLoose = 0;
     }
   }
 
@@ -77,6 +92,21 @@ export class Engine {
     });
 
     this.wolf.draw(this.ctx);
+
+    this.drawScore();
+    this.drawLives();
+  }
+
+  drawScore() {
+    this.ctx.fillStyle = 'black';
+    this.ctx.fillText(`Очки: ${this.score}`, 100, 100);
+    this.ctx.font = '50px Arial';
+  }
+
+  drawLives() {
+    this.ctx.fillStyle = 'black';
+    this.ctx.fillText(`Осталось жизней: ${3 - this.scoreToLoose}`, 500, 100);
+    this.ctx.font = '50px Arial';
   }
 
   addEgg() {
