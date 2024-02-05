@@ -5,11 +5,13 @@ import Imagine from '@/shared/ui/imagine';
 import Title from '@/shared/ui/title';
 
 export default function GameOverPage() {
+  const score = window.localStorage.getItem('score');
+
   return (
     <div className={styles.over}>
       <Title label="Игра окончена" class={styles.over__title} />
       <Imagine src="../src/images/game-over.jpeg" class={styles.over__img} />
-      <GameScore score={10} />
+      <GameScore score={score} />
 
       <GameOverBtns />
     </div>

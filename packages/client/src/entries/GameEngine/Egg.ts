@@ -1,4 +1,3 @@
-// import eggImage from '../../assets/static/EggImage.svg';
 export class Egg {
   x: number;
   y: number;
@@ -6,7 +5,7 @@ export class Egg {
   height: number;
   speed: number;
   right: boolean | undefined;
-  eggImage: HTMLImageElement;
+  status: boolean;
 
   constructor({ x, y, speed, right }: { x: number; y: number; speed: number; right?: boolean }) {
     this.x = x;
@@ -15,8 +14,7 @@ export class Egg {
     this.height = 30;
     this.speed = speed;
     this.right = right;
-    this.eggImage = new Image();
-    // this.eggImage.src = eggImage;
+    this.status = true;
   }
 
   update() {
@@ -33,6 +31,6 @@ export class Egg {
   // выход за границы
 
   isOutOfBounds = () => {
-    return this.y + this.height < 0;
+    if (this.x + this.width < 0) this.status = false;
   };
 }

@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useEffect, useRef } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
-/* import Logo from '../../shared/ui/logo';
-import MainGamePage from '../../widgets/MainGamePage'; */
+// import path from '@/App/Router/constants';
+import GameOver from '../GameOver';
 import { Engine } from '@/entries/GameEngine/Engine';
+
+let engine: Engine | null;
 
 export default function GameMainPage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -10,14 +14,14 @@ export default function GameMainPage() {
   useEffect(() => {
     const canvas = canvasRef.current;
 
-    const engine = new Engine(canvas);
+    engine = new Engine(canvas);
 
     engine.render();
   }, []);
 
   return (
     <div className={styles.game}>
-      <canvas ref={canvasRef} className={styles.canvas} />
+      {engine?.gameOver ? <GameOver /> : <canvas ref={canvasRef} className={styles.canvas} />}
     </div>
   );
   /* return (

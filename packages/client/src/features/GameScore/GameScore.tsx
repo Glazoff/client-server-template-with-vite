@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 
 interface Props {
-  score: number | string;
+  score: number | string | null;
 }
 
 export default function GameScore(props: Props) {
