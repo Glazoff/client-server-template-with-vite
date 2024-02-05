@@ -3,11 +3,11 @@ import styles from './styles.module.scss';
 import path from '@/App/Router/constants';
 import Button from '@/shared/ui/button';
 
-interface Props {
+interface PropsGameOverBtn {
   onClick: () => void;
 }
 
-export default function GameOverBtns(props: Props) {
+export default function GameOverBtns(props: PropsGameOverBtn) {
   const navigate = useNavigate();
 
   return (
@@ -18,7 +18,7 @@ export default function GameOverBtns(props: Props) {
         variant="blue"
         onClick={() => {
           props.onClick();
-          navigate(`${path.Main}`);
+          navigate(path.Main);
         }}
       />
       <Button

@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import GameOverBtns from '@/features/GameOverBtns';
-import GameScore from '@/features/GameScore/GameScore';
+import GameScore from '@/features/GameScore';
 import Imagine from '@/shared/ui/imagine';
 import Title from '@/shared/ui/title';
 

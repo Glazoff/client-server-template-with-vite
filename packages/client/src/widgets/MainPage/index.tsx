@@ -17,7 +17,7 @@ export default function MainPage() {
         class={styles.main__button}
         label="Начать игру"
         onClick={() => {
-          navigate(`${path.Game}`);
+          navigate(path.Game);
         }}
       />
       <Imagine src="../src/images/wolf.png" class={styles.main__img} />
