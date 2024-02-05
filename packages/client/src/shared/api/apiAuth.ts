@@ -24,6 +24,12 @@ export const signIn = async ({ login, password }: SignIn) => {
     },
     body: JSON.stringify({ login, password }),
   });
+
+  if (data.status !== 200) {
+    console.error(`request /auth/signin failed error: ${data.status}`);
+    return;
+  }
+
   return data;
 };
 
