@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useEffect, useRef, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
