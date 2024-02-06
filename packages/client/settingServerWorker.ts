@@ -43,7 +43,7 @@ const update = (request, fetchResponse) =>
 
 self.addEventListener('fetch', (event: FetchEvent) => {
   if (NETWORK_URL_SAVE.has(event.request.url)) {
-    isFetchSaveFromNetword(event);
+    isFetchSaveFromNetwork(event);
   } else {
     isFetchFromCashe(event);
   }
@@ -74,7 +74,7 @@ function isFetchFromCashe(event) {
   );
 }
 
-function isFetchSaveFromNetword(event) {
+function isFetchSaveFromNetwork(event) {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
