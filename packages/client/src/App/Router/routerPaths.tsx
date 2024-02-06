@@ -11,6 +11,7 @@ import Profile from '../../pages/Profile';
 import Registration from '../../pages/Registration';
 import AddingTopicPage from '../../widgets/ForumAddingTopic';
 import TopicPage from '../../widgets/ForumTopicPage';
+import ErrorPage from '@/pages/500';
 import { loaderProfileData, loaderProfileSignIn } from '@/shared/loadersApi/loaderProfile';
 import GameContent from '@/widgets/MainGamePage/GameContent';
 import MainGame from '@/widgets/MainGamePage/MainGame';
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     loader: loaderProfileSignIn,
     errorElement: <NotFoundPage />,
     children: [
+      {
+        path: path['500'],
+        Component: ErrorPage,
+      },
       {
         path: path.Login,
         Component: Login,

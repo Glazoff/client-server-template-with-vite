@@ -1,6 +1,6 @@
 import { Box, Button } from '@mui/material';
 
-export default function NotFoundPage() {
+export default function ErrorPage() {
   return (
     <Box
       component={'section'}
@@ -24,7 +24,7 @@ export default function NotFoundPage() {
           height: '200px',
         }}
       >
-        <h1>Ошибка 404</h1>
+        <h1>Ошибка 500</h1>
         <Button type="submit" variant="orange" onClick={() => (window.location.href = '/')}>
           На главную страницу
         </Button>
