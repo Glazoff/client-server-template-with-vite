@@ -18,13 +18,10 @@ const WithAuth = (WrapperComponent) => (props) => {
       if (res.status === 200) {
         setAuth(true);
       }
-      if (res.status === 401) {
-        setAuth(false);
-      }
     });
   }, []);
 
-  return <>{isAuth ? <WrapperComponent {...props} /> : <Login />}</>;
+  return isAuth ? <WrapperComponent {...props} /> : <Login />;
 };
 
 export default WithAuth;
