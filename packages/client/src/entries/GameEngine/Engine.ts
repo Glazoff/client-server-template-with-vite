@@ -6,12 +6,10 @@ export class Engine {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private initialEggSpeed = 0.5;
-  private shootInterval = 500;
-  private isCountReport = false;
+  private isEndReport = false;
   private destroyedEggCount = 0;
+  private catchEggCount = 0;
   private eggs: Egg[];
-  private egg1: Egg;
-  private egg2: Egg;
   private wolf: Wolf;
 
   constructor(canvas: HTMLCanvasElement) {
@@ -25,20 +23,8 @@ export class Engine {
       throw new Error('Unable to get 2D rendering context');
     }
     this.wolf = new Wolf({ x: initialPositionX, y: initialPositionY });
-
-    this.egg1 = new Egg({
-      x: 200,
-      y: 10,
-      speed: this.initialEggSpeed,
-    });
-    this.egg2 = new Egg({
-      x: 500,
-      y: 10,
-      speed: this.initialEggSpeed,
-    });
-
     this.eggs = [];
-    // this.createEgg();
+    this.createEgg();
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
   }
@@ -46,8 +32,8 @@ export class Engine {
   public start() {
     this.gameLoop();
   }
-  public getDestroyedEggCount() {
-    return this.destroyedEggCount;
+  public getCatchEggCount() {
+    return this.catchEggCount;
   }
 
   private gameLoop = () => {
@@ -58,15 +44,15 @@ export class Engine {
 
   private updateGame = () => {
     this.moveWolf();
-    // this.createEgg();
     this.updateEggs();
     this.checkEggIntersection();
+    this.checkEggIntesectionIsBound();
   };
 
   private drawGame() {
     this.clearCanvas();
 
-    const counterText = `${this.destroyedEggCount}`;
+    const counterText = `${this.catchEggCount}`;
     this.ctx.font = '35px "Press Start 2P", cursive';
     this.ctx.strokeStyle = 'black';
     this.ctx.lineWidth = 3;
@@ -83,21 +69,18 @@ export class Engine {
     }
   }
 
-  // TODO: При добавление в массив, методы класса Egg ведут себя странно.
-  // Предыдщий кадр не стирается во время движение яйца и получается черная полоса. Разобраться в чем дело
-
-  // private createEgg = () => {
-  //   // for (let i = 1; i <= 2; i++) {
-  //   //   const egg = new Egg({
-  //   //     x: 200 * i,
-  //   //     y: 10,
-  //   //     width: 500,
-  //   //     height: 400,
-  //   //     speed: this.initialEggSpeed,
-  //   //   });
-  //   //   this.eggs.push(egg);
-  //   // }
-  // };
+  private createEgg = () => {
+    if (this.isEndReport === false) {
+      for (let i = 1; i <= 2; i++) {
+        const egg = new Egg({
+          x: 200 * i,
+          y: 10,
+          speed: this.initialEggSpeed,
+        });
+        this.eggs.push(egg);
+      }
+    }
+  };
 
   private moveWolf() {
     if (this.wolf) {
@@ -113,10 +96,7 @@ export class Engine {
   }
 
   private drawEggs() {
-    this.egg1.draw(this.ctx);
-    this.egg2.draw(this.ctx);
-
-    // this.eggs.forEach((egg) => egg.draw(this.ctx));
+    this.eggs.forEach((egg) => egg.draw(this.ctx));
   }
 
   private clearCanvas = () => {
@@ -124,10 +104,7 @@ export class Engine {
   };
 
   private updateEggs() {
-    this.egg1.update();
-    this.egg2.update();
-
-    // this.eggs.forEach((egg) => egg.update(this.canvas.height));
+    this.eggs.forEach((egg) => egg.update());
   }
 
   private handleKeyUp = (event: KeyboardEvent) => {
@@ -148,22 +125,39 @@ export class Engine {
   };
   // TODO: Подумать над проверкой выхода за границ холста.
   private checkEggIntersection() {
-    if (isRectCollide(this.egg1, this.wolf)) {
-      this.destroyedEggCount++;
-      this.egg1.x = 200;
-      this.egg1.y = 10;
+    this.eggs.forEach((egg) => {
+      if (isRectCollide(egg, this.wolf)) {
+        this.catchEggCount++;
+        this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
+
+        if (this.eggs.length === 0) {
+          this.initialEggSpeed += 10;
+          this.createEgg();
+        }
+      }
+    });
+  }
+
+  private checkEggIntesectionIsBound() {
+    this.eggs.forEach((egg) => {
+      if (egg.isOutOfBounds(this.canvas.height)) {
+        this.destroyedEggCount++;
+        this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
+      }
+    });
+    if (this.destroyedEggCount === 6) {
+      this.stop();
     }
 
-    if (isRectCollide(this.egg2, this.wolf)) {
-      this.destroyedEggCount++;
-      this.egg2.x = 500;
-      this.egg2.y = 10;
+    if (this.eggs.length === 0) {
+      this.initialEggSpeed += 10;
+      this.createEgg();
     }
   }
   // TODO: Подумать как заканчивать игру
   public stop() {
     window.removeEventListener('keydown', this.handleKeyDown);
     window.removeEventListener('keyup', this.handleKeyUp);
-    this.isCountReport = false;
+    this.isEndReport = true;
   }
 }

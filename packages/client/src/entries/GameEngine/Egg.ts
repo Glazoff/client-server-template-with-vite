@@ -36,4 +36,8 @@ export class Egg {
   public draw(ctx: CanvasRenderingContext2D) {
     ctx.drawImage(this.eggImage, this.x, this.y, this.width, this.height);
   }
+
+  public isOutOfBounds(canvasWidth: number) {
+    return canvasWidth - this.y < 0;
+  }
 }
