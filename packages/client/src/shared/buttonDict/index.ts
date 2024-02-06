@@ -11,4 +11,4 @@ const BUTTONS = {
   },
 };
 
-export { BUTTONS };
+export default BUTTONS;

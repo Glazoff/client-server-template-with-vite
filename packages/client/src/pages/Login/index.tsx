@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Box, TextField, Button, Typography } from '@mui/material';
-import { BUTTONS } from '../../shared/buttonsDict.ts';
 import path from '@/App/Router/constants.js';
 import { getUser, signIn } from '@/shared/api/apiAuth.js';
+import BUTTONS from '@/shared/buttonDict/index.js';
 import { User, updateUser } from '@/store/userSlice.js';
 
 export default function Login() {

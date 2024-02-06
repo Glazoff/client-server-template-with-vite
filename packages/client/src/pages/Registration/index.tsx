@@ -1,5 +1,5 @@
 import { Stack, Box, TextField, Button, Typography } from '@mui/material';
-import { BUTTONS } from '../../shared/buttonsDict.ts';
+import BUTTONS from '@/shared/buttonDict';
 
 export default function Registration() {
   return (
