@@ -2,6 +2,7 @@ const CACHE_VER = 1;
 const CURRENT_CACHE = `cache ver-${CACHE_VER}`;
 
 const cacheCurrentFiles = ['/', '/index.html'];
+const NETWORK_URL_SAVE = new Set(['https://ya-praktikum.tech/api/v2/auth/user']);
 const isFromCache = (request) => caches.open(CURRENT_CACHE).then((cache) => cache.match(request));
 
 self.addEventListener('activate', (evt: ExtendableEvent) => {
@@ -42,22 +43,51 @@ const update = (request, fetchResponse) =>
   });
 
 self.addEventListener('fetch', (event: FetchEvent) => {
-  event.respondWith(
-    isFromNetwork(event.request, 5000).catch(() => {
-      console.log(`Фетч запрос по адрессу: ${event.request.url} взят из кэша`);
-      return isFromCache(event.request);
-    })
-  );
+  if (NETWORK_URL_SAVE.has(event.request.url)) {
+    isFetchSaveFromNetword(event);
+  } else {
+    isFetchFromCashe(event);
+  }
 });
 
-const isFromNetwork = (request, timeout) =>
-  new Promise((resolve, reject) => {
-    const timeoutId = setTimeout(reject, timeout);
-    fetch(request)
-      .then((fetchResponse) => {
-        clearTimeout(timeoutId);
-        return update(request, fetchResponse);
+function isFetchFromCashe(event) {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      if (response) {
+        return response;
+      }
+
+      const fetchRequest = event.request.clone();
+      return fetch(fetchRequest)
+        .then((response) => {
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+
+          const responseToCache = response.clone();
+          return update(event.request, responseToCache);
+        })
+        .catch((err) => {
+          console.log(err);
+          throw err;
+        });
+    })
+  );
+}
+
+function isFetchSaveFromNetword(event) {
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        if (!response || response.status !== 200) {
+          return response;
+        }
+
+        const responseToCache = response.clone();
+        return update(event.request, responseToCache);
       })
-      .then(resolve)
-      .catch(reject);
-  });
+      .catch(() => {
+        return caches.match(event.request);
+      })
+  );
+}
