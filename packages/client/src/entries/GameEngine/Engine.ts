@@ -145,12 +145,11 @@ export class Engine {
         this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
       }
     });
-    if (this.destroyedEggCount === 6) {
+    if (this.destroyedEggCount === 10) {
       this.stop();
     }
 
     if (this.eggs.length === 0) {
-      this.initialEggSpeed += 10;
       this.createEgg();
     }
   }
