@@ -1,20 +1,7 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import path from '../../App/Router/constants';
-import { baseUrl } from '@/shared/constants/apiConstants';
+import { logout } from '@/shared/api/apiAuth';
 import WithAuth from '@/shared/hoc/withAuth';
-
-// TODO не забыть удалить
-export const logout = async () => {
-  const data = await fetch(`${baseUrl}/auth/logout`, {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  });
-  return data;
-};
 
 const OutletCheckAuth = WithAuth(Outlet);
 
@@ -31,6 +18,7 @@ function Layout() {
         <Link to={path.LiderBoard}>LiderBoard Page</Link>&nbsp;&nbsp;
         <Link to={path.Main}>Main Page</Link>&nbsp;&nbsp;
         <Link to={path.Profile}>Profile Page</Link>&nbsp;&nbsp;
+        {/* TODO не забыть убрать кнопка выхода из авторизации*/}
         <button
           onClick={() => {
             logout();
