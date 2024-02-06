@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 
-export default function Login() {
+const Login = () => {
   return (
     <h1>
       Страница авторизации
@@ -10,4 +10,6 @@ export default function Login() {
       <Button variant="link">link</Button>
     </h1>
   );
-}
+};
+
+export default Login;
