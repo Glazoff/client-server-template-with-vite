@@ -1,7 +1,7 @@
 import { Stack, Box, TextField, Button, Typography } from '@mui/material';
 import { BUTTONS } from '../../shared/buttonsDict.ts';
 
-export default function Login() {
+const Login = () => {
   return (
     <Box component={'section'} sx={{ display: 'flex', height: '100vh' }}>
       <Box
@@ -64,4 +64,6 @@ export default function Login() {
       </Box>
     </Box>
   );
-}
+};
+
+export default Login;
