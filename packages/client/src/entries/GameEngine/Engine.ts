@@ -29,15 +29,11 @@ export class Engine {
     this.egg1 = new Egg({
       x: 200,
       y: 10,
-      width: 500,
-      height: 400,
       speed: this.initialEggSpeed,
     });
     this.egg2 = new Egg({
       x: 500,
       y: 10,
-      width: 500,
-      height: 400,
       speed: this.initialEggSpeed,
     });
 
@@ -47,12 +43,12 @@ export class Engine {
     window.addEventListener('keyup', this.handleKeyUp);
   }
 
-  public start = () => {
+  public start() {
     this.gameLoop();
-  };
-  public getDestroyedEggCount = (): number => {
+  }
+  public getDestroyedEggCount() {
     return this.destroyedEggCount;
-  };
+  }
 
   private gameLoop = () => {
     this.updateGame();
@@ -67,7 +63,7 @@ export class Engine {
     this.checkEggIntersection();
   };
 
-  private drawGame = () => {
+  private drawGame() {
     this.clearCanvas();
 
     const counterText = `${this.destroyedEggCount}`;
@@ -85,7 +81,7 @@ export class Engine {
     if (this.eggs) {
       this.drawEggs();
     }
-  };
+  }
 
   // TODO: При добавление в массив, методы класса Egg ведут себя странно.
   // Предыдщий кадр не стирается во время движение яйца и получается черная полоса. Разобраться в чем дело
@@ -103,66 +99,55 @@ export class Engine {
   //   // }
   // };
 
-  private moveWolf = () => {
+  private moveWolf() {
     if (this.wolf) {
       // TODO: Сделать 2 разные картинки Волка
       this.wolf.update(this.canvas.width);
     }
-  };
+  }
 
-  private drawWolf = () => {
+  private drawWolf() {
     if (this.wolf) {
       this.wolf.draw(this.ctx, this.canvas.height);
     }
-  };
+  }
 
-  private drawEggs = () => {
+  private drawEggs() {
     this.egg1.draw(this.ctx);
     this.egg2.draw(this.ctx);
 
     // this.eggs.forEach((egg) => egg.draw(this.ctx));
-  };
+  }
 
   private clearCanvas = () => {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   };
 
-  private updateEggs = () => {
-    this.egg1.update(this.canvas.height);
-    this.egg2.update(this.canvas.height);
+  private updateEggs() {
+    this.egg1.update();
+    this.egg2.update();
 
     // this.eggs.forEach((egg) => egg.update(this.canvas.height));
-  };
+  }
 
   private handleKeyUp = (event: KeyboardEvent) => {
+    event.preventDefault();
     if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
-      event.preventDefault();
-    }
-
-    if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
-      if (this.wolf) {
-        this.wolf.stopMoving();
-      }
+      this.wolf.stopMoving();
     }
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
-      event.preventDefault();
-    }
+    event.preventDefault();
 
     if (event.code === 'ArrowLeft') {
-      if (this.wolf) {
-        this.wolf.moveLeft();
-      }
+      this.wolf.moveLeft();
     } else if (event.code === 'ArrowRight') {
-      if (this.wolf) {
-        this.wolf.moveRight();
-      }
+      this.wolf.moveRight();
     }
   };
   // TODO: Подумать над проверкой выхода за границ холста.
-  private checkEggIntersection = () => {
+  private checkEggIntersection() {
     if (isRectCollide(this.egg1, this.wolf)) {
       this.destroyedEggCount++;
       this.egg1.x = 200;
@@ -174,9 +159,11 @@ export class Engine {
       this.egg2.x = 500;
       this.egg2.y = 10;
     }
-  };
+  }
   // TODO: Подумать как заканчивать игру
-  public stop = () => {
+  public stop() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keyup', this.handleKeyUp);
     this.isCountReport = false;
-  };
+  }
 }

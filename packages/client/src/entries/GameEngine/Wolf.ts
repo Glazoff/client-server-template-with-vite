@@ -29,47 +29,49 @@ export class Wolf {
     this.animationTimer = null;
   }
 
-  moveLeft = () => {
+  moveLeft() {
     this.moveWolfDirection = -1;
     this.startAnimation();
     // this.wolfImage.src = wolfImage1;
-  };
+  }
 
-  moveRight = () => {
+  moveRight() {
     this.moveWolfDirection = 1;
     this.startAnimation();
     // this.wolfImage.src = wolfImage2;
-  };
+  }
 
-  stopMoving = () => {
+  stopMoving() {
+    console.log('stop');
+
     this.moveWolfDirection = 0;
     this.stopAnimation();
     // this.wolfImage.src = wolfImage3;
-  };
+  }
 
-  startAnimation = () => {
+  startAnimation() {
     if (!this.animationTimer) {
       this.animationTimer = setInterval(this.nextFrame, 10);
     }
-  };
+  }
 
-  stopAnimation = () => {
+  stopAnimation() {
     if (this.animationTimer) {
       clearInterval(this.animationTimer);
       this.animationTimer = null;
     }
-  };
+  }
 
-  update = (canvasWidth: number) => {
+  update(canvasWidth: number) {
     this.x += this.moveWolfDirection * this.speed;
     this.x = Math.max(0, Math.min(this.x, canvasWidth - this.width));
-  };
+  }
 
   // TODO: Подумать над позициниорованием высоты и ширины
 
-  draw = (ctx: CanvasRenderingContext2D, canvasHeight: number) => {
+  draw(ctx: CanvasRenderingContext2D, canvasHeight: number) {
     ctx.drawImage(this.wolfImage, this.x, canvasHeight - this.height - 10, this.width, this.height);
-  };
+  }
 
   nextFrame = () => {
     this.currentAnimationFrame = (this.currentAnimationFrame + 1) % this.frames.length;
