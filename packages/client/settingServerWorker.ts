@@ -3,7 +3,6 @@ const CURRENT_CACHE = `cache ver-${CACHE_VER}`;
 
 const cacheCurrentFiles = ['/', '/index.html'];
 const NETWORK_URL_SAVE = new Set(['https://ya-praktikum.tech/api/v2/auth/user']);
-const isFromCache = (request) => caches.open(CURRENT_CACHE).then((cache) => cache.match(request));
 
 self.addEventListener('activate', (evt: ExtendableEvent) => {
   console.log(`Service worker ${CURRENT_CACHE} запущен`);
