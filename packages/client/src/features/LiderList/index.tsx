@@ -85,5 +85,11 @@ const mockLiders: Liders = [
 ];
 
 export default function LiderList() {
-  return <div className={styles.lider_list}>{mockLiders.map((item) => LiderItem(item))}</div>;
+  return (
+    <div className={styles.lider_list}>
+      {mockLiders.map((item) => (
+        <LiderItem key={item.id} {...item} />
+      ))}
+    </div>
+  );
 }

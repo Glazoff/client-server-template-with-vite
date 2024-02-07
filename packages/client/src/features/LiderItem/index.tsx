@@ -1,3 +1,4 @@
+import AvatarLider from './components/Avatar';
 import styles from './styles.module.scss';
 
 type Lider = {
@@ -9,7 +10,14 @@ type Lider = {
 };
 
 export default function LiderItem(props: Lider) {
-  const { id, position, avatar, nikname, score } = props;
+  const { position, avatar, nikname, score } = props;
 
-  return <div className={styles.lider} />;
+  return (
+    <div className={styles.lider}>
+      <p className={styles.position}> {position} </p>
+      <AvatarLider src={avatar} />
+      <p className={styles.nikname}> {nikname} </p>
+      <p className={styles.score}> {score} </p>
+    </div>
+  );
 }
