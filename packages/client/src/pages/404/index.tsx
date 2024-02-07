@@ -1,6 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
+import path from '@/App/Router/constants';
 
 export default function NotFoundPage() {
+  const navigator = useNavigate();
+
   return (
     <Box
       component={'section'}
@@ -25,7 +29,7 @@ export default function NotFoundPage() {
         }}
       >
         <h1>Ошибка 404</h1>
-        <Button type="submit" variant="orange" onClick={() => (window.location.href = '/')}>
+        <Button type="submit" variant="orange" onClick={() => navigator(path.Main)}>
           На главную страницу
         </Button>
       </Box>
