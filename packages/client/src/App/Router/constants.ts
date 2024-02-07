@@ -11,6 +11,7 @@ const path = {
   AddTopicPage: '/add-topic',
   TopicPageId: '/topic/:id',
   TopicPage: '/topic',
+  '500': '/500',
 };
 
 export default path;

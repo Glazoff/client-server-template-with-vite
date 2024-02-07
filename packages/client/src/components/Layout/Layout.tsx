@@ -18,6 +18,7 @@ function Layout() {
         <Link to={path.LiderBoard}>LiderBoard Page</Link>&nbsp;&nbsp;
         <Link to={path.Main}>Main Page</Link>&nbsp;&nbsp;
         <Link to={path.Profile}>Profile Page</Link>&nbsp;&nbsp;
+        <Link to={path['500']}>500</Link>&nbsp;&nbsp;
         {/* TODO не забыть убрать кнопка выхода из авторизации*/}
         <button
           onClick={() => {
