@@ -3,15 +3,19 @@ import path from './constants';
 import Layout from '../../components/Layout/Layout';
 import NotFoundPage from '../../pages/404';
 import Forum from '../../pages/Forum';
+import GameMainPage from '../../pages/Game';
 import LiderBoard from '../../pages/LiderBoard';
 import Login from '../../pages/Login';
-import MainPage from '../../pages/Main';
+import Main from '../../pages/Main';
 import Profile from '../../pages/Profile';
 import Registration from '../../pages/Registration';
 import AddingTopicPage from '../../widgets/ForumAddingTopic';
 import TopicPage from '../../widgets/ForumTopicPage';
-import GameMainPage from '@/pages/Game';
+import ErrorPage from '@/pages/500';
 import { loaderProfileData, loaderProfileSignIn } from '@/shared/loadersApi/loaderProfile';
+import GameOver from '@/widgets/GameOver';
+import GameContent from '@/widgets/MainGamePage/GameContent';
+import MainGame from '@/widgets/MainGamePage/MainGame';
 import ProfileChangePassword from '@/widgets/ProfileContentPage/FormChangePassword';
 import FormMainContent from '@/widgets/ProfileContentPage/FormMainContent';
 
@@ -19,9 +23,14 @@ const router = createBrowserRouter([
   {
     path: path.Main,
     Component: Layout,
+    //todo как появится авторизация в приложении, убрать из loader loaderProfileSignIn
     loader: loaderProfileSignIn,
     errorElement: <NotFoundPage />,
     children: [
+      {
+        path: path['500'],
+        Component: ErrorPage,
+      },
       {
         path: path.Login,
         Component: Login,
@@ -45,6 +54,20 @@ const router = createBrowserRouter([
       {
         path: path.Game,
         Component: GameMainPage,
+        children: [
+          {
+            path: path.Game,
+            element: <MainGame />,
+          },
+          {
+            path: path.GameStart,
+            element: <GameContent />,
+          },
+          {
+            path: path.GameOver,
+            element: <GameOver />,
+          },
+        ],
       },
       {
         path: path.LiderBoard,
@@ -64,7 +87,7 @@ const router = createBrowserRouter([
       },
       {
         path: path.Main,
-        Component: MainPage,
+        Component: Main,
       },
     ],
   },

@@ -3,11 +3,7 @@ import styles from './styles.module.scss';
 import path from '@/App/Router/constants';
 import Button from '@/shared/ui/button';
 
-interface PropsGameOverBtn {
-  onClick: () => void;
-}
-
-export default function GameOverBtns(props: PropsGameOverBtn) {
+export default function GameOverBtns() {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +13,6 @@ export default function GameOverBtns(props: PropsGameOverBtn) {
         label="Выйти в главное меню"
         variant="blue"
         onClick={() => {
-          props.onClick();
           navigate(path.Main);
         }}
       />
@@ -25,8 +20,7 @@ export default function GameOverBtns(props: PropsGameOverBtn) {
         class={styles.over__btn}
         label="Сыграть еще раз"
         onClick={() => {
-          props.onClick();
-          document.location.reload();
+          navigate(path.GameStart);
         }}
       />
     </div>

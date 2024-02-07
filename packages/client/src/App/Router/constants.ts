@@ -3,7 +3,8 @@ const path = {
   Registration: '/registration',
   Forum: '/forum',
   Game: '/game',
-  GameOver: '/game-over',
+  GameStart: '/game/start',
+  GameOver: '/game/over',
   LiderBoard: '/lider-board',
   Main: '/',
   Profile: '/profile',
@@ -11,6 +12,7 @@ const path = {
   AddTopicPage: '/add-topic',
   TopicPageId: '/topic/:id',
   TopicPage: '/topic',
+  '500': '/500',
 };
 
 export default path;

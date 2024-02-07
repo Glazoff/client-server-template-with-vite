@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Egg } from './Egg';
-import { InputHandler } from './InputHandler';
-import isRectCollide from './Intersection';
+import { isRectCollide } from './Intersection';
 import { Wolf } from './Wolf';
 
 interface Props {
@@ -12,122 +11,162 @@ interface Props {
 export class Engine {
   private canvas: HTMLCanvasElement | null;
   private ctx: CanvasRenderingContext2D;
-  eggs: Egg[];
-  wolf: Wolf;
-  CANVAS_WIDTH: number;
-  CANVAS_HEIGHT: number;
-  score: number;
-  numberOfEggs: number;
-  eggsSpeed: number;
-  eggTimer: number;
-  eggInterval: number;
-  input: InputHandler;
-  scoreToLoose: number;
-  gameOver: boolean;
+  private initialEggSpeed = 0.5;
+  public gameOver = false;
+  private destroyedEggCount = 0;
+  private catchEggCount = 0;
+  private eggs: Egg[];
+  private wolf: Wolf;
   private _onGameOver: ((score: number) => void) | undefined;
-  asd = performance.now();
 
   constructor({ canvas, onGameOver }: Props) {
     this.canvas = canvas;
-    this.ctx = this.canvas?.getContext('2d') as CanvasRenderingContext2D;
-    this.CANVAS_WIDTH = this.canvas!.width = 1000;
-    this.CANVAS_HEIGHT = this.canvas!.height = 625;
-    this.score = 0;
-    this.scoreToLoose = 0;
-    this.numberOfEggs = 100;
-    this.eggsSpeed = 2;
-    this.eggTimer = 0;
-    this.eggInterval = 2000;
-    this.input = new InputHandler();
-    this.gameOver = false;
+    this.ctx = this.canvas!.getContext('2d') as CanvasRenderingContext2D;
+
+    const initialPositionX = this.canvas!.width / 2 - 25;
+    const initialPositionY = this.canvas!.height - 50;
+
     this._onGameOver = onGameOver;
 
+    if (!this.ctx) {
+      throw new Error('Unable to get 2D rendering context');
+    }
+    this.wolf = new Wolf({ x: initialPositionX, y: initialPositionY });
     this.eggs = [];
-
-    this.wolf = new Wolf({ x: 300, y: 300 });
+    this.createEgg();
+    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keyup', this.handleKeyUp);
   }
 
-  startGame() {
-    this.render();
+  public start() {
+    this.gameLoop();
+  }
+  public getCatchEggCount() {
+    return this.catchEggCount;
   }
 
-  resetGame() {
-    this.eggs = [];
-    this.gameOver = false;
-    this.score = 0;
-    this.scoreToLoose = 0;
-  }
+  private gameLoop = () => {
+    this.updateGame();
+    this.drawGame();
+    requestAnimationFrame(this.gameLoop);
+  };
 
-  update() {
-    this.wolf.update(this.input.keys);
-    if (this.eggTimer > this.eggInterval) {
-      this.addEgg();
-      this.eggTimer = 0;
-    } else {
-      this.eggTimer += 10;
+  private updateGame = () => {
+    this.moveWolf();
+    this.updateEggs();
+    this.checkEggIntersection();
+    this.checkEggIntesectionIsBound();
+  };
+
+  private drawGame() {
+    this.clearCanvas();
+
+    const counterText = `${this.catchEggCount}`;
+    this.ctx.font = '35px "Press Start 2P", cursive';
+    this.ctx.strokeStyle = 'black';
+    this.ctx.lineWidth = 3;
+    this.ctx.strokeText(counterText, 10, 25);
+    this.ctx.fillStyle = 'white';
+    this.ctx.fillText(counterText, 10, 50);
+
+    if (this.wolf) {
+      this.drawWolf();
     }
 
-    this.eggs.forEach((egg) => {
-      egg.update();
-      if (this.CANVAS_HEIGHT - egg.y < 0) {
-        this.scoreToLoose++;
-        // window.localStorage.setItem('scoreToLoose', this.scoreToLoose.toString());
-        this.eggs.splice(this.eggs.indexOf(egg), 1);
+    if (this.eggs) {
+      this.drawEggs();
+    }
+  }
+
+  private createEgg = () => {
+    if (this.gameOver === false) {
+      for (let i = 1; i <= 2; i++) {
+        const egg = new Egg({
+          x: 200 * i,
+          y: 10,
+          speed: this.initialEggSpeed,
+        });
+        this.eggs.push(egg);
       }
-    });
+    }
+  };
 
-    this.checkCollision();
-
-    if (this.scoreToLoose >= 3) {
-      this.gameOver = true;
-      this._onGameOver!(this.score);
-      this.score = 0;
-      this.scoreToLoose = 0;
+  private moveWolf() {
+    if (this.wolf) {
+      // TODO: Сделать 2 разные картинки Волка
+      this.wolf.update(this.canvas!.width);
     }
   }
 
-  draw() {
-    this.eggs.forEach((egg) => {
-      egg.draw(this.ctx);
-    });
-
-    this.wolf.draw(this.ctx);
-
-    this.drawScore();
-    this.drawLives();
+  private drawWolf() {
+    if (this.wolf) {
+      this.wolf.draw(this.ctx, this.canvas!.height);
+    }
   }
 
-  drawScore() {
-    this.ctx.fillStyle = 'black';
-    this.ctx.fillText(`Очки: ${this.score}`, 100, 100);
-    this.ctx.font = '50px Arial';
+  private drawEggs() {
+    this.eggs.forEach((egg) => egg.draw(this.ctx));
   }
 
-  drawLives() {
-    this.ctx.fillStyle = 'black';
-    this.ctx.fillText(`Осталось жизней: ${3 - this.scoreToLoose}`, 500, 100);
-    this.ctx.font = '50px Arial';
+  private clearCanvas = () => {
+    this.ctx.clearRect(0, 0, this.canvas!.width, this.canvas!.height);
+  };
+
+  private updateEggs() {
+    this.eggs.forEach((egg) => egg.update());
   }
 
-  addEgg() {
-    this.eggs.push(new Egg({ x: -10, y: 165, speed: this.eggsSpeed }));
-  }
+  private handleKeyUp = (event: KeyboardEvent) => {
+    event.preventDefault();
+    if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
+      this.wolf.stopMoving();
+    }
+  };
 
-  checkCollision() {
+  private handleKeyDown = (event: KeyboardEvent) => {
+    event.preventDefault();
+
+    if (event.code === 'ArrowLeft') {
+      this.wolf.moveLeft();
+    } else if (event.code === 'ArrowRight') {
+      this.wolf.moveRight();
+    }
+  };
+  // TODO: Подумать над проверкой выхода за границ холста.
+  private checkEggIntersection() {
     this.eggs.forEach((egg) => {
       if (isRectCollide(egg, this.wolf)) {
-        this.score++;
-        window.localStorage.setItem('score', this.score.toString());
-        this.eggs.splice(this.eggs.indexOf(egg), 1);
-        console.log(this.score);
+        this.catchEggCount++;
+        this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
+
+        if (this.eggs.length === 0) {
+          this.initialEggSpeed += 10;
+          this.createEgg();
+        }
       }
     });
   }
 
-  render = () => {
-    this.ctx.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
-    this.update();
-    this.draw();
-    !this.gameOver && requestAnimationFrame(this.render);
-  };
+  private checkEggIntesectionIsBound() {
+    this.eggs.forEach((egg) => {
+      if (egg.isOutOfBounds(this.canvas!.height)) {
+        this.destroyedEggCount++;
+        this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
+      }
+    });
+    if (this.destroyedEggCount >= 3) {
+      this.stop();
+      this._onGameOver!(this.catchEggCount);
+    }
+
+    if (this.eggs.length === 0) {
+      this.createEgg();
+    }
+  }
+  // TODO: Подумать как заканчивать игру
+  public stop() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keyup', this.handleKeyUp);
+    this.gameOver = true;
+  }
 }
