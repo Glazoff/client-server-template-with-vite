@@ -11,7 +11,7 @@ interface Props {
 export class Engine {
   private canvas: HTMLCanvasElement | null;
   private ctx: CanvasRenderingContext2D;
-  private initialEggSpeed = 0.5;
+  private initialEggSpeed = 2;
   public gameOver = false;
   private destroyedEggCount = 0;
   private catchEggCount = 0;
