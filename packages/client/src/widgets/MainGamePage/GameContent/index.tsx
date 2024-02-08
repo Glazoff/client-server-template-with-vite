@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../MainGame/styles.module.scss';
 import path from '@/App/Router/constants';
 import { Engine } from '@/entries/GameEngine/Engine';
 import { CanvasWidth, CanvasHeight } from '@/shared/constants/canvasConstants';
-// import GameOver from '@/widgets/GameOver';
 
 let gameEngine: Engine | null = null;
 
 export default function GameContent() {
-  const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const navigate = useNavigate();
   const [score, setScore] = useState(0);
 
-  window.localStorage.setItem('score', score.toString());
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (canvasRef?.current) {
       const canvas = canvasRef.current;
       gameEngine = new Engine({
         canvas,
         onGameOver(newScore) {
           setScore(newScore);
+          window.localStorage.setItem('score', newScore.toString());
+          // с navigate постоянно переедресовывает на страницу gameOver
+          window.location.replace(path.GameOver);
         },
       });
 
@@ -47,16 +49,7 @@ export default function GameContent() {
         gameEngine?.stop();
       };
     }
-  }, [canvasRef]);
+  }, []);
 
-  useEffect(() => {
-    gameEngine?.gameOver && navigate(path.GameOver);
-  }, [gameEngine?.gameOver, score]);
-
-  return (
-    /* gameEngine?.gameOver ? <GameOver /> :  */ <canvas
-      ref={canvasRef}
-      className={styles.game__main}
-    />
-  );
+  return <canvas ref={canvasRef} className={styles.game__main} />;
 }

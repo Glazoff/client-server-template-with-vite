@@ -13,7 +13,7 @@ export default function GameOverBtns() {
         label="Выйти в главное меню"
         variant="blue"
         onClick={() => {
-          navigate(path.Main);
+          navigate(path.Game);
         }}
       />
       <Button
