@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
