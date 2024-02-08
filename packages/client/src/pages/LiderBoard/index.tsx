@@ -1,3 +1,9 @@
+import LiderBoardPage from '@/widgets/LiderBoardPage';
+
 export default function LiderBoard() {
-  return <h1>Страница списка лидеров</h1>;
+  return (
+    <div>
+      <LiderBoardPage />
+    </div>
+  );
 }
