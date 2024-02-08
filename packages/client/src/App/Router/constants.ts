@@ -4,6 +4,7 @@ const path = {
   Forum: '/forum',
   Game: '/game',
   GameStart: '/game/start',
+  GameOver: '/game/over',
   LiderBoard: '/lider-board',
   Main: '/',
   Profile: '/profile',

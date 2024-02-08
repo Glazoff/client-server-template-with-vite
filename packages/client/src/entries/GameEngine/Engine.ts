@@ -1,23 +1,32 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Egg } from './Egg';
 import { isRectCollide } from './Intersection';
 import { Wolf } from './Wolf';
 
+interface Props {
+  canvas: HTMLCanvasElement | null;
+  onGameOver?: (score: number) => void;
+}
+
 export class Engine {
-  private canvas: HTMLCanvasElement;
+  private canvas: HTMLCanvasElement | null;
   private ctx: CanvasRenderingContext2D;
-  private initialEggSpeed = 0.5;
-  private isEndReport = false;
+  private initialEggSpeed = 2;
+  public gameOver = false;
   private destroyedEggCount = 0;
   private catchEggCount = 0;
   private eggs: Egg[];
   private wolf: Wolf;
+  private _onGameOver: ((score: number) => void) | undefined;
 
-  constructor(canvas: HTMLCanvasElement) {
+  constructor({ canvas, onGameOver }: Props) {
     this.canvas = canvas;
-    this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
+    this.ctx = this.canvas!.getContext('2d') as CanvasRenderingContext2D;
 
-    const initialPositionX = this.canvas.width / 2 - 25;
-    const initialPositionY = this.canvas.height - 50;
+    const initialPositionX = this.canvas!.width / 2 - 25;
+    const initialPositionY = this.canvas!.height - 50;
+
+    this._onGameOver = onGameOver;
 
     if (!this.ctx) {
       throw new Error('Unable to get 2D rendering context');
@@ -70,7 +79,7 @@ export class Engine {
   }
 
   private createEgg = () => {
-    if (this.isEndReport === false) {
+    if (this.gameOver === false) {
       for (let i = 1; i <= 2; i++) {
         const egg = new Egg({
           x: 200 * i,
@@ -85,13 +94,13 @@ export class Engine {
   private moveWolf() {
     if (this.wolf) {
       // TODO: Сделать 2 разные картинки Волка
-      this.wolf.update(this.canvas.width);
+      this.wolf.update(this.canvas!.width);
     }
   }
 
   private drawWolf() {
     if (this.wolf) {
-      this.wolf.draw(this.ctx, this.canvas.height);
+      this.wolf.draw(this.ctx, this.canvas!.height);
     }
   }
 
@@ -100,7 +109,7 @@ export class Engine {
   }
 
   private clearCanvas = () => {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.clearRect(0, 0, this.canvas!.width, this.canvas!.height);
   };
 
   private updateEggs() {
@@ -140,13 +149,14 @@ export class Engine {
 
   private checkEggIntesectionIsBound() {
     this.eggs.forEach((egg) => {
-      if (egg.isOutOfBounds(this.canvas.height)) {
+      if (egg.isOutOfBounds(this.canvas!.height)) {
         this.destroyedEggCount++;
         this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
       }
     });
-    if (this.destroyedEggCount === 10) {
+    if (this.destroyedEggCount >= 3) {
       this.stop();
+      this._onGameOver!(this.catchEggCount);
     }
 
     if (this.eggs.length === 0) {
@@ -157,6 +167,6 @@ export class Engine {
   public stop() {
     window.removeEventListener('keydown', this.handleKeyDown);
     window.removeEventListener('keyup', this.handleKeyUp);
-    this.isEndReport = true;
+    this.gameOver = true;
   }
 }

@@ -1,0 +1,24 @@
+.over {
+  width: 550px;
+  height: 420px;
+  border: 6px solid rgba(0, 163, 255, 1);
+  border-radius: 30px;
+  margin: auto;
+  padding: 28px 50px 40px;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  &__img {
+    height: 202px;
+    display: block;
+    margin: 0 auto 25px;
+    width: 237px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}

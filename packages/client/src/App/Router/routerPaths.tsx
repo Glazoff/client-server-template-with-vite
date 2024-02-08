@@ -13,6 +13,7 @@ import AddingTopicPage from '../../widgets/ForumAddingTopic';
 import TopicPage from '../../widgets/ForumTopicPage';
 import ErrorPage from '@/pages/500';
 import { loaderProfileData, loaderProfileSignIn } from '@/shared/loadersApi/loaderProfile';
+import GameOver from '@/widgets/GameOver';
 import GameContent from '@/widgets/MainGamePage/GameContent';
 import MainGame from '@/widgets/MainGamePage/MainGame';
 import ProfileChangePassword from '@/widgets/ProfileContentPage/FormChangePassword';
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
           {
             path: path.GameStart,
             element: <GameContent />,
+          },
+          {
+            path: path.GameOver,
+            element: <GameOver />,
           },
         ],
       },

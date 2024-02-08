@@ -1,0 +1,11 @@
+.over {
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  &__btn {
+    font-size: 20px;
+  }
+}

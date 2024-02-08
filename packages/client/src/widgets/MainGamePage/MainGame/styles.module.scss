@@ -1,4 +1,8 @@
 .game {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
   &__main {
     display: grid;
     grid-template-areas: 

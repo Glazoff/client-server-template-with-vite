@@ -3,7 +3,7 @@ import eggImage from '../../assets/static/EggImage.svg';
 type EggTypeProps = {
   x: number;
   y: number;
-  speed?: number;
+  speed: number;
 };
 export class Egg {
   x: number;
@@ -19,7 +19,7 @@ export class Egg {
     this.y = y;
     this.width = 20;
     this.height = 20;
-    this.speed = 0.5;
+    this.speed = speed;
     this.frames = [eggImage, eggImage];
     this.eggImage = new Image();
     this.eggImage.src = eggImage;
