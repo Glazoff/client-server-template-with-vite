@@ -15,6 +15,7 @@ function Layout() {
         <Link to={path.Registration}>Registration Page</Link>&nbsp;&nbsp;
         <Link to={path.Forum}>Forum Page</Link>&nbsp;&nbsp;
         <Link to={path.Game}>Game Page</Link>&nbsp;&nbsp;
+        <Link to={path.GameOver}>Game Over Page</Link>&nbsp;&nbsp;
         <Link to={path.LiderBoard}>LiderBoard Page</Link>&nbsp;&nbsp;
         <Link to={path.Main}>Main Page</Link>&nbsp;&nbsp;
         <Link to={path.Profile}>Profile Page</Link>&nbsp;&nbsp;
