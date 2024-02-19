@@ -4,12 +4,8 @@ import GameScore from '@/features/GameScore';
 import Imagine from '@/shared/ui/imagine';
 import Title from '@/shared/ui/title';
 
-/* interface Props {
-  onClick: () => void;
-} */
-
-export default function GameOverPage(/* props: Props */) {
-  const score = window.localStorage.getItem('score') || 0;
+export default function GameOverPage() {
+  const score = window?.localStorage.getItem('score') || 0;
 
   return (
     <div className={styles.over}>
@@ -17,7 +13,7 @@ export default function GameOverPage(/* props: Props */) {
       <Imagine src="../src/assets/static/game-over.jpeg" class={styles.over__img} />
       <GameScore score={score} />
 
-      <GameOverBtns /* onClick={props.onClick} */ />
+      <GameOverBtns />
     </div>
   );
 }

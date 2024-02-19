@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useRef, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styles from '../MainGame/styles.module.scss';
 import path from '@/App/Router/constants';
 import { Engine } from '@/entries/GameEngine/Engine';
@@ -10,7 +9,6 @@ let gameEngine: Engine | null = null;
 
 export default function GameContent() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const navigate = useNavigate();
   const [score, setScore] = useState(0);
 
   useEffect(() => {

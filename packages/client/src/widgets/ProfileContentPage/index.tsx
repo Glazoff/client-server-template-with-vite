@@ -34,7 +34,6 @@ export default function ProfileContentPage() {
         profile={profile}
         setProfile={setProfile}
         handleClose={handleClose}
-        handleOpen={handleOpen}
       />
 
       <Box

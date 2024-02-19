@@ -1,25 +1,24 @@
-import { createBrowserRouter } from 'react-router-dom';
-import path from './constants';
-import Layout from '../../components/Layout/Layout';
-import NotFoundPage from '../../pages/404';
-import ErrorPage from '../../pages/500';
-import Forum from '../../pages/Forum';
-import GameMainPage from '../../pages/Game';
-import LiderBoard from '../../pages/LiderBoard';
-import Login from '../../pages/Login';
-import Main from '../../pages/Main';
-import Profile from '../../pages/Profile';
-import Registration from '../../pages/Registration';
-import { loaderProfileData, loaderProfileSignIn } from '../../shared/loadersApi/loaderProfile';
-import AddingTopicPage from '../../widgets/ForumAddingTopic';
+import Layout from "@/components/Layout/Layout";
+import path from "./constants";
+import { loaderProfileData, loaderProfileSignIn } from "@/shared/loadersApi/loaderProfile";
+import NotFoundPage from "@/pages/404";
+import ErrorPage from "@/pages/500";
+import Login from "@/pages/Login";
+import Registration from "@/pages/Registration";
+import Forum from "@/pages/Forum";
+import AddingTopicPage from "@/widgets/ForumAddingTopic";
 import TopicPage from '../../widgets/ForumTopicPage';
+import MainGame from '../../widgets/MainGamePage/MainGame';
 import GameOver from '../../widgets/GameOver';
 import GameContent from '../../widgets/MainGamePage/GameContent';
-import MainGame from '../../widgets/MainGamePage/MainGame';
-import ProfileChangePassword from '../../widgets/ProfileContentPage/FormChangePassword';
-import FormMainContent from '../../widgets/ProfileContentPage/FormMainContent';
+import GameMainPage from "@/pages/Game";
+import LiderBoard from "@/pages/LiderBoard";
+import Profile from "@/pages/Profile";
+import FormMainContent from "@/widgets/ProfileContentPage/FormMainContent";
+import ProfileChangePassword from "@/widgets/ProfileContentPage/FormChangePassword";
+import Main from "@/pages/Main";
 
-const router = createBrowserRouter([
+export const routersSsr = [
   {
     path: path.Main,
     Component: Layout,
@@ -91,6 +90,4 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
-
-export default router;
+];
