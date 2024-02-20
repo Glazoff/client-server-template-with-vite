@@ -18,7 +18,7 @@ import FormMainContent from "@/widgets/ProfileContentPage/FormMainContent";
 import ProfileChangePassword from "@/widgets/ProfileContentPage/FormChangePassword";
 import Main from "@/pages/Main";
 
-export const routersSsr = [
+export const routesSsr = [
   {
     path: path.Main,
     Component: Layout,
