@@ -17,13 +17,14 @@
     "packages/*"
   ],
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.3.9",
     "lerna": "^5.4.3"
   },
   "dependencies": {
+    "node": "^21.6.2",
     "sass": "^1.69.7"
   }
 }
