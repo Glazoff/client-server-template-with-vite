@@ -1,0 +1,36 @@
+.lider {
+    border: 3px solid #00A3FF;
+    min-width: 3%;
+    min-height: 80px;
+    border-radius: 20px;
+
+    padding: 0px 45px 0px 30px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.position {
+    font-weight: 600;
+    font-size: 36px;
+    margin: 0;
+    margin-right: 29px;
+}
+
+.nikname {
+    font-weight: 600;
+    font-size: 36px;
+    margin: 0;
+    margin-left: 29px;
+}
+
+.score {
+    color: #FF8513;
+    font-weight: 600;
+    font-size: 32px;
+    margin: 0;
+    position: absolute;
+    right: 45px;
+}
