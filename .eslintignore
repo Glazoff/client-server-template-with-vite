@@ -3,5 +3,6 @@
 /packages/server/dist/*
 /packages/client/dist/*
 /packages/client/ssr-dist/*
+/packages/client/ssr.tsx
 vite.config.ts
 /packages/server/*
