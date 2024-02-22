@@ -1,7 +1,7 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import path from '../../App/Router/constants';
 import { logout } from '@/shared/api/apiAuth';
-import WithAuth from '@/shared/hoc/withAuth';
+// import WithAuth from '@/shared/hoc/withAuth';
 
 // const OutletCheckAuth = WithAuth(Outlet);
 

@@ -2,5 +2,6 @@
 /node_modules 
 /packages/server/dist/*
 /packages/client/dist/*
+/packages/client/ssr-dist/*
 vite.config.ts
 /packages/server/*

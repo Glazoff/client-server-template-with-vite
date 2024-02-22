@@ -1,7 +1,6 @@
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material';
 import { routesSsr } from './src/App/Router/Ssr/routersSsr';
-import './src/styles/index.scss';
 import { muiTheme } from './src/libs/theme';
 import store from './src/store';
 import type * as express from "express";
