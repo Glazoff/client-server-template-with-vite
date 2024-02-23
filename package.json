@@ -24,6 +24,7 @@
     "lerna": "^5.4.3"
   },
   "dependencies": {
+    "@remix-run/node": "^2.7.2",
     "sass": "^1.69.7"
   }
 }
