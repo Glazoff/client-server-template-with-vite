@@ -5,4 +5,12 @@
 /packages/client/ssr-dist/*
 /packages/client/ssr.tsx
 vite.config.ts
-/packages/server/*
+*/server/*
+./packages/server/*
+src/client/styles
+client/ssr-dist/client.cjs
+**.html
+*.json
+*.config.ts
+*.config.js
+dist
