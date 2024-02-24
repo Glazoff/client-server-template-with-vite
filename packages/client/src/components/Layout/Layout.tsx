@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import path from '../../App/Router/constants';
 import { logout } from '@/shared/api/apiAuth';
+import toggleFullscreen from '@/shared/helperFunction/toggleFullScreenFunction';
 import WithAuth from '@/shared/hoc/withAuth';
 
 const OutletCheckAuth = WithAuth(Outlet);
@@ -28,6 +29,14 @@ function Layout() {
           }}
         >
           кнопка для выхода из авторизации
+        </button>
+        <button
+          id="btnFS"
+          onClick={() => {
+            toggleFullscreen(document.documentElement, document.querySelector('#btnFS'));
+          }}
+        >
+          во весь экран
         </button>
       </nav>
       <OutletCheckAuth />
