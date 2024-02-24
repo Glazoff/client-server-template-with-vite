@@ -33,7 +33,10 @@ function Layout() {
         <button
           id="btnFS"
           onClick={() => {
-            toggleFullscreen(document.documentElement, document.querySelector('#btnFS'));
+            toggleFullscreen(
+              document.documentElement,
+              document.querySelector('#btnFS') as HTMLElement
+            );
           }}
         >
           во весь экран
