@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-var-requires */
 import path from "path";
 import fsp from "fs/promises";
 import express, { Request, Response } from "express";
 import { createServer as createViteServer } from 'vite';
 import type { ViteDevServer } from 'vite';
 
-const isProduction = process.env.NODE_ENV === "production";
+const isDev = () => process.env.NODE_ENV === 'development'
 const port = Number(process.env.SERVER_PORT) || 3001;
 
 async function createServer() {
@@ -19,7 +17,7 @@ async function createServer() {
   */
   let vite: ViteDevServer | undefined;
 
-  if (!isProduction) {
+  if (isDev()) {
     vite = await createViteServer({
       server: { middlewareMode: true },
       root: srcPath,
@@ -32,7 +30,7 @@ async function createServer() {
     app.use(express.static(path.resolve("dist/client")));
   }
 
-  if (!isProduction) {
+  if (!isDev()) {
     app.use('/assets', express.static(path.resolve(distPath, 'assets')))
   }
 
@@ -43,7 +41,7 @@ async function createServer() {
       let template;
       let render;
 
-      if (!isProduction) {
+      if (!isDev()) {
         template = await fsp.readFile(path.resolve(distPath, "index.html"), "utf8");
         template = await vite!.transformIndexHtml(url, template);
         render = (await import(ssrClientPath)).render;
@@ -67,7 +65,7 @@ async function createServer() {
         throw e;
       }
     } catch (error) {
-      if (!isProduction) {
+      if (isDev()) {
         vite!.ssrFixStacktrace(error as Error);
       }
       console.log((error as Error).stack);

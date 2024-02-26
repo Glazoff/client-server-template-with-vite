@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material';
-import { routesSsr } from './src/App/Router/Ssr/routersSsr';
+import routes from './src/App/Router/routes';
 import { muiTheme } from './src/libs/theme';
 import store from './src/store';
 import type * as express from "express";
@@ -16,7 +16,7 @@ export async function render(
   request: express.Request,
   response: express.Response
 ) {
-  let { query, dataRoutes } = createStaticHandler(routesSsr);
+  let { query, dataRoutes } = createStaticHandler(routes);
   let remixRequest = createFetchRequest(request, response);
   let context = await query(remixRequest);
 
