@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import path from "path";
 import fsp from "fs/promises";
 import express, { Request, Response } from "express";
