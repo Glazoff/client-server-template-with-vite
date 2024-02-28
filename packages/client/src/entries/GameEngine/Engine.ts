@@ -140,7 +140,7 @@ export class Engine {
         this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
 
         if (this.eggs.length === 0) {
-          this.initialEggSpeed += 10;
+          this.initialEggSpeed += 1;
           this.createEgg();
         }
       }

@@ -5,13 +5,22 @@ import {
   leaderboardGetTeamAction,
 } from './lideboardAction';
 
-type LeadeboardInfoData = {
-  myField: string;
-  otherField: number;
+export type LeadeboardInfoData = {
+  id: number;
+  score: number | string;
+  avatar: string;
+  name: string;
+  teamName: string;
+  FrontWearRanking: number;
 };
 
+interface LeaderboardData {
+  id: Key | null | undefined;
+  data: LeadeboardInfoData;
+}
+
 type LeaderboardStateType = {
-  data: any | null;
+  dataTeam: LeaderboardData[];
   dataAll: any[] | null;
   ratingFieldName: string;
   total: number;
@@ -23,7 +32,7 @@ type LeaderboardStateType = {
 };
 
 const initialState: LeaderboardStateType = {
-  data: null,
+  dataTeam: [],
   dataAll: [],
   ratingFieldName: 'score',
   total: 0,
@@ -42,7 +51,6 @@ const leaderboardSlice = createSlice({
     builder
       .addCase(leaderboardAddUserAction.fulfilled, (state, action) => {
         state.status = 'success';
-        state.data = action.payload;
       })
       .addCase(leaderboardAddUserAction.pending, (state) => {
         state.status = 'loading';
@@ -64,7 +72,7 @@ const leaderboardSlice = createSlice({
       })
       .addCase(leaderboardGetTeamAction.fulfilled, (state, action) => {
         state.status = 'success';
-        state.data = action.payload.data;
+        state.dataTeam = action.payload;
       })
       .addCase(leaderboardGetTeamAction.pending, (state) => {
         state.status = 'loading';

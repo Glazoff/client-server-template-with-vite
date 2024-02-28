@@ -54,6 +54,7 @@ const router = createBrowserRouter([
       {
         path: path.Game,
         Component: GameMainPage,
+
         children: [
           {
             path: path.Game,
@@ -65,6 +66,7 @@ const router = createBrowserRouter([
           },
           {
             path: path.GameOver,
+            loader: loaderProfileData,
             element: <GameOver />,
           },
         ],
@@ -72,6 +74,7 @@ const router = createBrowserRouter([
       {
         path: path.LiderBoard,
         Component: LiderBoard,
+        loader: loaderProfileData,
       },
       {
         path: path.Profile,

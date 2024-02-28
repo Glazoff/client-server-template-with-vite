@@ -1,11 +1,18 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AsyncThunk, createAsyncThunk } from '@reduxjs/toolkit';
+import { LeadeboardInfoData } from './liderboardSlice';
 import {
   leaderboardAddUser,
   leaderboardGetAll,
   leaderboardGetTeam,
 } from '@/shared/api/apiLideboard';
 
-export const leaderboardGetAllAction = createAsyncThunk(
+interface RequestDataLeaderboardAddUser {
+  data: LeadeboardInfoData[];
+  ratingFieldName: string;
+  teamName: string;
+}
+
+export const leaderboardGetAllAction: any = createAsyncThunk(
   'leaderboard/leaderboardGetAllAction',
   async (data, { fulfillWithValue, rejectWithValue }) => {
     try {
@@ -17,7 +24,7 @@ export const leaderboardGetAllAction = createAsyncThunk(
   }
 );
 
-export const leaderboardGetTeamAction = createAsyncThunk(
+export const leaderboardGetTeamAction: any = createAsyncThunk(
   'leaderboard/leaderboardGetTeamAction',
   async (data, { fulfillWithValue, rejectWithValue }) => {
     try {
@@ -29,7 +36,7 @@ export const leaderboardGetTeamAction = createAsyncThunk(
   }
 );
 
-export const leaderboardAddUserAction = createAsyncThunk(
+export const leaderboardAddUserAction: any = createAsyncThunk(
   'leaderboard/leaderboardAddUserAction',
   async (data, { fulfillWithValue, rejectWithValue }) => {
     try {

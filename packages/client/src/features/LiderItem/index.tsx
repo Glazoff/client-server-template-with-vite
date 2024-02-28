@@ -6,13 +6,13 @@ type Lider = {
   id?: number;
   position?: number;
   avatar: string;
-  nickname?: string;
-  score: number;
+  FrontWearRanking?: number | string;
+  score?: number | string;
   userName?: string;
 };
 
 export default function LiderItem(props: Lider) {
-  const { position, avatar, nickname, score, name, userName } = props;
+  const { position, avatar, FrontWearRanking, name, score } = props;
 
   return (
     <div className={styles.lider}>
@@ -20,9 +20,9 @@ export default function LiderItem(props: Lider) {
       <AvatarLider src={avatar} />
       <p className={styles.nikname}>
         {/* Студенты шлют, что попало в объект data в лидерборд. В итоге поля никнейм у всех разный */}
-        {nickname} {name} {userName}
+        {name}
       </p>
-      <p className={styles.score}> {score} </p>
+      <p className={styles.score}>{score}</p>
     </div>
   );
 }
