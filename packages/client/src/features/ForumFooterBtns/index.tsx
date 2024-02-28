@@ -10,7 +10,6 @@ interface Props {
 export default function ForumFooterBtns(props: Props) {
   const navigate = useNavigate();
 
-  // не совсем понял зачем выносить, вроде бы читаемости не мешает, кода меньше не стало
   const navigation = () => {
     navigate(`${path.Forum}`);
   };

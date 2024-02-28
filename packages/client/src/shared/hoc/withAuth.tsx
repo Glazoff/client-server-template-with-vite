@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { OutletProps } from 'react-router-dom';
 import { baseUrl } from '../loadersApi/loaderProfile';
 import Login from '@/pages/Login';
 
+type Props = OutletProps;
+
 // eslint-disable-next-line react/display-name
-const WithAuth = (WrapperComponent) => (props) => {
+const WithAuth = (WrapperComponent: React.ComponentType<Props>) => (props: Props) => {
   const [isAuth, setAuth] = useState(false);
 
   useEffect(() => {

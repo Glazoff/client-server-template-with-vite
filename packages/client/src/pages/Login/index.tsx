@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Box, TextField, Button, Typography } from '@mui/material';
@@ -30,11 +30,11 @@ export default function Login() {
     }
   };
 
-  const onChangeLogin = (e) => {
+  const onChangeLogin = (e: { target: { value: SetStateAction<string> } }) => {
     setLogin(e.target.value);
   };
 
-  const onChangePassword = (e) => {
+  const onChangePassword = (e: { target: { value: SetStateAction<string> } }) => {
     setPassword(e.target.value);
   };
 

@@ -1,3 +1,5 @@
+/*eslint-disable @typescript-eslint/no-explicit-any */
+
 const magic = '🪄'
 
 const cast = (spell: string, item: any) => {
