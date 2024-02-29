@@ -12,16 +12,13 @@ type Lider = {
 };
 
 export default function LiderItem(props: Lider) {
-  const { position, avatar, FrontWearRanking, name, score } = props;
+  const { position, avatar, name, score } = props;
 
   return (
     <div className={styles.lider}>
       <p className={styles.position}> {position} </p>
       <AvatarLider src={avatar} />
-      <p className={styles.nikname}>
-        {/* Студенты шлют, что попало в объект data в лидерборд. В итоге поля никнейм у всех разный */}
-        {name}
-      </p>
+      <p className={styles.nikname}>{name}</p>
       <p className={styles.score}>{score}</p>
     </div>
   );

@@ -1,5 +1,4 @@
 import { Avatar } from '@mui/material';
-import DefaultAvatar from '../../../assets/static/DefaultAvatar.png';
 
 type AvatarLiderProps = {
   src: string;
