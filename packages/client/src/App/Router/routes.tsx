@@ -1,7 +1,24 @@
-import { createBrowserRouter } from 'react-router-dom';
-import routes from './routes';
+import path from './constants';
+import Layout from '../../components/Layout/Layout';
+import NotFoundPage from '../../pages/404';
+import ErrorPage from '../../pages/500';
+import Forum from '../../pages/Forum';
+import GameMainPage from '../../pages/Game';
+import LiderBoard from '../../pages/LiderBoard';
+import Login from '../../pages/Login';
+import Main from '../../pages/Main';
+import Profile from '../../pages/Profile';
+import Registration from '../../pages/Registration';
+import { loaderProfileData, loaderProfileSignIn } from '../../shared/loadersApi/loaderProfile';
+import AddingTopicPage from '../../widgets/ForumAddingTopic';
+import TopicPage from '../../widgets/ForumTopicPage';
+import GameOver from '../../widgets/GameOver';
+import GameContent from '../../widgets/MainGamePage/GameContent';
+import MainGame from '../../widgets/MainGamePage/MainGame';
+import ProfileChangePassword from '../../widgets/ProfileContentPage/FormChangePassword';
+import FormMainContent from '../../widgets/ProfileContentPage/FormMainContent';
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: path.Main,
     Component: Layout,
@@ -36,7 +53,6 @@ const router = createBrowserRouter([
       {
         path: path.Game,
         Component: GameMainPage,
-
         children: [
           {
             path: path.Game,
@@ -48,7 +64,6 @@ const router = createBrowserRouter([
           },
           {
             path: path.GameOver,
-            loader: loaderProfileData,
             element: <GameOver />,
           },
         ],
@@ -56,7 +71,6 @@ const router = createBrowserRouter([
       {
         path: path.LiderBoard,
         Component: LiderBoard,
-        loader: loaderProfileData,
       },
       {
         path: path.Profile,
@@ -76,6 +90,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
 
-export default router;
+export default routes;

@@ -12,7 +12,6 @@ let gameEngine: Engine | null = null;
 
 export default function GameContent() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const navigate = useNavigate();
   const [score, setScore] = useState(0);
 
   useEffect(() => {

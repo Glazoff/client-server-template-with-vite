@@ -44,9 +44,7 @@ export default function ForumTopicPage() {
               nikname={comment.nik}
               time={comment.time}
               comment={comment.text}
-              //сейчас не получится использовать время и никнейм, так как они все одинаковые у всех комментов,
-              //react выдает ошибку одинаковых ключей, но когда появится настоящая бд, сделаю так
-              key={/* `${comment.time}-${comment.nik}` */ index}
+              key={index}
             />
           );
         })}
