@@ -36,7 +36,7 @@ export default function GameOverPage() {
       <Imagine src="../src/assets/static/game-over.jpeg" class={styles.over__img} />
       <GameScore score={score} />
 
-      <GameOverBtns /* onClick={props.onClick} */ />
+      <GameOverBtns />
     </div>
   );
 }
