@@ -6,7 +6,6 @@ import {
 } from './lideboardAction';
 
 export type LeadeboardInfoData = {
-  id: number;
   score: number | string;
   avatar: string;
   name: string;
@@ -14,19 +13,19 @@ export type LeadeboardInfoData = {
   FrontWearRanking: number;
 };
 
-interface LeaderboardData {
-  id: Key | null | undefined;
+export interface LeaderboardData {
   data: LeadeboardInfoData;
 }
 
 type LeaderboardStateType = {
   dataTeam: LeaderboardData[];
-  dataAll: any[] | null;
+  dataAll: any[];
   ratingFieldName: string;
   total: number;
   page: number;
   size: number;
-  pages: number;
+  fullPagesTeam: boolean;
+  fullPagesAll: boolean;
   status: 'init' | 'loading' | 'success' | 'error';
   error: string | undefined;
 };
@@ -36,9 +35,10 @@ const initialState: LeaderboardStateType = {
   dataAll: [],
   ratingFieldName: 'score',
   total: 0,
-  page: 1,
+  page: 0,
   size: 1,
-  pages: 0,
+  fullPagesTeam: false,
+  fullPagesAll: false,
   status: 'init',
   error: undefined,
 };
@@ -61,7 +61,11 @@ const leaderboardSlice = createSlice({
       })
       .addCase(leaderboardGetAllAction.fulfilled, (state, action) => {
         state.status = 'success';
-        state.dataAll = action.payload;
+        if (action.payload.length === 0) {
+          state.fullPagesAll = true;
+        } else {
+          state.dataAll = [...state.dataAll, ...action.payload];
+        }
       })
       .addCase(leaderboardGetAllAction.pending, (state) => {
         state.status = 'loading';
@@ -72,7 +76,11 @@ const leaderboardSlice = createSlice({
       })
       .addCase(leaderboardGetTeamAction.fulfilled, (state, action) => {
         state.status = 'success';
-        state.dataTeam = action.payload;
+        if (action.payload.length === 0) {
+          state.fullPagesTeam = true;
+        } else {
+          state.dataTeam = [...state.dataTeam, ...action.payload];
+        }
       })
       .addCase(leaderboardGetTeamAction.pending, (state) => {
         state.status = 'loading';

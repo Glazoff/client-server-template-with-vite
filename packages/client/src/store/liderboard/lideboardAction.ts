@@ -1,16 +1,11 @@
-import { AsyncThunk, createAsyncThunk } from '@reduxjs/toolkit';
-import { LeadeboardInfoData } from './liderboardSlice';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { LeaderboardData } from './liderboardSlice';
+import store from '..';
 import {
   leaderboardAddUser,
   leaderboardGetAll,
   leaderboardGetTeam,
 } from '@/shared/api/apiLideboard';
-
-interface RequestDataLeaderboardAddUser {
-  data: LeadeboardInfoData[];
-  ratingFieldName: string;
-  teamName: string;
-}
 
 export const leaderboardGetAllAction: any = createAsyncThunk(
   'leaderboard/leaderboardGetAllAction',
@@ -26,10 +21,25 @@ export const leaderboardGetAllAction: any = createAsyncThunk(
 
 export const leaderboardGetTeamAction: any = createAsyncThunk(
   'leaderboard/leaderboardGetTeamAction',
-  async (data, { fulfillWithValue, rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
-      const response = await leaderboardGetTeam(data);
-      return fulfillWithValue(response);
+      const response: LeaderboardData[] = await leaderboardGetTeam(data);
+      const dataTeam = store.getState().leaderboard.dataTeam;
+
+      // TODO: Из-за strict mode useEffect срабатывает дважды и 2 раза происходит обращение к серверу.
+      // Новая порция данных прибавляется к массиву в сторе и из-за этого данные дублируются в нем.
+      // Данные прибавляются к массиву в сторе из-за варианта пагинации "Бесконечная лента"
+
+      const newData: LeaderboardData[] = [];
+      response.forEach((element) => {
+        if (dataTeam.some((v, i, a) => v.data.name === element.data.name)) {
+          console.log('исключаем одинаковые данные');
+        } else {
+          newData.push(element);
+        }
+      });
+
+      return newData;
     } catch (error: unknown) {
       return rejectWithValue;
     }

@@ -16,13 +16,13 @@ export default function GameOverPage() {
 
   const registerLead = {
     data: {
-      id: Date.now(),
+      FrontWearRanking: score,
       score: score,
       name: profileData.login,
       avatar: 'https://ya-praktikum.tech/api/v2/resources' + profileData.avatar,
       teamName: 'FrontWear',
     },
-    ratingFieldName: 'score',
+    ratingFieldName: 'FrontWearRanking',
     teamName: 'FrontWear',
   };
 
