@@ -4,6 +4,7 @@ import {
   leaderboardGetAllAction,
   leaderboardGetTeamAction,
 } from './lideboardAction';
+import { statusStore, StatusType } from '@/shared/constants/statusStoreConstants';
 
 export type LeadeboardInfoData = {
   score: number | string;
@@ -26,7 +27,7 @@ type LeaderboardStateType = {
   size: number;
   fullPagesTeam: boolean;
   fullPagesAll: boolean;
-  status: 'init' | 'loading' | 'success' | 'error';
+  status: StatusType;
   error: string | undefined;
 };
 
@@ -39,7 +40,7 @@ const initialState: LeaderboardStateType = {
   size: 1,
   fullPagesTeam: false,
   fullPagesAll: false,
-  status: 'init',
+  status: statusStore.init,
   error: undefined,
 };
 
@@ -50,17 +51,17 @@ const leaderboardSlice = createSlice({
   extraReducers: (builder: ActionReducerMapBuilder<LeaderboardStateType>) => {
     builder
       .addCase(leaderboardAddUserAction.fulfilled, (state, action) => {
-        state.status = 'success';
+        state.status = statusStore.success;
       })
       .addCase(leaderboardAddUserAction.pending, (state) => {
-        state.status = 'loading';
+        state.status = statusStore.loading;
       })
       .addCase(leaderboardAddUserAction.rejected, (state) => {
-        state.status = 'error';
+        state.status = statusStore.error;
         state.error = 'Ошибка...';
       })
       .addCase(leaderboardGetAllAction.fulfilled, (state, action) => {
-        state.status = 'success';
+        state.status = statusStore.success;
         if (action.payload.length === 0) {
           state.fullPagesAll = true;
         } else {
@@ -68,14 +69,14 @@ const leaderboardSlice = createSlice({
         }
       })
       .addCase(leaderboardGetAllAction.pending, (state) => {
-        state.status = 'loading';
+        state.status = statusStore.loading;
       })
       .addCase(leaderboardGetAllAction.rejected, (state) => {
-        state.status = 'error';
+        state.status = statusStore.error;
         state.error = 'Ошибка...';
       })
       .addCase(leaderboardGetTeamAction.fulfilled, (state, action) => {
-        state.status = 'success';
+        state.status = statusStore.success;
         if (action.payload.length === 0) {
           state.fullPagesTeam = true;
         } else {
@@ -83,10 +84,10 @@ const leaderboardSlice = createSlice({
         }
       })
       .addCase(leaderboardGetTeamAction.pending, (state) => {
-        state.status = 'loading';
+        state.status = statusStore.loading;
       })
       .addCase(leaderboardGetTeamAction.rejected, (state) => {
-        state.status = 'error';
+        state.status = statusStore.error;
         state.error = 'Ошибка...';
       });
   },

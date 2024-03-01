@@ -1,4 +1,5 @@
 import React from 'react';
+import { statusStore } from '../constants/statusStoreConstants';
 
 export const useObserve = (
   ref: React.MutableRefObject<HTMLDivElement | null>,
@@ -8,8 +9,7 @@ export const useObserve = (
   const observer = React.useRef<any>();
 
   React.useEffect(() => {
-    if (status !== 'success') return;
-    // if (observer.current) return observer.current.disconnect();
+    if (status !== statusStore.success) return;
     const cb = (entries: any, observer: any) => {
       if (entries[0].isIntersecting) {
         callback();
