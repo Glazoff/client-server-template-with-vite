@@ -4,7 +4,11 @@ import {
   leaderboardGetAllAction,
   leaderboardGetTeamAction,
 } from './lideboardAction';
-import { statusStore, StatusType } from '@/shared/constants/statusStoreConstants';
+import {
+  statusStore,
+  StatusType,
+  EmptyResponseFromServer,
+} from '@/shared/constants/statusStoreConstants';
 
 export type LeadeboardInfoData = {
   score: number | string;
@@ -62,7 +66,7 @@ const leaderboardSlice = createSlice({
       })
       .addCase(leaderboardGetAllAction.fulfilled, (state, action) => {
         state.status = statusStore.success;
-        if (action.payload.length === 0) {
+        if (action.payload.length === EmptyResponseFromServer) {
           state.fullPagesAll = true;
         } else {
           state.dataAll = [...state.dataAll, ...action.payload];
@@ -77,7 +81,7 @@ const leaderboardSlice = createSlice({
       })
       .addCase(leaderboardGetTeamAction.fulfilled, (state, action) => {
         state.status = statusStore.success;
-        if (action.payload.length === 0) {
+        if (action.payload.length === EmptyResponseFromServer) {
           state.fullPagesTeam = true;
         } else {
           state.dataTeam = [...state.dataTeam, ...action.payload];

@@ -13,3 +13,5 @@ export const statusStore: IStatus = {
   init: 'init',
   error: 'error',
 };
+
+export const EmptyResponseFromServer = 0;
