@@ -40,7 +40,7 @@ export function createFetchRequest(
   req: express.Request,
   res: express.Response
 ): Request {
-  let origin = `${req.protocol!}://${req.get("host")}`;
+  let origin = `${req?.protocol!}://${req.get("host")}`;
   // Note: This had to take originalUrl into account for presumably vite's proxying
   let url = new URL(req.originalUrl || req.url, origin);
 

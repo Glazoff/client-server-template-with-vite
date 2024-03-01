@@ -43,7 +43,7 @@ async function createServer() {
       let template;
       let render;
 
-      if (!isDev()) {
+      if (isDev()) {
         template = await fsp.readFile(path.resolve(distPath, "index.html"), "utf8");
         template = await vite!.transformIndexHtml(url, template);
         render = (await import(ssrClientPath)).render;
@@ -55,17 +55,20 @@ async function createServer() {
         render = (await vite!.ssrLoadModule(path.resolve(srcPath, 'ssr.tsx'))).render;
       }
 
-      try {
+      /* try { */
         const appHtml = await render(req, res);
         const html = template.replace("<!--ssr-outlet-->", appHtml || '');
         res.setHeader("Content-Type", "text/html");
-        return res.status(200).end(html);
-      } catch (e) {
-        if (e instanceof Response && e.status >= 300 && e.status <= 399) {
-          return res.redirect(+(e.headers.get("Location"))!, e.status.toString());
+        res.status(200).end(html);
+      /* } catch (e) {
+        /* if (e instanceof Response && e.status >= 300 && e.status <= 399) {
+          return res.redirect(+e.status.toString(), e.headers.get("Location")!);
+        } 
+        if (isDev()) {
+          vite!.ssrFixStacktrace(e as Error)
         }
-        throw e;
-      }
+        next(e);
+      } */
     } catch (error) {
       if (isDev()) {
         vite!.ssrFixStacktrace(error as Error);
@@ -75,11 +78,9 @@ async function createServer() {
     }
   });
 
-  return app;
-}
-
-createServer().then((app) => {
   app.listen(port, () => {
     console.log(`  ➜ 🎸 Server is listening on port: ${port}`)
   })
-});
+}
+
+createServer()
