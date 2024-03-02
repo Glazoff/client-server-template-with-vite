@@ -18,7 +18,7 @@ export default function LiderItem(props: Lider) {
     <div className={styles.lider}>
       <p className={styles.position}> {position} </p>
       <AvatarLider src={avatar} />
-      <p className={styles.nikname}>{name}</p>
+      <p className={styles.nickname}>{name}</p>
       <p className={styles.score}>{score}</p>
     </div>
   );

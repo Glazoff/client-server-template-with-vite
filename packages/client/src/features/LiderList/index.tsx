@@ -31,11 +31,9 @@ export default function LiderList() {
     }
   }, [page]);
 
-  console.log(dataTeam);
-
   return (
     <Box className={styles.lider_list}>
-      {dataTeam && dataTeam.map((item, index) => <LiderItem key={index} {...item.data} />)}
+      {dataTeam?.map((item, index) => <LiderItem key={index} {...item.data} />)}
       <div ref={lastElement} />
     </Box>
   );
