@@ -64,6 +64,7 @@ const routes = [
           },
           {
             path: path.GameOver,
+            loader: loaderProfileData,
             element: <GameOver />,
           },
         ],
@@ -71,6 +72,7 @@ const routes = [
       {
         path: path.LiderBoard,
         Component: LiderBoard,
+        loader: loaderProfileData,
       },
       {
         path: path.Profile,

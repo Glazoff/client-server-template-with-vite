@@ -139,8 +139,8 @@ export class Engine {
         this.catchEggCount++;
         this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
 
-        if (this.eggs.length === 0) {
-          this.initialEggSpeed += 10;
+        if (this.eggs.length) {
+          this.initialEggSpeed++;
           this.createEgg();
         }
       }

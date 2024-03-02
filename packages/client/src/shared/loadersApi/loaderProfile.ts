@@ -1,7 +1,7 @@
 export const baseUrl = 'https://ya-praktikum.tech/api/v2';
 
 export const loaderProfileSignIn = async () => {
-  const login = 'WolfTop1000';
+  const login = 'Wolf1080';
   const password = 'Qwerty12345';
   //TODO: После сделать redux и оформить все через него. Хранить данные тоже там.
   const data = await fetch(`${baseUrl}/auth/signin`, {

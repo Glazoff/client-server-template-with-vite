@@ -3,6 +3,8 @@ import { Outlet, useLoaderData } from 'react-router-dom';
 import { Box, Avatar } from '@mui/material';
 import DefaultAvatarWolf from '../../assets/static/DefaultAvatar.png';
 import PopupChangeAvatar from '@/features/PopupChangeAvatar';
+import { useAppDispatch } from '@/store';
+import { updateUser } from '@/store/user/userSlice';
 
 export interface IUser {
   id: number;
@@ -16,10 +18,14 @@ export interface IUser {
 }
 
 export default function ProfileContentPage() {
+  const dispatch = useAppDispatch();
   const profileData: any = useLoaderData();
   const [openPopupAvatar, setOpenPopupAvatar] = React.useState(false);
   const [profile, setProfile] = React.useState<IUser>(profileData);
 
+  React.useEffect(() => {
+    dispatch(updateUser(profile));
+  }, [dispatch]);
   const handleOpen = () => {
     setOpenPopupAvatar(true);
   };

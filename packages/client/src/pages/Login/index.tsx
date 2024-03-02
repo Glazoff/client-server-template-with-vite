@@ -5,7 +5,7 @@ import { Stack, Box, TextField, Button, Typography } from '@mui/material';
 import path from '@/App/Router/constants.js';
 import { getUser, signIn } from '@/shared/api/apiAuth.js';
 import BUTTONS from '@/shared/buttonDict/index.js';
-import { User, updateUser } from '@/store/userSlice.js';
+import { User, updateUser } from '@/store/user/userSlice.js';
 
 export default function Login() {
   const navigate = useNavigate();
