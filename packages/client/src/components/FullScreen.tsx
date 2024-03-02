@@ -1,8 +1,14 @@
-import { MouseEventHandler } from 'react';
+import { useState } from 'react';
 
 const FullScreen = () => {
-  const handleClick = (event: MouseEvent) => {
-    const self = event.target;
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const handleClick = () => {
+    const isFullScreen = toggleFullScreen();
+    setIsFullScreen(isFullScreen);
+  };
+
+  const toggleFullScreen = () => {
     const elem = document.documentElement;
     if (
       !document.fullscreenElement &&
@@ -19,7 +25,7 @@ const FullScreen = () => {
       } else if (elem.webkitRequestFullscreen) {
         elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
       }
-      self.textContent = 'выход из полноэкранного режима';
+      return true;
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -30,13 +36,13 @@ const FullScreen = () => {
       } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
       }
-      self.textContent = 'во весь экран';
+      return false;
     }
   };
 
   return (
     <button id="buttonFullScreen" onClick={handleClick}>
-      во весь экран
+      {isFullScreen ? 'выход из полноэкранного режима' : 'полноэкраный режим'}
     </button>
   );
 };
