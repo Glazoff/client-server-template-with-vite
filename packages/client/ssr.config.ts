@@ -16,6 +16,14 @@ export default defineConfig({
       formats: ['cjs'],
     },
     rollupOptions: {
+      external: [
+        'react',
+        'styled-components',
+        '@emotion/react',
+        '@emotion/styled',
+        '@mui/material',
+        '@mui/icons-material',
+      ],
       output: {
         dir: 'ssr-dist',
       },
