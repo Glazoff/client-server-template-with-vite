@@ -1,72 +1,72 @@
-import dotenv from 'dotenv';
-import cors from 'cors';
-import { createServer as createViteServer } from 'vite';
-import type { ViteDevServer } from 'vite';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import dotenv from 'dotenv'
+import cors from 'cors'
+import { createServer as createViteServer } from 'vite'
+import type { ViteDevServer } from 'vite'
 
-dotenv.config();
+dotenv.config()
 
-import * as fs from 'fs';
-import { resolve, dirname } from 'path';
-import express from 'express';
+import * as fs from 'fs'
+import { resolve, dirname } from 'path'
+import express from 'express'
 /* import { createClientAndConnect } from './db';
 import { getInitialState } from './store';
 import { initControllers } from './controllers/init'; */
 
-const isDev = () => process.env.NODE_ENV === 'development';
+const isDev = () => process.env.NODE_ENV === 'development'
 
 async function startServer() {
-  const app = express();
-  app.use(cors());
-  const port = Number(process.env.SERVER_PORT) || 3001;
-  app.use(express.json());
+  const app = express()
+  app.use(cors())
+  const port = Number(process.env.SERVER_PORT) || 3001
+  app.use(express.json())
   // TODO вернуть при подключении к БД
   // await createClientAndConnect();
 
-  let vite: ViteDevServer | undefined;
-  const distPath = dirname(require.resolve('client/dist/index.html'));
-  const srcPath = dirname(require.resolve('client'));
-  const ssrClientPath = require.resolve('client/ssr-dist/client.cjs');
+  let vite: ViteDevServer | undefined
+  const distPath = dirname(require.resolve('client/dist/index.html'))
+  const srcPath = dirname(require.resolve('client'))
+  const ssrClientPath = require.resolve('client/ssr-dist/client.cjs')
 
   if (isDev()) {
     vite = await createViteServer({
       server: { middlewareMode: true },
       root: srcPath,
       appType: 'custom',
-    });
+    })
 
-    app.use(vite.middlewares);
+    app.use(vite.middlewares)
   }
 
   app.get('/api', (_, res) => {
-    res.json('👋 Howdy from the server :)');
-  });
+    res.json('👋 Howdy from the server :)')
+  })
 
   if (!isDev()) {
-    app.use('/assets', express.static(resolve(distPath, 'assets')));
+    app.use('/assets', express.static(resolve(distPath, 'assets')))
   }
 
   // app.use(initControllers());
 
   app.use('*', async (req, res, next) => {
-    const url = req.originalUrl;
+    const url = req.originalUrl
 
     try {
       let template = fs.readFileSync(
         resolve(!isDev() ? distPath : srcPath, 'index.html'),
-        'utf-8'
-      );
+        'utf-8',
+      )
 
       if (isDev()) {
-        template = await vite!.transformIndexHtml(url, template);
+        template = await vite!.transformIndexHtml(url, template)
       }
 
-      let render;
+      let render
 
       if (!isDev()) {
-        render = (await import(ssrClientPath)).render;
+        render = (await import(ssrClientPath)).render
       } else {
-        render = (await vite!.ssrLoadModule(resolve(srcPath, 'ssr.tsx')))
-          .render;
+        render = (await vite!.ssrLoadModule(resolve(srcPath, 'ssr.tsx'))).render
       }
 
       /* const preloadedState = await getInitialState();
@@ -74,22 +74,25 @@ async function startServer() {
         preloadedState
       ).replace(/</g, '\\u003c')}</script>`; */
 
-      const appHtml = await render(req, res);
+      const appHtml = await render(req, res)
 
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml/*  + stateMarkup */);
+      const html = template.replace(
+        `<!--ssr-outlet-->`,
+        appHtml /*  + stateMarkup */,
+      )
 
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+      res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
       if (isDev()) {
-        vite!.ssrFixStacktrace(e as Error);
+        vite!.ssrFixStacktrace(e as Error)
       }
-      next(e);
+      next(e)
     }
-  });
+  })
 
   app.listen(port, () => {
-    console.log(`  ➜ 🎸 Server is listening on port: ${port}`);
-  });
+    console.log(`  ➜ 🎸 Server is listening on port: ${port}`)
+  })
 }
 
-startServer();
+startServer()

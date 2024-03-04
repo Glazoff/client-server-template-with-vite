@@ -1,5 +1,6 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import path from '../../App/Router/constants';
+import FullScreen from '../FullScreen';
 import { logout } from '@/shared/api/apiAuth';
 // import WithAuth from '@/shared/hoc/withAuth';
 
@@ -29,6 +30,7 @@ function Layout() {
         >
           кнопка для выхода из авторизации
         </button>
+        <FullScreen />
       </nav>
       <Outlet />
     </>

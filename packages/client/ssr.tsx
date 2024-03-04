@@ -3,19 +3,16 @@ import { ThemeProvider } from '@mui/material';
 import routes from './src/App/Router/routes';
 import { muiTheme } from './src/libs/theme';
 import store from './src/store';
-import type * as express from "express";
-import * as React from "react";
-import ReactDOMServer from "react-dom/server";
+import type * as express from 'express';
+import * as React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import {
   createStaticHandler,
   createStaticRouter,
   StaticRouterProvider,
-} from "react-router-dom/server";
+} from 'react-router-dom/server';
 
-export async function render(
-  request: express.Request,
-  response: express.Response
-) {
+export async function render(request: express.Request, response: express.Response) {
   let { query, dataRoutes } = createStaticHandler(routes);
   let remixRequest = createFetchRequest(request, response);
   let context = await query(remixRequest);
@@ -36,16 +33,13 @@ export async function render(
   );
 }
 
-export function createFetchRequest(
-  req: express.Request,
-  res: express.Response
-): Request {
-  let origin = `${req?.protocol!}://${req.get("host")}`;
+export function createFetchRequest(req: express.Request, res: express.Response): Request {
+  let origin = `${req?.protocol!}://${req.get('host')}`;
   // Note: This had to take originalUrl into account for presumably vite's proxying
   let url = new URL(req.originalUrl || req.url, origin);
 
   let controller = new AbortController();
-  res.on("close", () => controller.abort());
+  res.on('close', () => controller.abort());
 
   let headers = new Headers();
 
@@ -67,7 +61,7 @@ export function createFetchRequest(
     signal: controller.signal,
   };
 
-  if (req.method !== "GET" && req.method !== "HEAD") {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
     init.body = req.body;
   }
 
