@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Box, TextField, Button, Typography } from '@mui/material';
 import path from '@/App/Router/constants.js';
 import { getUser, signIn } from '@/shared/api/apiAuth.js';
 import BUTTONS from '@/shared/buttonDict/index.js';
-import { User, updateUser } from '@/store/userSlice.js';
+import { User, updateUser } from '@/store/user/userSlice.js';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -30,11 +30,11 @@ export default function Login() {
     }
   };
 
-  const onChangeLogin = (e) => {
+  const onChangeLogin = (e: { target: { value: SetStateAction<string> } }) => {
     setLogin(e.target.value);
   };
 
-  const onChangePassword = (e) => {
+  const onChangePassword = (e: { target: { value: SetStateAction<string> } }) => {
     setPassword(e.target.value);
   };
 

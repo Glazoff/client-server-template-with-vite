@@ -1,95 +1,40 @@
+import React from 'react';
+import { Box } from '@mui/material';
 import styles from './styles.module.scss';
 import LiderItem from '@/features/LiderItem';
-
-type Lider = {
-  id: number;
-  position: number;
-  avatar: string;
-  nikname: string;
-  score: number;
-};
-
-type Liders = Lider[];
-
-const mockLiders: Liders = [
-  {
-    id: 1,
-    position: 1,
-    avatar: '/',
-    nikname: 'Bob',
-    score: 233,
-  },
-  {
-    id: 2,
-    position: 2,
-    avatar: '/',
-    nikname: 'Mike',
-    score: 2331,
-  },
-  {
-    id: 1,
-    position: 1,
-    avatar: '/',
-    nikname: 'Bob',
-    score: 233,
-  },
-  {
-    id: 2,
-    position: 2,
-    avatar: '/',
-    nikname: 'Mike',
-    score: 2331,
-  },
-  {
-    id: 1,
-    position: 1,
-    avatar: '/',
-    nikname: 'Bob',
-    score: 233,
-  },
-  {
-    id: 2,
-    position: 2,
-    avatar: '/',
-    nikname: 'Mike',
-    score: 2331,
-  },
-  {
-    id: 1,
-    position: 1,
-    avatar: '/',
-    nikname: 'Bob',
-    score: 233,
-  },
-  {
-    id: 2,
-    position: 2,
-    avatar: '/',
-    nikname: 'Mike',
-    score: 2331,
-  },
-  {
-    id: 1,
-    position: 1,
-    avatar: '/',
-    nikname: 'Bob',
-    score: 233,
-  },
-  {
-    id: 2,
-    position: 2,
-    avatar: '/',
-    nikname: 'Mike',
-    score: 2331,
-  },
-];
+import { useObserve } from '@/shared/hooks/useObserve';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { leaderboardGetTeamAction } from '@/store/liderboard/lideboardAction';
 
 export default function LiderList() {
+  const dispatch = useAppDispatch();
+  const { dataTeam, status, fullPagesTeam } = useAppSelector((state) => state.leaderboard);
+  const lastElement = React.useRef<HTMLDivElement | null>(null);
+  const [page, setPage] = React.useState(0);
+
+  useObserve(lastElement, status, () => {
+    setPage((prev) => prev + 1);
+  });
+
+  React.useEffect(() => {
+    if (fullPagesTeam === true) {
+      console.log('все загружено');
+    } else {
+      dispatch(
+        leaderboardGetTeamAction({
+          teamName: 'FrontWear',
+          ratingFieldName: 'score',
+          cursor: page,
+          limit: 10,
+        })
+      );
+    }
+  }, [page]);
+
   return (
-    <div className={styles.lider_list}>
-      {mockLiders.map((item) => (
-        <LiderItem key={item.id} {...item} />
-      ))}
-    </div>
+    <Box className={styles.lider_list}>
+      {dataTeam?.map((item, index) => <LiderItem key={index} {...item.data} />)}
+      <div ref={lastElement} />
+    </Box>
   );
 }

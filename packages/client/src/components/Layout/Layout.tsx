@@ -2,9 +2,9 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import FullScreen from '../FullScreen';
 import path from '../../App/Router/constants';
 import { logout } from '@/shared/api/apiAuth';
-import WithAuth from '@/shared/hoc/withAuth';
+// import WithAuth from '@/shared/hoc/withAuth';
 
-const OutletCheckAuth = WithAuth(Outlet);
+/* const OutletCheckAuth = WithAuth(Outlet); */
 
 function Layout() {
   const nav = useNavigate();
@@ -32,7 +32,7 @@ function Layout() {
         </button>
         <FullScreen />
       </nav>
-      <OutletCheckAuth />
+      <Outlet />
     </>
   );
 }
