@@ -14,6 +14,8 @@ const SSRState = window.__PRELOADED_STATE__;
 
 const state = createStore(SSRState as { leaderboard: LeaderboardStateType; user: User } | object);
 
+delete window.__PRELOADED_STATE__;
+
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <React.StrictMode>
