@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import { createServer as createViteServer } from 'vite'
 import type { ViteDevServer } from 'vite'
+import { initState } from './store'
 
 dotenv.config()
 
@@ -69,17 +70,14 @@ async function startServer() {
         render = (await vite!.ssrLoadModule(resolve(srcPath, 'ssr.tsx'))).render
       }
 
-      /* const preloadedState = await getInitialState();
+      const state = initState()
       const stateMarkup = `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(
-        preloadedState
-      ).replace(/</g, '\\u003c')}</script>`; */
+        state,
+      ).replace(/</g, '\\u003c')}</script>`
 
       const appHtml = await render(req, res)
 
-      const html = template.replace(
-        `<!--ssr-outlet-->`,
-        appHtml /*  + stateMarkup */,
-      )
+      const html = template.replace(`<!--ssr-outlet-->`, appHtml + stateMarkup)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
