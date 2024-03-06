@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
+//todo ругается что нет поддержки для ms moz webkit методов
 export const toggleFullScreen = () => {
   const elem = document.documentElement;
   if (

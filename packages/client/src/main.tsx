@@ -6,12 +6,20 @@ import App from './App/App';
 import '../src/styles/index.scss';
 import { muiTheme } from './libs/theme';
 import { isServiceWorker } from './shared/serviceWorker';
-import store from './store';
+import { createStore } from './store';
+import { LeaderboardStateType } from './store/liderboard/liderboardSlice';
+import { User } from './store/user/userSlice';
+
+const SSRState = window.__PRELOADED_STATE__;
+
+const state = createStore(SSRState as { leaderboard: LeaderboardStateType; user: User } | object);
+
+delete window.__PRELOADED_STATE__;
 
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={state}>
       <ThemeProvider theme={muiTheme}>
         <App />
       </ThemeProvider>

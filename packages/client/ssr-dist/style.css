@@ -135,28 +135,23 @@
   margin: auto 0;
   width: max-content;
 }
-._lider_board_xy7y6_1 {
+._lider_board_1svuh_1 {
   width: 100%;
   height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow: auto;
   gap: 50px;
 }
-._lider_list_txk5t_1 {
+._lider_list_1r4i0_1 {
   display: flex;
   flex-direction: column;
   gap: 40px;
   flex-wrap: wrap;
-  max-height: 650px;
   width: 1200px;
 }
-._lider_7zpwy_1 {
+._lider_1xx2j_1 {
   border: 3px solid #00a3ff;
   min-width: 3%;
   min-height: 80px;
@@ -166,17 +161,17 @@
   align-items: center;
   position: relative;
 }
-._position_7zpwy_12 {
+._position_1xx2j_12 {
   font-weight: 600;
   font-size: 36px;
   margin: 0 29px 0 0;
 }
-._nikname_7zpwy_19 {
+._nickname_1xx2j_19 {
   font-weight: 600;
   font-size: 36px;
   margin: 0 0 0 29px;
 }
-._score_7zpwy_26 {
+._score_1xx2j_26 {
   color: #ff8513;
   font-weight: 600;
   font-size: 32px;

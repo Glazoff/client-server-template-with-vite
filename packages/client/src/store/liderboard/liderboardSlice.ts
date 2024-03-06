@@ -22,7 +22,7 @@ export interface LeaderboardData {
   data: LeadeboardInfoData;
 }
 
-type LeaderboardStateType = {
+export type LeaderboardStateType = {
   dataTeam: LeaderboardData[];
   dataAll: any[];
   ratingFieldName: string;
