@@ -11,7 +11,6 @@ import * as fs from 'fs'
 import { resolve, dirname } from 'path'
 import express from 'express'
 /* import { createClientAndConnect } from './db';
-import { getInitialState } from './store';
 import { initControllers } from './controllers/init'; */
 
 const isDev = () => process.env.NODE_ENV === 'development'
