@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ThemeProvider, createTheme } from '@mui/material';
-import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import App from './App/App';
 import '../src/styles/index.scss';
@@ -9,23 +8,11 @@ import { muiTheme } from './libs/theme';
 import { isServiceWorker } from './shared/serviceWorker';
 import store from './store';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-});
-
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
+      <ThemeProvider theme={muiTheme}>
         <App />
       </ThemeProvider>
     </Provider>
