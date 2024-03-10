@@ -1,14 +1,14 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { leaderboardReducer } from './liderboard/liderboardSlice';
-import { themeReducer } from './theme/themeReducer';
+import { themeSlice } from './theme/themeSlice';
 import userReducer from './user/userSlice';
 
 const store = configureStore({
   reducer: {
     user: userReducer,
     leaderboard: leaderboardReducer,
-    theme: themeReducer,
+    theme: themeSlice.reducer,
   },
 });
 
