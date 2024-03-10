@@ -79,6 +79,7 @@ export const muiTheme = createTheme({
     },
   },
   palette: {
+    mode: 'light',
     white: {
       main: '#fff',
     },
