@@ -19,4 +19,4 @@ ReactDOM.hydrateRoot(
   </React.StrictMode>
 );
 
-// isServiceWorker('/settingServerWorker.ts');
+isServiceWorker('/settingServerWorker.ts');
