@@ -12,7 +12,7 @@ export const getTheme = async (req: Request, res: Response) => {
 
     const theme = await Theme.findOne({
       where: {
-        userId: userId,
+        userId,
       },
     })
 

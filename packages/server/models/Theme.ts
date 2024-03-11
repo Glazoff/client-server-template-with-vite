@@ -8,7 +8,7 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript'
 export class Theme extends Model<Theme> {
   @Column({
     type: DataType.INTEGER,
-    field: 'id_theme',
+    field: 'theme_id',
     primaryKey: true,
     autoIncrement: true,
   })
@@ -23,7 +23,7 @@ export class Theme extends Model<Theme> {
 
   @Column({
     type: DataType.STRING,
-    field: 'name_theme',
+    field: 'theme_name',
     allowNull: false,
   })
   titleTheme!: string
