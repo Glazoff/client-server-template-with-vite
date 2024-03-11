@@ -10,6 +10,7 @@ dotenv.config()
 import * as fs from 'fs'
 import { resolve, dirname } from 'path'
 import express from 'express'
+import { initControllers } from './controllers/init'
 /* import { createClientAndConnect } from './db';
 import { getInitialState } from './store';
 import { initControllers } from './controllers/init'; */
@@ -47,7 +48,7 @@ async function startServer() {
     app.use('/assets', express.static(resolve(distPath, 'assets')))
   }
 
-  // app.use(initControllers());
+  app.use(initControllers())
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl
