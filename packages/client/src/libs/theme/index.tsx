@@ -79,6 +79,7 @@ const muiTheme = createTheme({
     },
   },
   palette: {
+    mode: 'light',
     white: {
       main: '#fff',
     },
@@ -226,6 +227,7 @@ const darkTheme = createTheme({
     },
   },
   palette: {
+    mode: 'dark',
     white: {
       main: '#green',
     },
