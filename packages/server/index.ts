@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import dotenv from 'dotenv'
 import cors from 'cors'
 import { createServer as createViteServer } from 'vite'
@@ -10,10 +9,8 @@ dotenv.config()
 import * as fs from 'fs'
 import { resolve, dirname } from 'path'
 import express from 'express'
-import { initControllers } from './controllers/init'
-/* import { createClientAndConnect } from './db';
-import { getInitialState } from './store';
-import { initControllers } from './controllers/init'; */
+import { createClientAndConnect } from './db';
+import { initControllers } from './controllers/init';
 
 const isDev = () => process.env.NODE_ENV === 'development'
 
@@ -22,8 +19,7 @@ async function startServer() {
   app.use(cors())
   const port = Number(process.env.SERVER_PORT) || 3001
   app.use(express.json())
-  // TODO вернуть при подключении к БД
-  // await createClientAndConnect();
+  await createClientAndConnect();
 
   let vite: ViteDevServer | undefined
   const distPath = dirname(require.resolve('client/dist/index.html'))
@@ -48,7 +44,7 @@ async function startServer() {
     app.use('/assets', express.static(resolve(distPath, 'assets')))
   }
 
-  app.use(initControllers())
+  app.use(initControllers());
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl

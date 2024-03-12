@@ -70,6 +70,7 @@ services:
       volumes:
         - ./tmp/pgdata:/var/lib/postgresql/data
 
+
 #    pgadmin:
 #      container_name: pgadmin
 #      image: dpage/pgadmin4:4.18
