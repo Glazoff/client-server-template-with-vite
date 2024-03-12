@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
-import { Topic } from '../models/Topic';
+import escape from 'escape-html';
 import { Op } from 'sequelize';
+import { Topic } from '../models/Topic';
 
 export const getAllTopicList = async (req: Request, res: Response) => {
   try {
@@ -48,11 +49,13 @@ export const getTopicById = async (req: Request, res: Response) => {
 
 export const createTopic = async (req: Request, res: Response) => {
   try {
-    const data = req.body as {
+    let data = req.body as {
       title: string;
       description: string;
       userId: number;
-    } & any;
+    } as any;
+
+    data = escape(data);
 
     if (!data) {
       res.status(404).send('Empty body');

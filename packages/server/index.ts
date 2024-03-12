@@ -19,7 +19,6 @@ async function startServer() {
   app.use(cors())
   const port = Number(process.env.SERVER_PORT) || 3001
   app.use(express.json())
-  // TODO вернуть при подключении к БД
   await createClientAndConnect();
 
   let vite: ViteDevServer | undefined

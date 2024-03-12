@@ -22,7 +22,7 @@ export const createClientAndConnect = async (): Promise<Sequelize | null> => {
     sequelize.addModels([Topic, Reply, Comment]);
 
     await sequelize.authenticate();
-    await sequelize.sync(); //{force: true}
+    await sequelize.sync();
 
     console.log('  ➜ 🎸 Connected to the database success');
 

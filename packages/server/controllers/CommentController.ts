@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+import escape from 'escape-html';
 import { Comment } from '../models/Comment';
 import { Reply } from '../models/Reply';
 
@@ -33,11 +34,13 @@ export const getAllCommentsWithRepliesByTopicId = async (
 
 export const createComment = async (req: Request, res: Response) => {
   try {
-    const data = req.body as {
+    let data = req.body as {
       content: string;
       topicId: number;
       userId: number;
     } & any;
+
+    data = escape(data);
 
     if (!data) {
       res.status(404).send('Empty body');

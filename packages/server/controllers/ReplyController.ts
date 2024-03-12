@@ -1,13 +1,16 @@
 import type { Request, Response } from 'express';
+import escape from 'escape-html';
 import { Reply } from '../models/Reply';
 
 export const createReply = async (req: Request, res: Response) => {
   try {
-    const data = req.body as {
+    let data = req.body as {
       content: string;
       commentId: number;
       userId: number;
     } & any;
+
+    data = escape(data);
 
     if (!data) {
       res.status(404).send('Empty body');
