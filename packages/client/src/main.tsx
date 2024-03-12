@@ -4,11 +4,11 @@ import { ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import App from './App/App';
 import '../src/styles/index.scss';
+import { muiTheme, darkTheme } from './libs/theme';
 import { isServiceWorker } from './shared/serviceWorker';
 import { createStore, useAppSelector } from './store';
 import { LeaderboardStateType } from './store/liderboard/liderboardSlice';
 import { User } from './store/user/userSlice';
-import { muiTheme, darkTheme } from './libs/theme';
 
 const SSRState = window.__PRELOADED_STATE__;
 

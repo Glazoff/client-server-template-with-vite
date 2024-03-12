@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Box, TextField, Button, Typography, styled } from '@mui/material';
 import path from '@/App/Router/constants.js';
-import OAuthButton from '@/features/OAuthButton/OAuthButton';
+// import OAuthButton from '@/features/OAuthButton/OAuthButton';
 import { getUser, signIn } from '@/shared/api/apiAuth.js';
 import BUTTONS from '@/shared/buttonDict/index.js';
 import { User, updateUser } from '@/store/user/userSlice.js';

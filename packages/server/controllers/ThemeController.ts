@@ -27,7 +27,7 @@ export const changeTheme = async (req: Request, res: Response) => {
     const data = req.body as {
       titleTheme: string
       userId: number
-    } & any
+    }
 
     if (!data) {
       res.status(404).send('Empty body')
