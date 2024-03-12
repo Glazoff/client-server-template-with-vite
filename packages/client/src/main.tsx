@@ -33,7 +33,7 @@ ReactDOM.hydrateRoot(
   <React.StrictMode>
     <Provider store={state}>
       <ThemeProvider theme={muiTheme}>
-        <App />
+        <WrapperThemeMUI />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>
