@@ -19,7 +19,20 @@ export const buttonsStyles = {
       backgroundColor: '#ffb26b',
     },
   },
-
+  light: {
+    color: '#ba0464',
+    backgroundColor: '#17cdbede',
+    hover: {
+      backgroundColor: '#ffb26b',
+    },
+  },
+  light1: {
+    color: '#ba0464',
+    backgroundColor: '#33d207',
+    hover: {
+      backgroundColor: '#ffb26b',
+    },
+  },
   link: {
     color: '#1E1E1E',
     backgroundColor: '#FF8513',

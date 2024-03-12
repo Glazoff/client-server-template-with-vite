@@ -23,6 +23,7 @@ declare module '@mui/material/styles' {
     };
   }
 
+  // #373434 - bgcolor for darkMode
   interface Palette {
     white: Palette['primary'];
     greyHeader: Palette['primary'];
@@ -310,8 +311,8 @@ const darkTheme = createTheme({
         {
           props: { variant: 'default' },
           style: {
-            color: buttonsStyles.default.color,
-            backgroundColor: buttonsStyles.default.backgroundColor,
+            color: buttonsStyles.light.color,
+            backgroundColor: buttonsStyles.light.backgroundColor,
             padding: '12px 24px',
             borderRadius: buttonsStyles.borderRadius,
             ':hover': {
@@ -322,8 +323,8 @@ const darkTheme = createTheme({
         {
           props: { variant: 'orange' },
           style: {
-            color: buttonsStyles.orange.color,
-            backgroundColor: buttonsStyles.orange.backgroundColor,
+            color: buttonsStyles.light1.color,
+            backgroundColor: buttonsStyles.light1.backgroundColor,
             padding: '12px 24px',
             borderRadius: buttonsStyles.borderRadius,
             ':hover': {
