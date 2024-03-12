@@ -18,7 +18,7 @@ delete window.__PRELOADED_STATE__;
 
 // eslint-disable-next-line react/display-name
 const ThemeMUIWith = (WrapperComponent: React.ComponentType) => () => {
-  const theme = useAppSelector((state) => state.theme);
+  const theme = useAppSelector((state) => state.theme.theme);
   return (
     <ThemeProvider theme={theme}>
       <WrapperComponent />
