@@ -74,3 +74,38 @@ export const signUp = async (userData: SignUp) => {
   });
   return data;
 };
+
+export const getOAuthClientId = async (redirectUrl: string) => {
+  const data = await fetch(`${baseUrl}/oauth/yandex/service-id?redirect_uri=${redirectUrl}`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (data.status !== 200) {
+    console.error(`request oauth/yandex/service failed error: ${data.status}`);
+    return;
+  }
+  return data.json();
+};
+
+export const loginOAuthYandex = async (bodyData: { code: string | null; redirect_uri: string }) => {
+  const data = await fetch(`${baseUrl}/oauth/yandex`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(bodyData),
+  });
+
+  if (data.status !== 200) {
+    console.error(`request oauth/yandex failed error: ${data.status}`);
+    return;
+  }
+  return data.json();
+};
