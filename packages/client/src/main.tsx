@@ -20,7 +20,6 @@ delete window.__PRELOADED_STATE__;
 const ThemeMUIWith = (WrapperComponent: React.ComponentType) => () => {
   const modeStr = useAppSelector((state) => state.mode.mode);
   const theme = modeStr === 'dark' ? darkTheme : muiTheme;
-  console.log('theme:', theme);
   return (
     <ThemeProvider theme={theme}>
       <WrapperComponent />

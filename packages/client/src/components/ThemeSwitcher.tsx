@@ -16,7 +16,11 @@ const ThemeSwitcher = () => {
     }),
     []
   );
-  dispatch(updateTheme(mode));
+
+  React.useEffect(() => {
+    dispatch(updateTheme(mode));
+  }, [mode]);
+
   return (
     <IconButton onClick={colorMode.toggleTheme} color="inherit">
       {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
