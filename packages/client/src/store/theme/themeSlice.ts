@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const themeSlice = createSlice({
-  name: 'theme',
+  name: 'mode',
   initialState: {
-    theme: 'light',
+    mode: 'light',
   },
   reducers: {
     updateTheme(state, action) {
       const { payload } = action;
 
-      state.theme = payload;
+      state.mode = payload;
     },
   },
 });

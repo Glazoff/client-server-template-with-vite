@@ -1,10 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import App from './App/App';
 import '../src/styles/index.scss';
-import { muiTheme } from './libs/theme';
 import { isServiceWorker } from './shared/serviceWorker';
 import { createStore, useAppSelector } from './store';
 import { LeaderboardStateType } from './store/liderboard/liderboardSlice';
@@ -18,9 +17,15 @@ delete window.__PRELOADED_STATE__;
 
 // eslint-disable-next-line react/display-name
 const ThemeMUIWith = (WrapperComponent: React.ComponentType) => () => {
-  const theme = useAppSelector((state) => state.theme.theme);
+  const modeStr = useAppSelector((state) => state.mode.mode);
+  const Theme = createTheme({
+    palette: {
+      mode: modeStr,
+    },
+  });
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={Theme}>
       <WrapperComponent />
     </ThemeProvider>
   );
@@ -32,9 +37,7 @@ ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <React.StrictMode>
     <Provider store={state}>
-      <ThemeProvider theme={muiTheme}>
-        <WrapperThemeMUI />
-      </ThemeProvider>
+      <WrapperThemeMUI />
     </Provider>
   </React.StrictMode>
 );

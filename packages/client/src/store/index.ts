@@ -11,7 +11,7 @@ export const createStore = (
     reducer: {
       user: userReducer,
       leaderboard: leaderboardReducer,
-      theme: themeSlice,
+      mode: themeSlice,
     },
     preloadedState: initState,
   });
