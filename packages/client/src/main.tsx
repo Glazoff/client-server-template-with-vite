@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ThemeProvider, createTheme } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import App from './App/App';
 import '../src/styles/index.scss';
@@ -8,6 +8,7 @@ import { isServiceWorker } from './shared/serviceWorker';
 import { createStore, useAppSelector } from './store';
 import { LeaderboardStateType } from './store/liderboard/liderboardSlice';
 import { User } from './store/user/userSlice';
+import { muiTheme, darkTheme } from './libs/theme';
 
 const SSRState = window.__PRELOADED_STATE__;
 
@@ -18,11 +19,7 @@ delete window.__PRELOADED_STATE__;
 // eslint-disable-next-line react/display-name
 const ThemeMUIWith = (WrapperComponent: React.ComponentType) => () => {
   const modeStr = useAppSelector((state) => state.mode.mode);
-  const Theme = createTheme({
-    palette: {
-      mode: modeStr,
-    },
-  });
+  const Theme = modeStr === 'dark' ? { darkTheme } : { muiTheme };
 
   return (
     <ThemeProvider theme={Theme}>

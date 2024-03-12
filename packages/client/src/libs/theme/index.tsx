@@ -64,7 +64,7 @@ declare module '@mui/material/Button' {
   }
 }
 
-export const muiTheme = createTheme({
+const muiTheme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -210,3 +210,152 @@ export const muiTheme = createTheme({
     },
   },
 });
+
+const darkTheme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 992,
+      xl: 1200,
+      xxl: 1400,
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  },
+  palette: {
+    white: {
+      main: '#green',
+    },
+    greyHeader: {
+      main: '#red',
+    },
+  },
+  typography: {
+    fontFamily: ['Inter', 'sans-serif'].join(','),
+    h1: {
+      fontSize: '48px',
+      lineHeight: 'normal',
+    },
+    h2: {
+      fontSize: '32px',
+      lineHeight: 'normal',
+    },
+    h3: {
+      fontSize: '24px',
+      lineHeight: 'normal',
+    },
+    h4: {
+      fontSize: '18px',
+      lineHeight: 'normal',
+    },
+    h5: {
+      fontSize: '16px',
+      lineHeight: 'normal',
+    },
+    h6: {
+      fontSize: '12px',
+      lineHeight: 'normal',
+    },
+    body1: {
+      fontSize: '20px',
+      lineHeight: 'normal',
+    },
+    button: {
+      fontSize: '24px',
+      textTransform: 'none',
+      lineHeight: 'normal',
+      fontWeight: 400,
+    },
+  },
+  underline: {
+    default: underlineStyles.borderBottom,
+    hover: underlineStyles.hover.borderBottom,
+  },
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: forwardRef(LinkBehavior),
+      } as LinkProps,
+      styleOverrides: {
+        root: {
+          color: 'inherit',
+          textDecoration: 'none',
+          ':hover': {
+            textDecoration: 'underline',
+          },
+        },
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: forwardRef(LinkBehavior),
+      },
+    },
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'hollow' },
+          style: {
+            padding: '12px 24px',
+            background: 'none',
+            borderRadius: buttonsStyles.borderRadius,
+            border: buttonsStyles.hollow.border,
+          },
+        },
+        {
+          props: { variant: 'default' },
+          style: {
+            color: buttonsStyles.default.color,
+            backgroundColor: buttonsStyles.default.backgroundColor,
+            padding: '12px 24px',
+            borderRadius: buttonsStyles.borderRadius,
+            ':hover': {
+              backgroundColor: buttonsStyles.default.hover.backgroundColor,
+            },
+          },
+        },
+        {
+          props: { variant: 'orange' },
+          style: {
+            color: buttonsStyles.orange.color,
+            backgroundColor: buttonsStyles.orange.backgroundColor,
+            padding: '12px 24px',
+            borderRadius: buttonsStyles.borderRadius,
+            ':hover': {
+              backgroundColor: buttonsStyles.orange.hover.backgroundColor,
+            },
+          },
+        },
+        {
+          props: { variant: 'link' },
+          style: {
+            borderRadius: 0,
+            color: buttonsStyles.link.color,
+            background: 'none',
+            padding: '4px 0',
+            border: 'none',
+            ':hover': {
+              background: 'none',
+              '::before': {
+                borderBottom: underlineStyles.hover.borderBottom,
+              },
+            },
+            '::before': {
+              borderBottom: underlineStyles.borderBottom,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              content: "''",
+              position: 'absolute',
+            },
+          },
+        },
+      ],
+    },
+  },
+});
+
+export { muiTheme, darkTheme };
