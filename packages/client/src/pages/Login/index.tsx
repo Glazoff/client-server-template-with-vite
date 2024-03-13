@@ -8,11 +8,11 @@ import { getUser, signIn } from '@/shared/api/apiAuth.js';
 import BUTTONS from '@/shared/buttonDict/index.js';
 import { User, updateUser } from '@/store/user/userSlice.js';
 
-export default function Login() {
-  const BackgroundDiv = styled('section')(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
-  }));
+const BackgroundDiv = styled('section')(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+}));
 
+export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
