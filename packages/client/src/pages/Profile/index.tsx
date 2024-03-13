@@ -1,26 +1,34 @@
-import { Box } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import ProfileContentPage from '@/widgets/ProfileContentPage';
+
+const BackgroundDiv = styled('section')(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+}));
 
 export default function Profile() {
   return (
-    <Box component={'section'} sx={{ display: 'flex', maxWidth: '1920px', height: '100vh' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+    <BackgroundDiv>
+      <Box component={'section'} sx={{ display: 'flex', maxWidth: '1920px', height: '100vh' }}>
         <Box
-          sx={{
-            maxWidth: '850px',
-            width: '100%',
-            height: '620px',
-            borderRadius: '12px',
-            border: '3px solid #00A3FF',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}
         >
-          <ProfileContentPage />
+          <Box
+            sx={{
+              maxWidth: '850px',
+              width: '100%',
+              height: '620px',
+              borderRadius: '12px',
+              border: '3px solid #00A3FF',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ProfileContentPage />
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </BackgroundDiv>
   );
 }
