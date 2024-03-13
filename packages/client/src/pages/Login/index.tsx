@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Box, TextField, Button, Typography, styled } from '@mui/material';
 import path from '@/App/Router/constants.js';
-// import OAuthButton from '@/features/OAuthButton/OAuthButton';
+import OAuthButton from '@/features/OAuthButton/OAuthButton';
 import { getUser, signIn } from '@/shared/api/apiAuth.js';
 import BUTTONS from '@/shared/buttonDict/index.js';
 import { User, updateUser } from '@/store/user/userSlice.js';
@@ -60,7 +60,6 @@ export default function Login() {
                 borderRadius: '15px',
                 border: '6px solid #00A3FF',
                 width: '400px',
-                height: '300px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -88,20 +87,23 @@ export default function Login() {
                 placeholder="Введите ваш пароль"
                 onChange={onChangePassword}
               />
-              <Stack
-                display="flex"
-                flexDirection={'row'}
-                gap={'10px'}
-                width={'100%'}
-                marginBottom={'10px'}
-                marginTop={'10px'}
-              >
-                <Button sx={{ width: '50%' }} variant="default" onClick={handleReqAuth}>
-                  {BUTTONS.enter.ru.text}
-                </Button>
-                <Button sx={{ width: '50%' }} variant="orange">
-                  {BUTTONS.register.ru.text}
-                </Button>
+              <Stack display="flex" gap={'10px'} flexDirection={'column'} marginBottom={'10px'}>
+                <Stack
+                  display="flex"
+                  flexDirection={'row'}
+                  gap={'10px'}
+                  width={'100%'}
+                  marginBottom={'10px'}
+                  marginTop={'10px'}
+                >
+                  <Button sx={{ width: '50%' }} variant="default" onClick={handleReqAuth}>
+                    {BUTTONS.enter.ru.text}
+                  </Button>
+                  <Button sx={{ width: '50%' }} variant="orange">
+                    {BUTTONS.register.ru.text}
+                  </Button>
+                </Stack>
+                <OAuthButton />
               </Stack>
             </Box>
           </form>
