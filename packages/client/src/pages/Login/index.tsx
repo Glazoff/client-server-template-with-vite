@@ -1,14 +1,18 @@
 import { SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Stack, Box, TextField, Button, Typography } from '@mui/material';
+import { Stack, Box, TextField, Button, Typography, styled } from '@mui/material';
 import path from '@/App/Router/constants.js';
-import OAuthButton from '@/features/OAuthButton/OAuthButton';
+// import OAuthButton from '@/features/OAuthButton/OAuthButton';
 import { getUser, signIn } from '@/shared/api/apiAuth.js';
 import BUTTONS from '@/shared/buttonDict/index.js';
 import { User, updateUser } from '@/store/user/userSlice.js';
 
 export default function Login() {
+  const BackgroundDiv = styled('section')(({ theme }) => ({
+    backgroundColor: theme.palette.background.paper,
+  }));
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -40,55 +44,50 @@ export default function Login() {
   };
 
   return (
-    <Box component={'section'} sx={{ display: 'flex', height: '100vh' }}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-        }}
-      >
-        <form>
-          <Box
-            sx={{
-              borderRadius: '15px',
-              border: '6px solid #00A3FF',
-              width: '400px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: '10px',
-            }}
-          >
-            <Typography>Авторизация</Typography>
-            <TextField
-              name="login"
-              fullWidth={true}
-              margin="normal"
-              label="Логин"
-              variant="outlined"
-              placeholder="Введите ваш логин"
-              onChange={onChangeLogin}
-            />
-            <TextField
-              name="password"
-              type="password"
-              fullWidth={true}
-              margin="normal"
-              label="Пароль"
-              variant="outlined"
-              placeholder="Введите ваш пароль"
-              onChange={onChangePassword}
-            />
-            <Stack
-              display="flex"
-              flexDirection={'column'}
+    <BackgroundDiv>
+      <Box component={'section'} sx={{ display: 'flex', height: '100vh' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+          }}
+        >
+          <form>
+            <Box
               sx={{
-                padding: '5px',
+                borderRadius: '15px',
+                border: '6px solid #00A3FF',
+                width: '400px',
+                height: '300px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '10px',
               }}
             >
+              <Typography>Авторизация</Typography>
+              <TextField
+                name="login"
+                fullWidth={true}
+                margin="normal"
+                label="Логин"
+                variant="outlined"
+                placeholder="Введите ваш логин"
+                onChange={onChangeLogin}
+              />
+              <TextField
+                name="password"
+                type="password"
+                fullWidth={true}
+                margin="normal"
+                label="Пароль"
+                variant="outlined"
+                placeholder="Введите ваш пароль"
+                onChange={onChangePassword}
+              />
               <Stack
                 display="flex"
                 flexDirection={'row'}
@@ -97,17 +96,17 @@ export default function Login() {
                 marginBottom={'10px'}
                 marginTop={'10px'}
               >
-                <Button variant="default" onClick={handleReqAuth}>
+                <Button sx={{ width: '50%' }} variant="default" onClick={handleReqAuth}>
                   {BUTTONS.enter.ru.text}
                 </Button>
-                <Button variant="orange">{BUTTONS.register.ru.text}</Button>
+                <Button sx={{ width: '50%' }} variant="orange">
+                  {BUTTONS.register.ru.text}
+                </Button>
               </Stack>
-
-              <OAuthButton />
-            </Stack>
-          </Box>
-        </form>
+            </Box>
+          </form>
+        </Box>
       </Box>
-    </Box>
+    </BackgroundDiv>
   );
 }

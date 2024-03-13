@@ -1,6 +1,7 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { LeaderboardStateType, leaderboardReducer } from './liderboard/liderboardSlice';
+import themeSliceReducer from './theme/themeSlice';
 import userReducer, { User } from './user/userSlice';
 
 export const createStore = (
@@ -10,6 +11,7 @@ export const createStore = (
     reducer: {
       user: userReducer,
       leaderboard: leaderboardReducer,
+      mode: themeSliceReducer,
     },
     preloadedState: initState,
   });

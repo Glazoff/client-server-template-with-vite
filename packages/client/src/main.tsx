@@ -4,9 +4,9 @@ import { ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import App from './App/App';
 import '../src/styles/index.scss';
-import { muiTheme } from './libs/theme';
+import { muiTheme, darkTheme } from './libs/theme';
 import { isServiceWorker } from './shared/serviceWorker';
-import { createStore } from './store';
+import { createStore, useAppSelector } from './store';
 import { LeaderboardStateType } from './store/liderboard/liderboardSlice';
 import { User } from './store/user/userSlice';
 
@@ -16,13 +16,24 @@ const state = createStore(SSRState as { leaderboard: LeaderboardStateType; user:
 
 delete window.__PRELOADED_STATE__;
 
+// eslint-disable-next-line react/display-name
+const ThemeMUIWith = (WrapperComponent: React.ComponentType) => () => {
+  const modeStr = useAppSelector((state) => state.mode.mode);
+  const theme = modeStr === 'dark' ? darkTheme : muiTheme;
+  return (
+    <ThemeProvider theme={theme}>
+      <WrapperComponent />
+    </ThemeProvider>
+  );
+};
+
+const WrapperThemeMUI = ThemeMUIWith(App);
+
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <React.StrictMode>
     <Provider store={state}>
-      <ThemeProvider theme={muiTheme}>
-        <App />
-      </ThemeProvider>
+      <WrapperThemeMUI />
     </Provider>
   </React.StrictMode>
 );
