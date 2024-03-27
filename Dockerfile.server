@@ -22,4 +22,4 @@ COPY index.d.ts /app/node_modules/vite/dist/node/index.d.ts
 
 EXPOSE $SERVER_PORT
 
-CMD [ "node", "/app/packages/server/dist/index.js" ]
+CMD [ "node", "./dist/index.js" ]
