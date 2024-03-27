@@ -21,3 +21,5 @@ RUN rm -rf /app/packages/client/dist/ && yarn build --scope=client
 COPY index.d.ts /app/node_modules/vite/dist/node/index.d.ts
 
 EXPOSE $SERVER_PORT
+
+CMD [ "node", "/app/index.js" ]
