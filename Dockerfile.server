@@ -24,4 +24,4 @@ EXPOSE $SERVER_PORT
 
 RUN ls
 
-CMD [ "node", "./dist/index.js" ]
+CMD [ "node", "/packages/server/dist/index.js" ]
