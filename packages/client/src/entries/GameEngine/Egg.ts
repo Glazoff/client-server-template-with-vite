@@ -4,6 +4,7 @@ type EggTypeProps = {
   x: number;
   y: number;
   speed: number;
+  numberBasket: number;
 };
 export class Egg {
   x: number;
@@ -13,12 +14,14 @@ export class Egg {
   speed: number;
   eggImage: HTMLImageElement;
   frames: string[];
+  numberBasket: number;
 
-  constructor({ x, y, speed }: EggTypeProps) {
+  constructor({ x, y, speed, numberBasket }: EggTypeProps) {
     this.x = x;
     this.y = y;
     this.width = 20;
     this.height = 20;
+    this.numberBasket = numberBasket;
     this.speed = speed;
     this.frames = [eggImage, eggImage];
     this.eggImage = new Image();

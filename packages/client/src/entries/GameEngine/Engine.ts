@@ -18,6 +18,7 @@ export class Engine {
   private eggs: Egg[];
   private wolf: Wolf;
   private _onGameOver: ((score: number) => void) | undefined;
+  private basketPosition = 0;
 
   constructor({ canvas, onGameOver }: Props) {
     this.canvas = canvas;
@@ -27,6 +28,7 @@ export class Engine {
     const initialPositionY = this.canvas!.height - 50;
 
     this._onGameOver = onGameOver;
+    this.basketPosition = 0;
 
     if (!this.ctx) {
       throw new Error('Unable to get 2D rendering context');
@@ -36,6 +38,7 @@ export class Engine {
     this.createEgg();
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
+    window.addEventListener('keydown', this.handleKeyOne);
   }
 
   public start() {
@@ -82,6 +85,7 @@ export class Engine {
     if (this.gameOver === false) {
       for (let i = 1; i <= 2; i++) {
         const egg = new Egg({
+          numberBasket: i,
           x: 200 * i,
           y: 10,
           speed: this.initialEggSpeed,
@@ -116,8 +120,20 @@ export class Engine {
     this.eggs.forEach((egg) => egg.update());
   }
 
+  private handleKeyOne = (event: KeyboardEvent) => {
+    event.preventDefault();
+    if (event.code == 'Digit1') {
+      this.basketPosition = 1;
+      console.log(this.basketPosition);
+    }
+    if (event.code == 'Digit2') {
+      this.basketPosition = 2;
+    }
+  };
+
   private handleKeyUp = (event: KeyboardEvent) => {
     event.preventDefault();
+    console.log(event.code);
     if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
       this.wolf.stopMoving();
     }
@@ -134,17 +150,33 @@ export class Engine {
   };
   // TODO: Подумать над проверкой выхода за границ холста.
   private checkEggIntersection() {
+    //TODO: Проверка на совпадение позиции волка(basketPosition) и корзины яйца(numberBasket)
     this.eggs.forEach((egg) => {
-      if (isRectCollide(egg, this.wolf)) {
+      if (egg.numberBasket == this.basketPosition) {
         this.catchEggCount++;
+        this.basketPosition = 0;
         this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
 
         if (this.eggs.length) {
-          this.initialEggSpeed++;
+          // this.initialEggSpeed++;
           this.createEgg();
         }
       }
     });
+
+    //TODO: Проверка на пересечение границ с волком
+
+    // this.eggs.forEach((egg) => {
+    //   if (isRectCollide(egg, this.wolf)) {
+    //     this.catchEggCount++;
+    //     this.eggs = this.eggs.filter((currentEgg) => currentEgg !== egg);
+
+    //     if (this.eggs.length) {
+    //       this.initialEggSpeed++;
+    //       this.createEgg();
+    //     }
+    //   }
+    // });
   }
 
   private checkEggIntesectionIsBound() {
