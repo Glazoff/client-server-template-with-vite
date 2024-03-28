@@ -144,8 +144,10 @@ export class Engine {
 
     if (event.code === 'ArrowLeft') {
       this.wolf.moveLeft();
+      this.basketPosition = 2;
     } else if (event.code === 'ArrowRight') {
       this.wolf.moveRight();
+      this.basketPosition = 1;
     }
   };
   // TODO: Подумать над проверкой выхода за границ холста.
