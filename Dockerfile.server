@@ -16,12 +16,11 @@ RUN yarn lerna bootstrap
 
 RUN rm -rf /app/packages/client/ssr-dist/ && yarn build:ssr --scope=client
 RUN rm -rf /app/packages/client/dist/ && yarn build --scope=client
-RUN rm -rf /app/packages/server/dist/ && yarn build
 
 COPY index.d.ts /app/node_modules/vite/dist/node/index.d.ts
 
-EXPOSE $SERVER_PORT
+RUN rm -rf /app/packages/server/dist/ && yarn build
 
-RUN ls
+EXPOSE $SERVER_PORT
 
 CMD [ "node", "packages/server/dist/index.js" ]
